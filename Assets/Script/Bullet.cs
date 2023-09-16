@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -11,5 +12,13 @@ public class Bullet : MonoBehaviour
 
         // Move the object forward
         transform.Translate(moveDirection, Space.World);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
