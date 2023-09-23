@@ -1,9 +1,18 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TopDownMouseLook : MonoBehaviour
 {
     public float rotationSpeed = 5.0f; // Rotation speed of the character
     public LayerMask groundLayer; // Layer mask for the ground or surfaces to hit
+
+    private float shotTime;
+    private PlayerInput playerInput;
+
+    private void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+    }
 
     void Update()
     {
@@ -27,7 +36,41 @@ public class TopDownMouseLook : MonoBehaviour
             {
                 Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                
+                // Left click to shoot
+                if (Input.GetMouseButtonDown(0))
+                {
+                    PerformShooting();
+                }
             }
         }
+
+        // Cast a ray to right stick direction [input]
+        Vector2 input = playerInput.actions["Look"].ReadValue<Vector2>();
+        Vector3 inputDirection = new Vector3(input.x, 0.0f, input.y);
+
+        // If the direction is non-zero, rotate the character to look at the stick direction [input]
+        if (inputDirection != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(inputDirection, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            PerformShooting();
+        }
+    }
+
+    // Check shooting cooldown
+    private void PerformShooting()
+    {
+        if (Time.time - shotTime >= 0.5f)
+        {
+            Shoot();
+            shotTime = Time.time;
+        }
+    }
+
+    private void Shoot()
+    {
+        Debug.Log("Bang!");
     }
 }
