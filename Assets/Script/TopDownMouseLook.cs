@@ -6,15 +6,17 @@ public class TopDownMouseLook : MonoBehaviour
     [SerializeField] private float rotationSpeed = 5.0f; // Rotation speed of the character
     [SerializeField] private LayerMask groundLayer; // Layer mask for the ground or surfaces to hit
 
+    // private Shooting shooting;
+    [SerializeField] public Nf_GameEvent shootEvent;
+
     private PlayerInput playerInput;
-    private Shooting shooting;
 
     private void Awake()
     {
         // Get the PlayerInput component attached to the player GameObject
         playerInput = GetComponent<PlayerInput>();
         // Get the Shooting component script attached to the player GameObject
-        shooting = GetComponent<Shooting>();
+        // shooting = GetComponent<Shooting>();
     }
 
     private void Update()
@@ -65,7 +67,8 @@ public class TopDownMouseLook : MonoBehaviour
         if (inputDirection != Vector3.zero)
         {
             RotateCharacter(inputDirection);
-            shooting.Perform();
+            // shooting.Perform();
+            shootEvent.Raise();
         }
     }
 
@@ -75,7 +78,8 @@ public class TopDownMouseLook : MonoBehaviour
         // Left Mouse Click
         if (Input.GetMouseButtonDown(0))
         {
-            shooting.Perform();
+            // shooting.Perform();
+            shootEvent.Raise();
         }
     }
 }

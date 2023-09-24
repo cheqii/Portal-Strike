@@ -698,6 +698,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 642208072}
+  - component: {fileID: 642208074}
+  - component: {fileID: 642208073}
   m_Layer: 0
   m_Name: ShootingPoint
   m_TagString: Untagged
@@ -720,6 +722,50 @@ Transform:
   m_Father: {fileID: 1966275368}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &642208073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642208071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b137c4cf2fcca274aa8f2472a8ab2e73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 0.1
+  bulletSpeed: 30
+  bulletPrefab: {fileID: 5419491360957919028, guid: aceba2291b39ac24b96c6a779e13212b, type: 3}
+  shootingPoint: {fileID: 642208072}
+--- !u!114 &642208074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642208071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c512b33d1839647a05066ac2d39cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEvent: {fileID: 11400000, guid: 0b745d373b84efa4183a799a1675d080, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 642208073}
+        m_TargetAssemblyTypeName: Shooting, Assembly-CSharp
+        m_MethodName: Perform
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &666530355
 GameObject:
   m_ObjectHideFlags: 0
@@ -2140,12 +2186,11 @@ GameObject:
   - component: {fileID: 1966275368}
   - component: {fileID: 1966275367}
   - component: {fileID: 1966275366}
-  - component: {fileID: 1966275369}
   - component: {fileID: 1966275371}
   - component: {fileID: 1966275372}
-  - component: {fileID: 1966275373}
-  - component: {fileID: 1966275375}
   - component: {fileID: 1966275374}
+  - component: {fileID: 1966275369}
+  - component: {fileID: 1966275373}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2280,6 +2325,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  shootEvent: {fileID: 11400000, guid: 0b745d373b84efa4183a799a1675d080, type: 2}
 --- !u!114 &1966275374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2318,22 +2364,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1966275375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966275364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b137c4cf2fcca274aa8f2472a8ab2e73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireRate: 0.1
-  bulletSpeed: 30
-  bulletPrefab: {fileID: 5419491360957919028, guid: aceba2291b39ac24b96c6a779e13212b, type: 3}
-  shootingPoint: {fileID: 642208072}
 --- !u!1 &2054297961
 GameObject:
   m_ObjectHideFlags: 0
