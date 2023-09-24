@@ -24,4 +24,17 @@ public class DestroyGameObject : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    /* When an object with the "Enemy" tag enters the trigger zone of the object containing this script
+     * , the object with the script attached to it will be destroyed. */
+
+    /* Tips OnCollisionEnter is external detection.
+     * but OnTriggerEnter is inside detection. */
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

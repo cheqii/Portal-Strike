@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    [SerializeField] private float fireRate = 0.5f;
+    [SerializeField] private float fireRate = 0.1f;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform shootingPoint;
