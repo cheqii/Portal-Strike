@@ -33,7 +33,6 @@ public class Movement : MonoBehaviour
         actionMap.Disable();
     }
 
-
     private void Update()
     {
         // Get input from the player

@@ -2144,8 +2144,8 @@ GameObject:
   - component: {fileID: 1966275371}
   - component: {fileID: 1966275372}
   - component: {fileID: 1966275373}
-  - component: {fileID: 1966275374}
   - component: {fileID: 1966275375}
+  - component: {fileID: 1966275374}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -2330,6 +2330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b137c4cf2fcca274aa8f2472a8ab2e73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRate: 0.5
   bulletSpeed: 50
   bulletPrefab: {fileID: 5419491360957919028, guid: aceba2291b39ac24b96c6a779e13212b, type: 3}
   shootingPoint: {fileID: 642208072}
