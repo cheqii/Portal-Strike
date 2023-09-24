@@ -13,12 +13,16 @@ public class Movement : MonoBehaviour
     {
         // Get the CharacterController component attached to the player GameObject
         characterController = GetComponent<CharacterController>();
+
+        // Get the PlayerInput component attached to the player GameObject
         playerInput = GetComponent<PlayerInput>();
+
+        // Get the ("Player") Action Maps from the InputActions component script that attached with PlayerInput
         actionMap = playerInput.actions.FindActionMap("Player");
     }
 
     /* OnEnable and OnDisable are used to reduce script execution.
-     * OnEnable will be started before "Start()", so you need to use "Awake()" instead of "Start()" function. */
+     * OnEnable will be started before "Start()", so you need to use "Awake()" instead of "Start()" function */
     private void OnEnable()
     {
         actionMap.Enable();

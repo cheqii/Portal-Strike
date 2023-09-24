@@ -6,15 +6,19 @@ public class TopDownMouseLook : MonoBehaviour
     public float rotationSpeed = 5.0f; // Rotation speed of the character
     public LayerMask groundLayer; // Layer mask for the ground or surfaces to hit
 
-    private float shotTime;
     private PlayerInput playerInput;
+    private Shooting shooting;
 
     private void Awake()
     {
+        // Get the PlayerInput component attached to the player GameObject
         playerInput = GetComponent<PlayerInput>();
+
+        // Get the Shooting component script attached to the player GameObject
+        shooting = GetComponent<Shooting>();
     }
 
-    void Update()
+    private void Update()
     {
         // Cast a ray from the camera to the mouse position
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -40,37 +44,22 @@ public class TopDownMouseLook : MonoBehaviour
                 // Left click to shoot
                 if (Input.GetMouseButtonDown(0))
                 {
-                    PerformShooting();
+                    shooting.Perform();
                 }
             }
         }
 
-        // Cast a ray to right stick direction [input]
+        // Cast a ray to right stick direction {input}
         Vector2 input = playerInput.actions["Look"].ReadValue<Vector2>();
         Vector3 inputDirection = new Vector3(input.x, 0.0f, input.y);
 
-        // If the direction is non-zero, rotate the character to look at the stick direction [input]
+        // If the {inputDirection} is non-zero, rotate the character to look at the stick direction {input}
         if (inputDirection != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(inputDirection, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-            PerformShooting();
+            shooting.Perform();
         }
-    }
-
-    // Check shooting cooldown
-    private void PerformShooting()
-    {
-        if (Time.time - shotTime >= 0.5f)
-        {
-            Shoot();
-            shotTime = Time.time;
-        }
-    }
-
-    private void Shoot()
-    {
-        Debug.Log("Bang!");
     }
 }
