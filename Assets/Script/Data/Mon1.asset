@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0f5e8ceaa035a46af76fe052240955, type: 3}
   m_Name: Mon1
   m_EditorClassIdentifier: 
-  monsterType: 0
-  hp: 0
-  moveSpeed: 0
-  atkDamage: 0
-  def: 0
-  atkCoolDown: 0
-  atkRange: 0
-  expPoints: 0
-  attackRange: 0
+  monsterType: 1
+  hp: 50
+  moveSpeed: 10
+  atkDamage: 10
+  def: 10
+  atkCoolDown: 10
+  expPoints: 10
+  attackRange: 10
