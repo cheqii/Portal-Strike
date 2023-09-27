@@ -3,14 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class MonsterDetectPlayer : MonoBehaviour
 {
-    [SerializeField] private MonsterData monsterData;
-
     [SerializeField] private Transform target;
     [SerializeField] private float moveSpeed = 5.0f;
     [SerializeField] private float detectRadius;
-    // [SerializeField] private bool playerTrigger;
+    [SerializeField] private bool playerTrigger;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +24,7 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveToPlayer();
+        if (playerTrigger) MoveToPlayer();
     }
 
     void MoveToPlayer()
@@ -33,15 +32,18 @@ public class Monster : MonoBehaviour
         if (target != null)
         {
             // Calculate the direction from the enemy to the player.
-            Vector3 moveDirection = (target.position - transform.position).normalized;
+            Vector3 moveDirection = (target.position - transform.parent.position).normalized;
 
             // Move the enemy in the calculated direction.
-            transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+            transform.parent.Translate(moveDirection * moveSpeed * Time.deltaTime);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        // if player is enter into enemy detect zone then playerTrigger = true
+        // and run MoveToPlayer() method in Update Function
+        if (other.CompareTag("Player")) playerTrigger = true;
         
     }
 }
