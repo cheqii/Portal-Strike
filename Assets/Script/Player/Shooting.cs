@@ -23,12 +23,12 @@ public class Shooting : MonoBehaviour
     private void Fire()
     {
         // Create {bullet} in the location of {shootingPoint.position}
-        GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.parent.gameObject.transform.rotation);
 
         // Get the Rigidbody component attached to the {bullet} GameObject
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        Rigidbody bullet_rb = bullet.GetComponent<Rigidbody>();
 
         // Calculate the direction and speed.
-        rb.velocity = (transform.forward * bulletSpeed);
+        bullet_rb.velocity = (bullet.transform.forward * bulletSpeed);
     }
 }
