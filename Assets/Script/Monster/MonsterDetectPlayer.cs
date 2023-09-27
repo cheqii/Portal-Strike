@@ -2,48 +2,58 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MonsterDetectPlayer : MonoBehaviour
 {
-    [SerializeField] private Transform target;
-    [SerializeField] private float moveSpeed = 5.0f;
+    [SerializeField] private NavMeshAgent monster;
     [SerializeField] private float detectRadius;
-    [SerializeField] private bool playerTrigger;
+    [SerializeField] private bool followPlayer;
+    [SerializeField] private float stopFollow;
+
+    private Player target;
+    private float awayFromPlayer;
+    private Vector2 beginPos;
+    private Vector2 targetPos;
     
+
     // Start is called before the first frame update
     void Start()
     {
-        SphereCollider col = GetComponent<SphereCollider>();
-        if (col != null) 
-        {
-            col.radius = detectRadius; // Set the new value
-            Debug.Log(col.radius);
-        }
+        target = FindObjectOfType<Player>().GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerTrigger) MoveToPlayer();
+        Debug.DrawRay(transform.position, transform.forward * detectRadius, Color.red);
+        MoveToPlayer();
     }
 
     void MoveToPlayer()
     {
-        if (target != null)
+        if (target == null) return;
+        
+        Ray ray = new Ray(transform.position, transform.forward * detectRadius);
+        RaycastHit hit;
+        CalculateTargetDistance();
+        if (Physics.Raycast(ray, out hit))
         {
-            // Calculate the direction from the enemy to the player.
-            Vector3 moveDirection = (target.position - transform.parent.position).normalized;
-
-            // Move the enemy in the calculated direction.
-            transform.parent.Translate(moveDirection * moveSpeed * Time.deltaTime);
+            Debug.DrawRay(transform.position, transform.forward * detectRadius, Color.cyan);
+            Debug.Log("Attack Player!");
+        }
+        
+        if (awayFromPlayer <= stopFollow)
+        {
+            monster.SetDestination(target.transform.position);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void CalculateTargetDistance()
     {
-        // if player is enter into enemy detect zone then playerTrigger = true
-        // and run MoveToPlayer() method in Update Function
-        if (other.CompareTag("Player")) playerTrigger = true;
-        
+        beginPos = transform.position;
+        targetPos = target.transform.position;
+        awayFromPlayer = Mathf.Sqrt(Mathf.Pow(targetPos.x - beginPos.x, 2) + Mathf.Pow(targetPos.y - beginPos.y, 2));
+        Debug.Log(awayFromPlayer);
     }
 }
