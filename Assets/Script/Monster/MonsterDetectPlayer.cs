@@ -6,7 +6,8 @@ using UnityEngine.AI;
 
 public class MonsterDetectPlayer : MonoBehaviour
 {
-    [Header("Monster NavMesh AI")]
+    [Header("Monster")] 
+    [SerializeField] private MonsterData monData;
     [SerializeField] private NavMeshAgent monster;
     [SerializeField] private float detectRadius;
     [SerializeField] private float stopFollow;
@@ -44,11 +45,24 @@ public class MonsterDetectPlayer : MonoBehaviour
             Debug.DrawRay(transform.position, transform.forward * detectRadius, Color.cyan);
             Debug.Log("Attack Player!");
         }
-        
+
         // if distance between player and monster is lower than stop following var then monster will follow the player
-        if (awayFromPlayer <= stopFollow)
+        switch (monData.monsterType)
         {
-            monster.SetDestination(target.transform.position);
+            case MonsterData.MonsterType.Melee:
+                if (awayFromPlayer <= stopFollow)
+                {
+                    monster.stoppingDistance = monData.attackRange;
+                    monster.SetDestination(target.transform.position);
+                }
+                break;
+            case MonsterData.MonsterType.Range:
+                if (awayFromPlayer <= stopFollow)
+                {
+                    monster.stoppingDistance = monData.attackRange;
+                    monster.SetDestination(target.transform.position);
+                }
+                break;
         }
     }
 
