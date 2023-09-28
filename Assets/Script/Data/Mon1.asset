@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterType: 1
   hp: 50
-  moveSpeed: 10
+  moveSpeed: 5
   atkDamage: 10
   def: 10
   atkCoolDown: 10
   expPoints: 10
-  attackRange: 10
+  attackRange: 8
+  stopFollow: 5
+  stopDistance: 10
+  viewRange: 45
