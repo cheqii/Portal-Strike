@@ -23,6 +23,16 @@ public class PlayerStatus : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHp = Mathf.Clamp(currentHp - (damage - defense), 0, maxHp);
+        currentHp = Mathf.Clamp(currentHp - ((damage - defense) +1), 0, maxHp);
+
+        if (currentHp < 1)
+        {
+            Debug.Log("Player is dead!");
+        }
+    }
+
+    public void Healing(float heal)
+    {
+        currentHp = Mathf.Clamp(currentHp + heal, 0, maxHp);
     }
 }
