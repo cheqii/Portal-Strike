@@ -9,6 +9,8 @@ public class RankUIManager : MonoBehaviour
     public List<PlayerData> playerDatas = new List<PlayerData>();
     private List<GameObject> createPlayerDatas = new List<GameObject>();
 
+    public RankData yourRankData;
+
     public void Start()
     {
         CreateRankData();
