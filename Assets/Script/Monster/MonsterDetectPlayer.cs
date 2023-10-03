@@ -48,6 +48,7 @@ public class MonsterDetectPlayer : MonoBehaviour
     {
         if (target == null) return;
         
+        CalculateTargetDistance();
         if (monster.remainingDistance <= monster.stoppingDistance)
         {
             Vector3 point;
@@ -58,7 +59,6 @@ public class MonsterDetectPlayer : MonoBehaviour
             }
         }
         
-        CalculateTargetDistance();
         // if distance between player and monster is lower than stop following var then monster will follow the player
         if (awayFromPlayer <= monData.stopFollow) monster.SetDestination(target.transform.position);
         
@@ -108,7 +108,7 @@ public class MonsterDetectPlayer : MonoBehaviour
         return false;
     }
 
-    Vector3 GetFloorTransform()
+    Vector3 GetFloorTransform() // get Transform component from floor and return it to Vector3(position)
     {
         Ray ray = new Ray(transform.position, -transform.up * 5);
         RaycastHit hit;

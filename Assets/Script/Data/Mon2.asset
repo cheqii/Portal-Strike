@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Mon2
   m_EditorClassIdentifier: 
   monsterType: 0
+  name: Mushroom
   hp: 0
   moveSpeed: 5
   atkDamage: 0
@@ -20,6 +21,6 @@ MonoBehaviour:
   atkCoolDown: 0
   expPoints: 0
   attackRange: 2.5
-  stopFollow: 5
+  stopFollow: 10
   stopDistance: 4
   viewRange: 45

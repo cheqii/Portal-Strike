@@ -11,6 +11,8 @@ public class MonsterData : ScriptableObject
     
     [Header("Monster Stat")]
     public MonsterType monsterType;
+
+    public string monName;
     
     public int hp;
     

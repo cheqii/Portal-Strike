@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Mon1
   m_EditorClassIdentifier: 
   monsterType: 1
+  monName: 
   hp: 50
   moveSpeed: 5
   atkDamage: 10
