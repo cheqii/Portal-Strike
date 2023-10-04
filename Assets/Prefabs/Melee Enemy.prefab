@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1008582693325092851}
   - component: {fileID: 1008582693325092748}
   - component: {fileID: 8112519926383707412}
+  - component: {fileID: -4747611215666942119}
   m_Layer: 0
   m_Name: Melee Enemy
   m_TagString: Enemy
@@ -70,7 +71,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 652107f36a28e44479c0b827dee5852a, type: 2}
+  - {fileID: 2100000, guid: 4b905f60df09c8245b6e0d5af2e04c7f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -159,6 +160,21 @@ MonoBehaviour:
   shootPoint: {fileID: 6317068721252576471}
   _microBar: {fileID: 2808511790267200496}
   floatingTextPrefab: {fileID: 1899620572623291273, guid: 0848b2d6f8e4111448a1cdd48fe9f5d3, type: 3}
+--- !u!114 &-4747611215666942119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008582693325092745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b6b88d425f7234aae309cb9a973743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Delay: 1
+  MaximumStress: 0.85
+  Range: 45
 --- !u!1 &2176986705606328260
 GameObject:
   m_ObjectHideFlags: 0

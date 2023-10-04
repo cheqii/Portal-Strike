@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
     private void Start()
     {
         hp = mondata.hp;
-        _microBar.Initialize(mondata.hp);
+        _microBar.Initialize(hp);
     }
 
     // Update is called once per frame
