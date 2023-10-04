@@ -10,7 +10,8 @@ public class MonsterDetectPlayer : MonoBehaviour
     [Header("Monster Data")] 
     [SerializeField] private MonsterData monData;
     
-    private NavMeshAgent monster;
+    private NavMeshAgent monsterNavmesh;
+    private Enemy enemy;
     private Player target;
     
     [Header("Distance between player & monster")]
@@ -26,14 +27,24 @@ public class MonsterDetectPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // get component enemy script from this object
+        enemy = GetComponent<Enemy>();
         // get component from player
         target = FindObjectOfType<Player>().GetComponent<Player>();
         // get component NavMeshAgent from game object
-        monster = GetComponent<NavMeshAgent>();
+        monsterNavmesh = GetComponent<NavMeshAgent>();
         // assign monster speed from monster data
-        monster.speed = monData.moveSpeed;
+        monsterNavmesh.speed = monData.moveSpeed;
         // assign monster stop distance in NavMeshAgent from monster data
-        monster.stoppingDistance = monData.stopDistance;
+        monsterNavmesh.stoppingDistance = monData.stopDistance;
+        
+        switch (monData.monsterType)
+        {
+            case MonsterData.MonsterType.Range:
+                // Debug.Log("Range Attack Player!");
+                StartCoroutine(enemy.RemoteAttack());
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -47,37 +58,33 @@ public class MonsterDetectPlayer : MonoBehaviour
         if (target == null) return;
         
         CalculateTargetDistance();
-        if (monster.remainingDistance <= monster.stoppingDistance)
+        if (monsterNavmesh.remainingDistance <= monsterNavmesh.stoppingDistance)
         {
             Vector3 point;
             if (RandomPoint(SpawnePoint, monData.viewRange, out point)) // pass in our centre point and radius of area
             {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-                monster.SetDestination(point);
+                monsterNavmesh.SetDestination(point);
             }
         }
         
         // if distance between player and monster is lower than stop following var then monster will follow the player
-        if (awayFromPlayer <= monData.stopFollow) monster.SetDestination(target.transform.position);
+        if (awayFromPlayer <= monData.stopFollow) monsterNavmesh.SetDestination(target.transform.position);
         
         Ray ray = new Ray(transform.position, transform.forward * monData.attackRange);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        
+        if (monData.attackRange <= awayFromPlayer) return; // if monster attack range >= distance that monster away from player then monster can attack player
+        switch (monData.monsterType)
         {
-            Debug.DrawRay(transform.position, transform.forward * monData.attackRange, Color.cyan);
-            if(hit.collider.gameObject.name != "Player") return; // if raycast hit something that's not player then return
-            if (monData.attackRange <= awayFromPlayer) return; // if monster attack range >= distance that monster away from player then monster can attack player
-            switch (monData.monsterType)
-            {
-                case MonsterData.MonsterType.Melee:
-                    Debug.Log(hit.collider.gameObject.name);
-                    Debug.Log("Melee Attack Player!");
-                    break;
-                case MonsterData.MonsterType.Range:
-                    Debug.Log(hit.collider.gameObject.name);
-                    Debug.Log("Range Attack Player!");
-                    break;
-            }
+            case MonsterData.MonsterType.Melee:
+                if (Physics.Raycast(ray, out hit))
+                {
+                    Debug.DrawRay(transform.position, transform.forward * monData.attackRange, Color.cyan);
+                    if(hit.collider.gameObject.name != "Player") return; // if raycast hit something that's not player then return
+                    Debug.Log("Melee Attack Player");
+                }
+                break;
         }
     }
 
@@ -88,7 +95,7 @@ public class MonsterDetectPlayer : MonoBehaviour
         
         // Calculate distance between monster and player
         awayFromPlayer = Mathf.Sqrt(Mathf.Pow(targetPos.x - beginPos.x, 2) + Mathf.Pow(targetPos.y - beginPos.y, 2));
-        Debug.Log(awayFromPlayer);
+        // Debug.Log(awayFromPlayer);
     }
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)

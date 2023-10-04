@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Mon1
   m_EditorClassIdentifier: 
   monsterPrefab: {fileID: 8591618272323389173, guid: a9f113951c3b64b418ae6c1576627f63, type: 3}
+  bullet: {fileID: 5419491360957919028, guid: 40717cdc8807162478756e1ce67a2ab7, type: 3}
   monsterType: 1
   monName: 
-  hp: 50
-  moveSpeed: 5
+  hp: 100
+  moveSpeed: 10
   atkDamage: 10
+  atkSpeed: 20
   def: 10
-  atkCoolDown: 10
+  atkCoolDown: 2
   expPoints: 10
   attackRange: 8
-  stopFollow: 5
+  stopFollow: 20
   stopDistance: 10
   viewRange: 45

@@ -8,10 +8,11 @@ public class MonsterData : ScriptableObject
         Melee,
         Range
     }
-    
-    [Header("Monster Prefab")]
+
+    [Header("Monster Prefab")] 
     public GameObject monsterPrefab;
-    
+    public GameObject bullet;
+
     [Header("Monster Stat")]
     public MonsterType monsterType;
 
@@ -22,6 +23,8 @@ public class MonsterData : ScriptableObject
     public float moveSpeed;
     
     public int atkDamage;
+
+    public float atkSpeed;
     
     public int def;
     
