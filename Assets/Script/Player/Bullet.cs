@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
+            GameObject blood = Instantiate(ParticleManager.Instance.data.BloodSplash_particle, transform.position, Quaternion.identity);
+            blood.transform.SetParent(col.transform);
             col.gameObject.GetComponent<ITakeDamage>().TakeDamage(10);
         }
         

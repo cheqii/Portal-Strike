@@ -89,6 +89,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
 
     public void Dead()
     {
+        Instantiate(ParticleManager.Instance.data.BloodBomb_particle, transform.position, Quaternion.identity);
         GameObject xp = Instantiate(ParticleManager.Instance.data.Xp_particle,transform.position,Quaternion.identity);
         Destroy(this.gameObject);
     }
