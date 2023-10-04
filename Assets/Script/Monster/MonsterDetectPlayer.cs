@@ -112,7 +112,7 @@ public class MonsterDetectPlayer : MonoBehaviour
         
         // Calculate distance between monster and player
         awayFromPlayer = Mathf.Sqrt(Mathf.Pow(targetPos.x - beginPos.x, 2) + Mathf.Pow(targetPos.z - beginPos.z, 2));
-         Debug.Log(awayFromPlayer);
+         //Debug.Log(awayFromPlayer);
     }
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
