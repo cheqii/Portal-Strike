@@ -3,22 +3,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 5.0f; // Adjust the forward speed as needed
 
-    void Update()
+    private void OnCollisionEnter(Collision col)
     {
-        // Calculate the forward movement vector
-        Vector3 moveDirection = transform.forward * speed * Time.deltaTime;
-
-        // Move the object forward
-        transform.Translate(moveDirection, Space.World);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
+        if (col.gameObject.CompareTag("Enemy"))
         {
-            Destroy(this.gameObject);
+            col.gameObject.GetComponent<ITakeDamage>().TakeDamage(10);
         }
+        
     }
 }

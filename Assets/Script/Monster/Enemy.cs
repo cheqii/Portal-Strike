@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shoot : MonoBehaviour
+public class Enemy : MonoBehaviour,ITakeDamage
 {
-    [SerializeField]
-    private Nf_GameEvent shoot_event;
+    [SerializeField] private int hp = 100;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -16,9 +16,16 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        
+    }
+
+    public void TakeDamage(int dmg)
+    {
+        hp -= dmg;
+        
+        if (hp <= 0)
         {
-            shoot_event.Raise();
+            Destroy(this.gameObject);
         }
     }
 }

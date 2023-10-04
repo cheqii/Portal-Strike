@@ -103,8 +103,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1008582693325092745, guid: 6b630d6a223c97c4cb637fe6700bcbb5, type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: Enemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1008582693325092748, guid: 6b630d6a223c97c4cb637fe6700bcbb5, type: 3}
+      propertyPath: monData
+      value: 
+      objectReference: {fileID: 11400000, guid: b6ea53e0111e1694aa09a27e8b71f661, type: 2}
     - target: {fileID: 1008582693325092749, guid: 6b630d6a223c97c4cb637fe6700bcbb5, type: 3}
       propertyPath: m_RootOrder
       value: 0
