@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class AbilitySelection : MonoBehaviour
 {
-    public Player player;
+    private Player player;
     public GameObject abilitySelectionPanel;
     public TMP_Text abilityDescription;
     public TMP_Text Button2Description;
@@ -17,6 +17,10 @@ public class AbilitySelection : MonoBehaviour
 
     private void Start()
     {
+        player = FindObjectOfType<Player>();
+        
+        
+        
         // All 9 abilities in the list that have not yet been selected.
         availableAbilities.Add(IncreaseMaxHp);
         availableAbilities.Add(IncreaseMoveSpeed);
@@ -93,6 +97,8 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[0] != null)
         {
             selectedAbilities[0]();
+            
+            UnFreeze();
         }
     }
 
@@ -102,6 +108,8 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[1] != null)
         {
             selectedAbilities[1]();
+            UnFreeze();
+
         }
     }
 
@@ -111,6 +119,7 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[2] != null)
         {
             selectedAbilities[2]();
+            UnFreeze();
         }
     }
 
@@ -122,7 +131,6 @@ public class AbilitySelection : MonoBehaviour
         abilityDescription.text = "Max HP +20";
         Debug.Log("Max HP +20");
         player.IncreaseMaxHp(20);
-        HideUI();
     }
 
     private void IncreaseMoveSpeed()
@@ -130,7 +138,6 @@ public class AbilitySelection : MonoBehaviour
         abilityDescription.text = "Move Speed +20%";
         Debug.Log("Move Speed +20%");
         player.IncreaseMoveSpeed(20.0f);
-        HideUI();
     }
 
     private void IncreaseDef()
@@ -138,45 +145,48 @@ public class AbilitySelection : MonoBehaviour
         abilityDescription.text = "Def +2";
         Debug.Log("Def +2");
         player.IncreaseDef(2);
-        HideUI();
     }
 
     private void IncreaseTest1()
     {
         Debug.Log("Test1");
-        HideUI();
     }
 
     private void IncreaseTest2()
     {
-        Debug.Log("Test2");
-        HideUI();
-    }
+        Debug.Log("Test2"); }
 
     private void IncreaseTest3()
     {
         Debug.Log("Test3");
-        HideUI();
     }
     private void IncreaseTest4()
     {
         Debug.Log("Test4");
-        HideUI();
     }
     private void IncreaseTest5()
     {
         Debug.Log("Test5");
-        HideUI();
     }
     private void IncreaseTest6()
     {
         Debug.Log("Test6");
-        HideUI();
+    }
+
+    public void TimeFreeze()
+    {
+        Time.timeScale = 0;
+
+    }
+    
+    public void UnFreeze()
+    {
+        Time.timeScale = 1;
+
     }
 
     public void ShowUI()
     {
-        Time.timeScale = 0;
         GetComponent<Image>().enabled = true;
         transform.GetChild(0).gameObject.SetActive(true);
         transform.GetChild(1).gameObject.SetActive(true);
@@ -199,7 +209,6 @@ public class AbilitySelection : MonoBehaviour
 
     public void HideUI()
     {
-        Time.timeScale = 1;
         GetComponent<Image>().enabled = false;
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetChild(1).gameObject.SetActive(false);
