@@ -6156,6 +6156,7 @@ MonoBehaviour:
   bulletSpeed: 50
   bulletPrefab: {fileID: 5419491360957919028, guid: 9c9286baca36cf544a9cdba7e55e755b, type: 3}
   shootingPoint: {fileID: 642208072}
+  muzzleFlash: {fileID: 2193209422219091322, guid: 445c47dab8a3d9b459b772a19447214d, type: 3}
 --- !u!114 &642208074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7684,6 +7685,7 @@ MonoBehaviour:
   level: []
   _floor: []
   enemy: {fileID: 8591618272323389173, guid: a9f113951c3b64b418ae6c1576627f63, type: 3}
+  Portal: {fileID: 0}
 --- !u!1 &792687101
 GameObject:
   m_ObjectHideFlags: 0
@@ -11745,6 +11747,7 @@ MonoBehaviour:
   currentHpBar: {fileID: 792687103}
   hpText: {fileID: 797156383}
   currentHpIndex: {fileID: 560902853}
+  xp_Bar: {fileID: 0}
 --- !u!43 &1399478519
 Mesh:
   m_ObjectHideFlags: 0
@@ -17239,6 +17242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   maxHp: 135
+  xp: 0
   moveSpeed: 20
   def: 0
   critRate: 0
@@ -17246,6 +17250,8 @@ MonoBehaviour:
   dodgeRate: 0
   weaponData: {fileID: 0}
   takeDamageEvent: {fileID: 11400000, guid: c7bb98ffceb82b04d95f302509211679, type: 2}
+  playerHealthEvent: {fileID: 0}
+  playerLevelUpEvent: {fileID: 0}
 --- !u!208 &1966275376
 NavMeshObstacle:
   m_ObjectHideFlags: 0

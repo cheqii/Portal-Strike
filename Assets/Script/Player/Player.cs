@@ -111,7 +111,7 @@ public class Player : MonoBehaviour, ITakeDamage
     #endregion
 
     #region -All ability-
-    public void IncreaseMaxHp(float amount)
+    public void IncreaseMaxHp(int amount)
     {
         maxHp += amount;
         hp = Mathf.Clamp(hp, 0, maxHp);
