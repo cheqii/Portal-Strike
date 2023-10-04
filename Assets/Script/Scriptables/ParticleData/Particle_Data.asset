@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Particle_Data
   m_EditorClassIdentifier: 
   Xp_particle: {fileID: 337731325905016483, guid: 02eb548217147834b932121a0ac29c5c, type: 3}
+  LevelUP_particle: {fileID: 5129923531094610769, guid: 46c302909f7eadc4fad9fe36bf71d198, type: 3}

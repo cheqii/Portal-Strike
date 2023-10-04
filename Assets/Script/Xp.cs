@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class Xp : MonoBehaviour
 {
-    public Transform target; // The target to follow (usually the player)
+    private Transform target; // The target to follow (usually the player)
+    
+    [Range(0,10)]
     public float smoothSpeed = 5.0f; // Adjust the smoothness of the camera follow
 
     private Vector3 offset;
@@ -30,6 +32,9 @@ public class Xp : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
+            GameObject xp_glow = Instantiate(ParticleManager.Instance.data.LevelUP_particle,transform.position,Quaternion.identity);
+            xp_glow.transform.SetParent(col.transform);
+            
             Destroy(this.gameObject);
         }
     }
