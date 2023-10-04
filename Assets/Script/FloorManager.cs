@@ -9,7 +9,7 @@ public class FloorManager : MonoBehaviour
     [SerializeField] private List<GameObject> level;
     [SerializeField] private List<GameObject> _floor;
 
-    [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject[] enemy;
     
     [SerializeField] private GameObject Portal;
 
@@ -45,13 +45,15 @@ public class FloorManager : MonoBehaviour
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    enemy = Instantiate(enemy, f.transform.position + new Vector3(Random.Range(-5,5),0,Random.Range(-5,5))
+                    var randomEnemy = enemy[Random.Range(0, enemy.Length)];
+                    
+                    GameObject newEnemy = Instantiate(randomEnemy, f.transform.position + new Vector3(Random.Range(-5,5),0,Random.Range(-5,5))
                         
                         , Quaternion.identity);
-                    enemy.GetComponent<MonsterDetectPlayer>().SetSpawnPoint(f.transform.position);
-                    enemy.transform.name = "enemy | " + f.transform.name;
+                    newEnemy.GetComponent<MonsterDetectPlayer>().SetSpawnPoint(f.transform.position);
+                    newEnemy.transform.name = "enemy | " + f.transform.name;
                 
-                    enemy.transform.SetParent(enemies.transform);
+                    newEnemy.transform.SetParent(enemies.transform);
                 }
             }
         }
