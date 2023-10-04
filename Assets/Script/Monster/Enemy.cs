@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using Microlight.MicroBar;
 using TMPro;
@@ -104,6 +105,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
 
     public void Dead()
     {
+        GetComponent<TraumaInducer>().Shake();
         Instantiate(ParticleManager.Instance.data.BloodBomb_particle, transform.position, Quaternion.identity);
         GameObject xp = Instantiate(ParticleManager.Instance.data.Xp_particle,transform.position,Quaternion.identity);
         Destroy(this.gameObject);
