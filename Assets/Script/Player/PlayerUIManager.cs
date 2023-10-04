@@ -7,29 +7,31 @@ using Microlight.MicroBar;
 
 public class PlayerUIManager : MonoBehaviour
 {
-    
+
     [Header("Player UI Text")] 
-    [SerializeField] private Image currentHpBar;
-    [SerializeField] private TMP_Text hpText;
-    [SerializeField] private TMP_Text currentHpIndex;
-
+    [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private MicroBar healthBar;
     [SerializeField] private MicroBar xp_Bar;
-
+    
     private float hpLerpSpeed;
     private Player player;
     
     void Start()
     {
+        player = FindObjectOfType<Player>();
+        
         xp_Bar.Initialize(100);
         xp_Bar.UpdateHealthBar(0);
 
-        player = FindObjectOfType<Player>();
+        
+        healthBar.Initialize(player.MaxHp);
+        healthBar.UpdateHealthBar(player.Hp);
     }
 
     // Update is called once per frame
     void Update()
     {
-        HealthUpdate();
+        
     }
     
     void ColorChanger()
@@ -41,17 +43,15 @@ public class PlayerUIManager : MonoBehaviour
         Color red = new (1f, 64f / 255f, 64f / 255f);
 
         Color healthColor = Color.Lerp(red, green, (player.Hp / player.MaxHp));
-        currentHpBar.color = healthColor;
-        hpText.color = healthColor;
+        
+        // healthColor.color = healthColor;
+        // hpText.color = healthColor;
     }
 
-    void HealthUpdate()
+    public void HealthUpdate()
     {
-        hpLerpSpeed = 3f * Time.deltaTime;
-        
-        currentHpBar.fillAmount = Mathf.Lerp(currentHpBar.fillAmount, player.Hp / player.MaxHp, hpLerpSpeed);
-        currentHpIndex.text = $"{player.Hp} / {player.MaxHp}";
-        ColorChanger();
+        healthBar.UpdateHealthBar(player.Hp);
+        hpText.text = $"{player.MaxHp} / {player.Hp}";
     }
 
     public void XpBarUpdate()
