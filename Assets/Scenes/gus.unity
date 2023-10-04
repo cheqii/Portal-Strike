@@ -349,6 +349,7 @@ MonoBehaviour:
   currentHpBar: {fileID: 792687103}
   hp: {fileID: 797156383}
   currentHpIndex: {fileID: 560902853}
+  lerpSpeed: 0
 --- !u!43 &15262008
 Mesh:
   m_ObjectHideFlags: 0
@@ -20791,6 +20792,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad59558e401137f4da5224ce72086dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  maxHp: 0
+  moveSpeed: 0
+  def: 0
+  critRate: 0
+  critDamage: 0
+  dodgeRate: 0
+  weaponData: {fileID: 0}
+  currentHp: {fileID: 792687103}
+  hpText: {fileID: 797156383}
+  currentHpIndex: {fileID: 560902853}
 --- !u!208 &1966275376
 NavMeshObstacle:
   m_ObjectHideFlags: 0

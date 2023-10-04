@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c6e5b1a83b35b46a979bcedddd1a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monData: {fileID: 0}
+  monData: {fileID: 11400000, guid: 259e4665fae177b4b8155822f7d00b3b, type: 2}
 --- !u!114 &8112519926383707412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,4 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14410109c0de054fb1d4084bc4566ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mondata: {fileID: 0}
   hp: 100
+  shootPoint: {fileID: 0}
+  target: {fileID: 0}
+  _microBar: {fileID: 0}

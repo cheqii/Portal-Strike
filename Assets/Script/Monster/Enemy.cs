@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Microlight.MicroBar;
 
 public class Enemy : MonoBehaviour,ITakeDamage
 {
@@ -9,6 +10,8 @@ public class Enemy : MonoBehaviour,ITakeDamage
     [SerializeField] private int hp;
     [SerializeField] private Transform shootPoint;
     public Player target;
+    
+    [SerializeField] private MicroBar _microBar;
     
     void Awake()
     {
@@ -18,6 +21,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
     private void Start()
     {
         hp = mondata.hp;
+        _microBar.Initialize(mondata.hp);
     }
 
     // Update is called once per frame
@@ -29,6 +33,8 @@ public class Enemy : MonoBehaviour,ITakeDamage
     public void TakeDamage(int dmg)
     {
         hp -= dmg;
+        
+        _microBar.UpdateHealthBar(hp);
         
         if (hp <= 0)
         {
