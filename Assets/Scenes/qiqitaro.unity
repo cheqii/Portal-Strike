@@ -4455,8 +4455,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerStatus, Assembly-CSharp
+      - m_Target: {fileID: 1966275375}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: Healing
         m_Mode: 4
         m_Arguments:
@@ -6680,6 +6680,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1008582693325092745, guid: 6b630d6a223c97c4cb637fe6700bcbb5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1008582693325092748, guid: 6b630d6a223c97c4cb637fe6700bcbb5, type: 3}
       propertyPath: monData
       value: 
@@ -8397,6 +8401,10 @@ PrefabInstance:
     - target: {fileID: 1008582693325092745, guid: 6b630d6a223c97c4cb637fe6700bcbb5, type: 3}
       propertyPath: m_Name
       value: Enemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008582693325092745, guid: 6b630d6a223c97c4cb637fe6700bcbb5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1008582693325092748, guid: 6b630d6a223c97c4cb637fe6700bcbb5, type: 3}
       propertyPath: monData
@@ -13232,8 +13240,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerStatus, Assembly-CSharp
+      - m_Target: {fileID: 1966275375}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: TakeDamage
         m_Mode: 4
         m_Arguments:
@@ -16337,6 +16345,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad59558e401137f4da5224ce72086dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  maxHp: 135
+  moveSpeed: 0
+  def: 0
+  critRate: 0
+  critDamage: 0
+  dodgeRate: 0
+  weaponData: {fileID: 0}
+  currentHp: {fileID: 792687103}
+  hpText: {fileID: 797156383}
+  currentHpIndex: {fileID: 560902853}
 --- !u!208 &1966275376
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -17774,6 +17793,10 @@ PrefabInstance:
     - target: {fileID: 8591618272323389173, guid: a9f113951c3b64b418ae6c1576627f63, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8591618272323389173, guid: a9f113951c3b64b418ae6c1576627f63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9f113951c3b64b418ae6c1576627f63, type: 3}
