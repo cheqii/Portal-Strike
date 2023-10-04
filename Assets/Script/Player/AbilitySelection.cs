@@ -7,6 +7,8 @@ public class AbilitySelection : MonoBehaviour
 
     private List<System.Action> availableAbilities = new List<System.Action>();
 
+    public Player player;
+
     private void Start()
     {
         // All 9 abilities in the list that have not yet been selected.
@@ -76,18 +78,21 @@ public class AbilitySelection : MonoBehaviour
     private void IncreaseMaxHp()
     {
         Debug.Log("MaxHp +20");
+        player.IncreaseMaxHp(20);
         abilitySelectionPanel.SetActive(false);
     }
 
     private void IncreaseMoveSpeed()
     {
         Debug.Log("Move Speed +20%");
+        player.IncreaseMoveSpeed(20.0f);
         abilitySelectionPanel.SetActive(false);
     }
 
     private void IncreaseDef()
     {
-        Debug.Log("Critical Rate +52");
+        Debug.Log("Critical Rate +5");
+        player.IncreaseDef(2);
         abilitySelectionPanel.SetActive(false);
     }
 
