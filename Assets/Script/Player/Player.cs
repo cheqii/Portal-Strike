@@ -47,6 +47,8 @@ public class Player : MonoBehaviour, ITakeDamage
     [Header("Event System")]
     [SerializeField] private Nf_GameEvent takeDamageEvent;
     private Nf_GameEvent playerHealthEvent;
+    private Nf_GameEvent playerLevelUpEvent;
+
     
     #endregion
 
@@ -95,6 +97,8 @@ public class Player : MonoBehaviour, ITakeDamage
         if (xp > 100)
         {
             xp = 0;
+            level++;
+            playerLevelUpEvent.Raise();
         }
     }
     
