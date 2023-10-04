@@ -7,10 +7,9 @@ public class AbilitySelection : MonoBehaviour
 {
     public Player player;
     public GameObject abilitySelectionPanel;
-    public TMP_Text abilityDescription;
+    public TMP_Text Button1Description;
     public TMP_Text Button2Description;
     public TMP_Text Button3Description;
-
 
     private List<System.Action> availableAbilities = new List<System.Action>();
     private System.Action[] selectedAbilities = new System.Action[3];
@@ -93,6 +92,7 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[0] != null)
         {
             selectedAbilities[0]();
+            HideUI();
         }
     }
 
@@ -102,6 +102,7 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[1] != null)
         {
             selectedAbilities[1]();
+            HideUI();
         }
     }
 
@@ -111,6 +112,7 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[2] != null)
         {
             selectedAbilities[2]();
+            HideUI();
         }
     }
 
@@ -119,59 +121,47 @@ public class AbilitySelection : MonoBehaviour
     /* Ability List */
     private void IncreaseMaxHp()
     {
-        abilityDescription.text = "Max HP +20";
         Debug.Log("Max HP +20");
         player.IncreaseMaxHp(20);
-        HideUI();
     }
 
     private void IncreaseMoveSpeed()
     {
-        abilityDescription.text = "Move Speed +20%";
         Debug.Log("Move Speed +20%");
         player.IncreaseMoveSpeed(20.0f);
-        HideUI();
     }
 
     private void IncreaseDef()
     {
-        abilityDescription.text = "Def +2";
         Debug.Log("Def +2");
         player.IncreaseDef(2);
-        HideUI();
     }
 
     private void IncreaseTest1()
     {
-        Debug.Log("Test1");
-        HideUI();
+        Debug.Log("IncreaseTest1");
     }
 
     private void IncreaseTest2()
     {
-        Debug.Log("Test2");
-        HideUI();
+        Debug.Log("IncreaseTest2");
     }
 
     private void IncreaseTest3()
     {
-        Debug.Log("Test3");
-        HideUI();
+        Debug.Log("IncreaseTest3");
     }
     private void IncreaseTest4()
     {
-        Debug.Log("Test4");
-        HideUI();
+        Debug.Log("IncreaseTest4");
     }
     private void IncreaseTest5()
     {
-        Debug.Log("Test5");
-        HideUI();
+        Debug.Log("IncreaseTest5");
     }
     private void IncreaseTest6()
     {
-        Debug.Log("Test6");
-        HideUI();
+        Debug.Log("IncreaseTest6");
     }
 
     public void ShowUI()
@@ -191,9 +181,9 @@ public class AbilitySelection : MonoBehaviour
         }
 
         // Show random ability name in abilityDescription
-        abilityDescription.text = "1. " + GetAbilityDescription(selectedAbilities[0]);
-        Button2Description.text = "2. " + GetAbilityDescription(selectedAbilities[1]);
-        Button3Description.text = "3. " + GetAbilityDescription(selectedAbilities[2]);
+        Button1Description.text = GetAbilityDescription(selectedAbilities[0]);
+        Button2Description.text = GetAbilityDescription(selectedAbilities[1]);
+        Button3Description.text = GetAbilityDescription(selectedAbilities[2]);
     }
 
 
