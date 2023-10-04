@@ -46,8 +46,8 @@ public class Player : MonoBehaviour, ITakeDamage
 
     [Header("Event System")]
     [SerializeField] private Nf_GameEvent takeDamageEvent;
-    private Nf_GameEvent playerHealthEvent;
-    private Nf_GameEvent playerLevelUpEvent;
+    [SerializeField] private Nf_GameEvent playerHealthEvent;
+    [SerializeField] private Nf_GameEvent playerLevelUpEvent;
 
     
     #endregion

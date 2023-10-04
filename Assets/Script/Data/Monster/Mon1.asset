@@ -25,5 +25,5 @@ MonoBehaviour:
   expPoints: 10
   attackRange: 3
   stopFollow: 20
-  stopDistance: 5
-  viewRange: 45
+  stopDistance: 10
+  viewRange: 20
