@@ -25,7 +25,18 @@ public class Enemy : MonoBehaviour,ITakeDamage
         
         if (hp <= 0)
         {
-            Destroy(this.gameObject);
+            Dead();
         }
+    }
+
+    public void Dead()
+    {
+        GameObject xp = Instantiate(ParticleManager.Instance.data.Xp_particle,transform.position,Quaternion.identity);
+        xp.AddComponent<SmoothCameraFollow>();
+        xp.GetComponent<SmoothCameraFollow>().target = FindObjectOfType<Player>().transform;
+        xp.GetComponent<SmoothCameraFollow>().offset = Vector3.zero;
+        xp.GetComponent<SmoothCameraFollow>().smoothSpeed = 2.5f;
+
+        Destroy(this.gameObject);
     }
 }
