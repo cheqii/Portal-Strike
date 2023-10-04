@@ -30,10 +30,9 @@ public class SpawnMonster : MonoBehaviour
         //doing something with floor
         foreach (var f in _floor)
         {
-           
-            Instantiate(enemy, f.transform.position,Quaternion.identity);
-         
-           
+            
+            
+            Instantiate(enemy, f.transform.position, Quaternion.identity);
         }
     }
 
