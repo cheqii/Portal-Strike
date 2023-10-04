@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class AbilitySelection : MonoBehaviour
 {
+    public Player player;
     public GameObject abilitySelectionPanel;
+    public TMP_Text abilityDescription;
 
     private List<System.Action> availableAbilities = new List<System.Action>();
-
-    public Player player;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class AbilitySelection : MonoBehaviour
         availableAbilities.Add(IncreaseTest6);
     }
 
-    public void AbilitySlot1()
+    private void UseRandomAbilitySlot()
     {
         // Check if there are still unselected abilities.
         if (availableAbilities.Count > 0)
@@ -38,52 +39,36 @@ public class AbilitySelection : MonoBehaviour
             // Removes the selected ability from the List.
             availableAbilities.RemoveAt(randomIndex);
         }
+    }
+
+    public void AbilitySlot1()
+    {
+        UseRandomAbilitySlot();
     }
 
     public void AbilitySlot2()
     {
-        // Check if there are still unselected abilities.
-        if (availableAbilities.Count > 0)
-        {
-            // Random ability from list that has not been selected yet.
-            int randomIndex = Random.Range(0, availableAbilities.Count);
-            System.Action selectedAbility = availableAbilities[randomIndex];
-
-            // Triggers a random ability
-            selectedAbility();
-
-            // Removes the selected ability from the List.
-            availableAbilities.RemoveAt(randomIndex);
-        }
+        UseRandomAbilitySlot();
     }
 
     public void AbilitySlot3()
     {
-        // Check if there are still unselected abilities.
-        if (availableAbilities.Count > 0)
-        {
-            // Random ability from list that has not been selected yet.
-            int randomIndex = Random.Range(0, availableAbilities.Count);
-            System.Action selectedAbility = availableAbilities[randomIndex];
-
-            // Triggers a random ability
-            selectedAbility();
-
-            // Removes the selected ability from the List.
-            availableAbilities.RemoveAt(randomIndex);
-        }
+        UseRandomAbilitySlot();
     }
+
 
     /* Ability List */
     private void IncreaseMaxHp()
     {
-        Debug.Log("MaxHp +20");
+        abilityDescription.text = "Max HP +20";
+        Debug.Log("Max HP +20");
         player.IncreaseMaxHp(20);
         abilitySelectionPanel.SetActive(false);
     }
 
     private void IncreaseMoveSpeed()
     {
+        abilityDescription.text = "Move Speed +20%";
         Debug.Log("Move Speed +20%");
         player.IncreaseMoveSpeed(20.0f);
         abilitySelectionPanel.SetActive(false);
@@ -91,7 +76,8 @@ public class AbilitySelection : MonoBehaviour
 
     private void IncreaseDef()
     {
-        Debug.Log("Critical Rate +5");
+        abilityDescription.text = "Def +2";
+        Debug.Log("Def +2");
         player.IncreaseDef(2);
         abilitySelectionPanel.SetActive(false);
     }
