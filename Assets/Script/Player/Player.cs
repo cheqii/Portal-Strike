@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ITakeDamage
 {
     #region -Declared Variables-
 
@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     [SerializeField] private TMP_Text currentHpIndex;
 
     private float hpLerpSpeed;
+
+    private Nf_GameEvent takeDamageEvent;
     
     #endregion
 
@@ -39,16 +41,15 @@ public class Player : MonoBehaviour
     void Update()
     {
         HealthUpdate();
-        // ColorChanger();
     }
 
     #endregion
 
     #region -TakeDamage & Healing-
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int dmg)
     {
-        hp = Mathf.Clamp(hp - ((damage - def) + 1), 0, maxHp);
+        hp = Mathf.Clamp(hp - ((dmg - def) + 1), 0, maxHp);
 
         if (hp < 1) Debug.Log("Player ded");
     }
@@ -74,7 +75,6 @@ public class Player : MonoBehaviour
     void HealthUpdate()
     {
         hpLerpSpeed = 3f * Time.deltaTime;
-        if (hp <= 0) currentHp.enabled = false;
         currentHp.fillAmount = Mathf.Lerp(currentHp.fillAmount, hp / maxHp, hpLerpSpeed);
         currentHpIndex.text = $"{hp} / {maxHp}";
         ColorChanger();
