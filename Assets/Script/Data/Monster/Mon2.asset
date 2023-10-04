@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Mon2
   m_EditorClassIdentifier: 
   monsterPrefab: {fileID: 8591618272323389173, guid: a9f113951c3b64b418ae6c1576627f63, type: 3}
+  bullet: {fileID: 0}
   monsterType: 0
   monName: 
   hp: 0
   moveSpeed: 5
   atkDamage: 0
+  atkSpeed: 0
   def: 0
   atkCoolDown: 0
   expPoints: 0
   attackRange: 2.5
-  stopFollow: 10
+  stopFollow: 5
   stopDistance: 4
-  viewRange: 45
+  viewRange: 20

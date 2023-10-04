@@ -26,4 +26,4 @@ MonoBehaviour:
   attackRange: 8
   stopFollow: 20
   stopDistance: 10
-  viewRange: 45
+  viewRange: 20
