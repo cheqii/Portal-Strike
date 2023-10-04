@@ -460,6 +460,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b6ea53e0111e1694aa09a27e8b71f661, type: 2}
     - target: {fileID: 8112519926383707412, guid: 6b630d6a223c97c4cb637fe6700bcbb5, type: 3}
+      propertyPath: textData
+      value: 
+      objectReference: {fileID: 11400000, guid: a5445a47a1f772043ba96c0acbf4ce17, type: 2}
+    - target: {fileID: 8112519926383707412, guid: 6b630d6a223c97c4cb637fe6700bcbb5, type: 3}
       propertyPath: _microBar
       value: 
       objectReference: {fileID: 5199158921962503975}
@@ -471,6 +475,10 @@ PrefabInstance:
       propertyPath: muzzleFlash
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8112519926383707412, guid: 6b630d6a223c97c4cb637fe6700bcbb5, type: 3}
+      propertyPath: floatingTextPrefab
+      value: 
+      objectReference: {fileID: 1899620572623291273, guid: 0848b2d6f8e4111448a1cdd48fe9f5d3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b630d6a223c97c4cb637fe6700bcbb5, type: 3}
 --- !u!4 &8591618272323389169 stripped
