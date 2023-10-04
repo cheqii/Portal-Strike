@@ -74,11 +74,11 @@ public class Enemy : MonoBehaviour,ITakeDamage
         Ray ray = new Ray(weapon.transform.position, weapon.transform.forward * mondata.attackRange);
         RaycastHit hit;
         Rigidbody rb = weapon.GetComponent<Rigidbody>();
+        Debug.Log("Hello world");
         rb.AddTorque(new Vector3(0f, 30f, 0f));
         if (Physics.Raycast(ray, out hit))
         {
             if (hit.collider.gameObject.name != "Player") return;
-            rb.velocity = Vector3.zero;
         }
     }
     
