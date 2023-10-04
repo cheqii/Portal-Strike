@@ -8,11 +8,14 @@ public class Enemy : MonoBehaviour,ITakeDamage
 {
     [SerializeField] private MonsterData mondata;
     [SerializeField] private int hp;
+    [SerializeField] private Transform weapon;
     [SerializeField] private Transform shootPoint;
-    public Player target;
+    private bool isAttack;
+    private Player target;
     
+    [Header("Enemy Health Bar")]
     [SerializeField] private MicroBar _microBar;
-    
+
     void Awake()
     {
         target = FindObjectOfType<Player>();
@@ -27,7 +30,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.DrawRay(weapon.transform.position, weapon.transform.forward * mondata.attackRange, Color.red);
     }
 
     public void TakeDamage(int dmg)
@@ -50,8 +53,15 @@ public class Enemy : MonoBehaviour,ITakeDamage
     public void MeleeAttack()
     {
         if (target == null) return;
-        Ray ray = new Ray(transform.position, transform.forward * mondata.attackRange);
-        
+        Ray ray = new Ray(weapon.transform.position, weapon.transform.forward * mondata.attackRange);
+        RaycastHit hit;
+        Rigidbody rb = weapon.GetComponent<Rigidbody>();
+        rb.AddTorque(new Vector3(0f, 30f, 0f));
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.gameObject.name != "Player") return;
+            rb.velocity = Vector3.zero;
+        }
     }
     
     // Range monster attack
