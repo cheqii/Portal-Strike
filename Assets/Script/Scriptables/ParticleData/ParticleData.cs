@@ -8,4 +8,5 @@ using UnityEngine;
 public class ParticleData : ScriptableObject
 {
     public GameObject Xp_particle;
+    public GameObject LevelUP_particle;
 }

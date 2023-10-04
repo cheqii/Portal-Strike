@@ -35,6 +35,8 @@ public class Enemy : MonoBehaviour,ITakeDamage
 
     public void TakeDamage(int dmg)
     {
+        StartCoroutine(WhiteFlash());
+        
         hp -= dmg;
         
         _microBar.UpdateHealthBar(hp);
@@ -89,5 +91,14 @@ public class Enemy : MonoBehaviour,ITakeDamage
     {
         GameObject xp = Instantiate(ParticleManager.Instance.data.Xp_particle,transform.position,Quaternion.identity);
         Destroy(this.gameObject);
+    }
+
+    IEnumerator WhiteFlash()
+    {
+        Material bodyMat = GetComponent<Renderer>().material;
+        bodyMat.SetColor("_EmissionColor", Color.white * 2);
+        
+        yield return new WaitForSeconds(0.5f);
+        bodyMat.SetColor("_EmissionColor", Color.white * 0);
     }
 }

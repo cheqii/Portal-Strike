@@ -1,12 +1,20 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Xp : MonoBehaviour
 {
-    public Transform target; // The target to follow (usually the player)
-    public float smoothSpeed = 5.0f; // Adjust the smoothness of the camera follow
-
+    private Transform target; // The target to follow (usually the player)
+    [Range(0,10)]
+    public float smoothSpeed = 5.0f;
     private Vector3 offset;
+
+    [Range(10,100)]
+    [SerializeField] private int xpMin;
+    [Range(10,100)]
+    [SerializeField] private int xpMax;
+
+    [SerializeField] private Nf_GameEvent xp_event;
 
     private void Start()
     {
@@ -30,6 +38,11 @@ public class Xp : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
+            GameObject xp_glow = Instantiate(ParticleManager.Instance.data.LevelUP_particle,transform.position,Quaternion.identity);
+            xp_glow.transform.SetParent(col.transform);
+            
+            xp_event.Raise(this,Random.Range(xpMin,xpMax));
+
             Destroy(this.gameObject);
         }
     }
