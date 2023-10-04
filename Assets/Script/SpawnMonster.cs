@@ -9,7 +9,7 @@ public class SpawnMonster : MonoBehaviour
     [SerializeField] private List<GameObject> _floor;
 
     [SerializeField] private GameObject enemy;
-    
+
     // Start is called before the first frame update
     void Start()
     {
