@@ -34,7 +34,8 @@ public class FloorManager : MonoBehaviour
             f.gameObject.AddComponent<NavMeshSurface>();
             f.GetComponent<NavMeshSurface>().BuildNavMesh();
             
-            Instantiate(enemy, f.transform.position, Quaternion.identity);
+            enemy = Instantiate(enemy, f.transform.position, Quaternion.identity);
+            enemy.GetComponent<MonsterDetectPlayer>().SetSpawnPoint(f.transform.position);
         }
     }
 

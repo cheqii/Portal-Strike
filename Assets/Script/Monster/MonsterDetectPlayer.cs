@@ -19,7 +19,7 @@ public class MonsterDetectPlayer : MonoBehaviour
     private Vector2 targetPos;
     
     // centre point (floor) transform for find enemy random point to patrol in the room
-    private Vector3 centrePoint;
+    private Vector3 SpawnePoint;
     
     #endregion
 
@@ -34,8 +34,6 @@ public class MonsterDetectPlayer : MonoBehaviour
         monster.speed = monData.moveSpeed;
         // assign monster stop distance in NavMeshAgent from monster data
         monster.stoppingDistance = monData.stopDistance;
-        // get floor transform by raycast and return to Vector3
-        centrePoint = GetFloorTransform();
     }
 
     // Update is called once per frame
@@ -52,7 +50,7 @@ public class MonsterDetectPlayer : MonoBehaviour
         if (monster.remainingDistance <= monster.stoppingDistance)
         {
             Vector3 point;
-            if (RandomPoint(centrePoint, monData.viewRange, out point)) // pass in our centre point and radius of area
+            if (RandomPoint(SpawnePoint, monData.viewRange, out point)) // pass in our centre point and radius of area
             {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
                 monster.SetDestination(point);
@@ -108,18 +106,8 @@ public class MonsterDetectPlayer : MonoBehaviour
         return false;
     }
 
-    Vector3 GetFloorTransform() // get Transform component from floor and return it to Vector3(position)
+    public void SetSpawnPoint(Vector3 target)
     {
-        Ray ray = new Ray(transform.position, -transform.up * 5);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            Debug.Log(hit.collider.gameObject.name);
-            Transform floor;
-            floor = hit.collider.gameObject.GetComponent<Transform>();
-            return floor.position;
-        }
-        
-        return transform.position;
+        SpawnePoint = target;
     }
 }
