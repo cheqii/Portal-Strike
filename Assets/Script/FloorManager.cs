@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class SpawnMonster : MonoBehaviour
+public class FloorManager : MonoBehaviour
 {
     [SerializeField] private GameObject level_holder;
     [SerializeField] private List<GameObject> level;
@@ -30,7 +31,8 @@ public class SpawnMonster : MonoBehaviour
         //doing something with floor
         foreach (var f in _floor)
         {
-            
+            f.gameObject.AddComponent<NavMeshSurface>();
+            f.GetComponent<NavMeshSurface>().BuildNavMesh();
             
             Instantiate(enemy, f.transform.position, Quaternion.identity);
         }
