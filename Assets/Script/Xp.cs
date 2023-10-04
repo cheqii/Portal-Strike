@@ -1,23 +1,17 @@
+using System;
 using UnityEngine;
 
-public class SmoothCameraFollow : MonoBehaviour
+public class Xp : MonoBehaviour
 {
     public Transform target; // The target to follow (usually the player)
     public float smoothSpeed = 5.0f; // Adjust the smoothness of the camera follow
 
-    public Vector3 offset;
+    private Vector3 offset;
 
     private void Start()
     {
-        
-        // Calculate the initial offset between the camera and the target
-        offset = transform.position - target.position;
-
-    }
-
-    public void CalculateOffset()
-    {
-        offset = transform.position - target.position;
+        target = FindObjectOfType<Player>().transform;
+        offset = Vector3.zero;
     }
 
     private void LateUpdate()
@@ -30,5 +24,13 @@ public class SmoothCameraFollow : MonoBehaviour
 
         // Smoothly move the camera to the target position
         transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -1351,7 +1351,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1966275368}
   smoothSpeed: 5
-  useOffset: 1
   offset: {x: 0, y: 0, z: 0}
 --- !u!1 &67634515
 GameObject:
@@ -20608,7 +20607,7 @@ GameObject:
   - component: {fileID: 1966275377}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
