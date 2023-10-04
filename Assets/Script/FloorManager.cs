@@ -10,6 +10,9 @@ public class FloorManager : MonoBehaviour
     [SerializeField] private List<GameObject> _floor;
 
     [SerializeField] private GameObject enemy;
+    
+    [SerializeField] private GameObject Portal;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,13 +43,22 @@ public class FloorManager : MonoBehaviour
             //monster spawn
             if (f.transform.name != "Floor0")
             {
-                enemy = Instantiate(enemy, f.transform.position, Quaternion.identity);
-                enemy.GetComponent<MonsterDetectPlayer>().SetSpawnPoint(f.transform.position);
-                enemy.transform.name = "enemy | " + f.transform.name;
+                for (int i = 0; i < 5; i++)
+                {
+                    enemy = Instantiate(enemy, f.transform.position + new Vector3(Random.Range(-5,5),0,Random.Range(-5,5))
+                        
+                        , Quaternion.identity);
+                    enemy.GetComponent<MonsterDetectPlayer>().SetSpawnPoint(f.transform.position);
+                    enemy.transform.name = "enemy | " + f.transform.name;
                 
-                enemy.transform.SetParent(enemies.transform);
+                    enemy.transform.SetParent(enemies.transform);
+                }
             }
         }
+
+        //generate portal
+        Instantiate(Portal, _floor[_floor.Count - 1].transform.position, Quaternion.identity);
+        
     }
 
 }

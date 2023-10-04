@@ -18,12 +18,12 @@ MonoBehaviour:
   monName: 
   hp: 100
   moveSpeed: 10
-  atkDamage: 10
+  atkDamage: 2
   atkSpeed: 20
   def: 10
   atkCoolDown: 2
   expPoints: 10
-  attackRange: 8
+  attackRange: 3
   stopFollow: 20
   stopDistance: 10
-  viewRange: 45
+  viewRange: 20

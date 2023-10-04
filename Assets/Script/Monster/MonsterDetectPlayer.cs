@@ -16,8 +16,8 @@ public class MonsterDetectPlayer : MonoBehaviour
     
     [Header("Distance between player & monster")]
     private float awayFromPlayer;
-    private Vector2 beginPos;
-    private Vector2 targetPos;
+    private Vector3 beginPos;
+    private Vector3 targetPos;
     
     // centre point (floor) transform for find enemy random point to patrol in the room
     private Vector3 SpawnePoint;
@@ -45,12 +45,16 @@ public class MonsterDetectPlayer : MonoBehaviour
                 StartCoroutine(enemy.RemoteAttack());
                 break;
         }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawRay(transform.position, transform.forward * monData.attackRange, Color.cyan);
         MoveToPlayer();
+        
+        
     }
 
     void MoveToPlayer()
@@ -60,16 +64,29 @@ public class MonsterDetectPlayer : MonoBehaviour
         CalculateTargetDistance();
         if (monsterNavmesh.remainingDistance <= monsterNavmesh.stoppingDistance)
         {
-            Vector3 point;
-            if (RandomPoint(SpawnePoint, monData.viewRange, out point)) // pass in our centre point and radius of area
+            // if distance between player and monster is lower than stop following var then monster will follow the player
+            if (awayFromPlayer <= monData.stopFollow)
             {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-                monsterNavmesh.SetDestination(point);
+                monsterNavmesh.SetDestination(target.transform.position);
             }
+            else
+            {
+                    
+                Vector3 point;
+                if (RandomPoint(SpawnePoint, monData.viewRange, out point)) // pass in our centre point and radius of area
+                {
+                    Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+                    monsterNavmesh.SetDestination(point);
+                }
+            }
+
         }
         
-        // if distance between player and monster is lower than stop following var then monster will follow the player
-        if (awayFromPlayer <= monData.stopFollow) monsterNavmesh.SetDestination(target.transform.position);
+        
+       
+        
+        
+       
         
         Ray ray = new Ray(transform.position, transform.forward * monData.attackRange);
         RaycastHit hit;
@@ -80,9 +97,9 @@ public class MonsterDetectPlayer : MonoBehaviour
             case MonsterData.MonsterType.Melee:
                 if (Physics.Raycast(ray, out hit))
                 {
-                    Debug.DrawRay(transform.position, transform.forward * monData.attackRange, Color.cyan);
+                    // Debug.DrawRay(transform.position, transform.forward * monData.attackRange, Color.cyan);
                     if(hit.collider.gameObject.name != "Player") return; // if raycast hit something that's not player then return
-                    Debug.Log("Melee Attack Player");
+                    enemy.MeleeAttack();
                 }
                 break;
         }
@@ -94,8 +111,8 @@ public class MonsterDetectPlayer : MonoBehaviour
         targetPos = target.transform.position;
         
         // Calculate distance between monster and player
-        awayFromPlayer = Mathf.Sqrt(Mathf.Pow(targetPos.x - beginPos.x, 2) + Mathf.Pow(targetPos.y - beginPos.y, 2));
-        // Debug.Log(awayFromPlayer);
+        awayFromPlayer = Mathf.Sqrt(Mathf.Pow(targetPos.x - beginPos.x, 2) + Mathf.Pow(targetPos.z - beginPos.z, 2));
+         Debug.Log(awayFromPlayer);
     }
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
