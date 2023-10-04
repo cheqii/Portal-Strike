@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Microlight.MicroBar;
 
 public class PlayerUIManager : MonoBehaviour
 {
@@ -12,11 +13,16 @@ public class PlayerUIManager : MonoBehaviour
     [SerializeField] private TMP_Text hpText;
     [SerializeField] private TMP_Text currentHpIndex;
 
+    [SerializeField] private MicroBar xp_Bar;
+
     private float hpLerpSpeed;
     private Player player;
     
     void Start()
     {
+        xp_Bar.Initialize(100);
+        xp_Bar.UpdateHealthBar(0);
+
         player = FindObjectOfType<Player>();
     }
 
@@ -46,5 +52,16 @@ public class PlayerUIManager : MonoBehaviour
         currentHpBar.fillAmount = Mathf.Lerp(currentHpBar.fillAmount, player.Hp / player.MaxHp, hpLerpSpeed);
         currentHpIndex.text = $"{player.Hp} / {player.MaxHp}";
         ColorChanger();
+    }
+
+    public void XpBarUpdate()
+    {
+        StartCoroutine(DelayXpBarUpdate());
+    }
+    
+    IEnumerator DelayXpBarUpdate()
+    {
+        yield return new WaitForSeconds(0.2f);
+        xp_Bar.UpdateHealthBar(player.Xp);
     }
 }

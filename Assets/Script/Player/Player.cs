@@ -9,18 +9,33 @@ public class Player : MonoBehaviour, ITakeDamage
     #region -Declared Variables-
 
     [Header("Player Status")]
-    [SerializeField] private float hp;
-    public float Hp
+    [SerializeField] private int hp;
+    public int Hp
     {
         get => hp;
         set => hp = value;
     }
-    [SerializeField] private float maxHp;
-    public float MaxHp
+    [SerializeField] private int maxHp;
+    public int MaxHp
     {
         get => maxHp;
         set => maxHp = value;
     }
+
+    private int level;
+    public int Level
+    {
+        get => level;
+        set => level = value;
+    }
+    
+    [SerializeField] private int xp;
+    public int Xp
+    {
+        get => xp;
+        set => xp = value;
+    }
+    
     [SerializeField] private float moveSpeed;
     [SerializeField] private int def;
     [SerializeField] private float critRate;
@@ -69,7 +84,22 @@ public class Player : MonoBehaviour, ITakeDamage
         if (hp < 1) Debug.Log("Player ded");
     }
 
-    public void Healing(float heal)
+    public void IncreaseXp(Component sender,Object data)
+    {
+        if (data is int)
+        {
+            xp += (int)data;
+        }
+
+
+        if (xp > 100)
+        {
+            xp = 0;
+        }
+    }
+    
+
+    public void Healing(int heal)
     {
         hp = Mathf.Clamp(hp + heal, 0, maxHp);
     }
