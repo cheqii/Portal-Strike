@@ -18,7 +18,7 @@ MonoBehaviour:
   monName: 
   hp: 100
   moveSpeed: 10
-  atkDamage: 2
+  atkDamage: 100
   atkSpeed: 20
   def: 10
   atkCoolDown: 2
