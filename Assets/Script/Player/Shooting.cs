@@ -9,6 +9,9 @@ public class Shooting : MonoBehaviour
 
     private float shotTime;
 
+    [Header("Muzzle Flash")] 
+    [SerializeField] private ParticleSystem muzzleFlash;
+    
     /* Ensures that the Fire() function can only be called once every {fireRate} seconds
      * to control the rate of shooting or firing. */
     public void Perform()
@@ -22,6 +25,7 @@ public class Shooting : MonoBehaviour
 
     private void Fire()
     {
+        muzzleFlash.Play(true);
         // Create {bullet} in the location of {shootingPoint.position}
         GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.parent.gameObject.transform.rotation);
 

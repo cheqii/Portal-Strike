@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
     
     [Header("Enemy Health Bar")]
     [SerializeField] private MicroBar _microBar;
-    
+
     void Awake()
     {
         target = FindObjectOfType<Player>();
