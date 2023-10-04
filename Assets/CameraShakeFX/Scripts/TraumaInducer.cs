@@ -1,3 +1,4 @@
+ using System;
  using UnityEngine;
 using System.Collections;
 
@@ -11,17 +12,28 @@ public class TraumaInducer : MonoBehaviour
     [Tooltip("Maximum distance in which objects are affected by this TraumaInducer")]
     public float Range = 45;
 
+    private StressReceiver receiver;
+
+    private void Awake()
+    {
+        receiver = FindObjectOfType<StressReceiver>();
+    }
+
     public void Shake()
     {
-        /* Play all the particle system this object has */
-        //PlayParticles();
-
-        /* Find all gameobjects in the scene and loop through them until we find all the nearvy stress receivers */
-        var receiver = FindObjectOfType<StressReceiver>();
-        if(receiver == null) return;
         float distance = Vector3.Distance(transform.position, receiver.transform.position);
         /* Apply stress to the object, adjusted for the distance */
-        if(distance > Range) return;
+        //if(distance > Range) return;
+        float distance01 = Mathf.Clamp01(distance / Range);
+        float stress = (1 - Mathf.Pow(distance01, 2)) * MaximumStress;
+        receiver.InduceStress(stress/3);
+    }
+    
+    public void HardShake()
+    {
+        float distance = Vector3.Distance(transform.position, receiver.transform.position);
+        /* Apply stress to the object, adjusted for the distance */
+        //if(distance > Range) return;
         float distance01 = Mathf.Clamp01(distance / Range);
         float stress = (1 - Mathf.Pow(distance01, 2)) * MaximumStress;
         receiver.InduceStress(stress);
