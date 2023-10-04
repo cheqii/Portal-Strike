@@ -10899,6 +10899,7 @@ GameObject:
   - component: {fileID: 1371806082}
   - component: {fileID: 1371806081}
   - component: {fileID: 1371806080}
+  - component: {fileID: 1371806083}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -10946,6 +10947,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1371806083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371806079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f504404edfda0ed42a0cda37849999a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHpBar: {fileID: 792687103}
+  hpText: {fileID: 797156383}
+  currentHpIndex: {fileID: 560902853}
 --- !u!43 &1399478519
 Mesh:
   m_ObjectHideFlags: 0
@@ -13202,11 +13218,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1966275375}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: TakeDamage
-        m_Mode: 4
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 30
           m_FloatArgument: 30
           m_StringArgument: 
           m_BoolArgument: 0
@@ -16312,9 +16328,7 @@ MonoBehaviour:
   critDamage: 0
   dodgeRate: 0
   weaponData: {fileID: 0}
-  currentHp: {fileID: 792687103}
-  hpText: {fileID: 797156383}
-  currentHpIndex: {fileID: 560902853}
+  takeDamageEvent: {fileID: 11400000, guid: c7bb98ffceb82b04d95f302509211679, type: 2}
 --- !u!208 &1966275376
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -16349,12 +16363,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1966275375}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: TakeDamage
-        m_Mode: 3
+        m_MethodName: DealDamage
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 30
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
