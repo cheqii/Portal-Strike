@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour,ITakeDamage
 
     public void TakeDamage(int dmg)
     {
+        GetComponent<TraumaInducer>().Shake();
+
         StartCoroutine(WhiteFlash());
         
         hp -= dmg;
@@ -90,7 +92,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
 
     public void Dead()
     {
-        GetComponent<TraumaInducer>().Shake();
+        GetComponent<TraumaInducer>().HardShake();
         Instantiate(ParticleManager.Instance.data.BloodBomb_particle, transform.position, Quaternion.identity);
         GameObject xp = Instantiate(ParticleManager.Instance.data.Xp_particle,transform.position,Quaternion.identity);
         Destroy(this.gameObject);
