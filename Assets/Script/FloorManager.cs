@@ -10,6 +10,9 @@ public class FloorManager : MonoBehaviour
     [SerializeField] private List<GameObject> _floor;
 
     [SerializeField] private GameObject enemy;
+    
+    [SerializeField] private GameObject Portal;
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,10 +53,12 @@ public class FloorManager : MonoBehaviour
                 
                     enemy.transform.SetParent(enemies.transform);
                 }
-                
-               
             }
         }
+
+        //generate portal
+        Instantiate(Portal, _floor[_floor.Count - 1].transform.position, Quaternion.identity);
+        
     }
 
 }

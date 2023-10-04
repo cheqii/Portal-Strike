@@ -7213,6 +7213,7 @@ MonoBehaviour:
   level: []
   _floor: []
   enemy: {fileID: 8591618272323389173, guid: a9f113951c3b64b418ae6c1576627f63, type: 3}
+  Portal: {fileID: 8291948535975824968, guid: 59e672c179bb0b648a36992e661ef6a2, type: 3}
 --- !u!1 &792687101
 GameObject:
   m_ObjectHideFlags: 0
