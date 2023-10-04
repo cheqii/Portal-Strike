@@ -50,6 +50,7 @@ public class MonsterDetectPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawRay(transform.position, transform.forward * monData.attackRange, Color.cyan);
         MoveToPlayer();
     }
 
@@ -80,9 +81,9 @@ public class MonsterDetectPlayer : MonoBehaviour
             case MonsterData.MonsterType.Melee:
                 if (Physics.Raycast(ray, out hit))
                 {
-                    Debug.DrawRay(transform.position, transform.forward * monData.attackRange, Color.cyan);
+                    // Debug.DrawRay(transform.position, transform.forward * monData.attackRange, Color.cyan);
                     if(hit.collider.gameObject.name != "Player") return; // if raycast hit something that's not player then return
-                    Debug.Log("Melee Attack Player");
+                    enemy.MeleeAttack();
                 }
                 break;
         }
