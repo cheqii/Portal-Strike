@@ -1,16 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour,ITakeDamage
 {
-    [SerializeField] private int hp = 100;
+    [SerializeField] private MonsterData mondata;
+    [SerializeField] private int hp;
+    [SerializeField] private Transform shootPoint;
+    public Player target;
     
-    
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        target = FindObjectOfType<Player>();
+    }
+
+    private void Start()
+    {
+        hp = mondata.hp;
     }
 
     // Update is called once per frame
@@ -28,6 +35,36 @@ public class Enemy : MonoBehaviour,ITakeDamage
             Dead();
         }
     }
+
+    #region -Monster Attack Behavior-
+
+    public IEnumerator RemoteAttack()
+    {
+        while (true)
+        {
+            if (target != null)
+            {
+                if (mondata.monsterType == MonsterData.MonsterType.Range)
+                {
+                    GameObject bullet = Instantiate(mondata.bullet, shootPoint.position, shootPoint.transform.rotation);
+                    bullet.transform.LookAt(target.gameObject.transform);
+                    Rigidbody rb = bullet.GetComponent<Rigidbody>();
+                    rb.velocity = bullet.transform.forward * mondata.atkSpeed;
+                    Debug.Log("Enemy Shot");
+
+                    yield return new WaitForSeconds(mondata.atkCoolDown);
+                }
+            }
+            else
+            {
+                Debug.Log("Break coroutine");
+                yield break;
+            }
+        }
+        
+    }
+
+    #endregion
 
     public void Dead()
     {
