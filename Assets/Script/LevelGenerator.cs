@@ -1012,6 +1012,8 @@ public class LevelGenerator : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        return;
+        
         Color restore = Gizmos.color;
 
         for( int r = 0, count = m_rooms.Count; r < count; ++r )
