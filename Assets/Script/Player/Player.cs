@@ -109,4 +109,23 @@ public class Player : MonoBehaviour, ITakeDamage
     }
 
     #endregion
+
+    #region -All ability-
+    public void IncreaseMaxHp(int amount)
+    {
+        maxHp += amount;
+        hp = Mathf.Clamp(hp, 0, maxHp);
+    }
+    public void IncreaseMoveSpeed(float amount)
+    {
+        float increasePercentage = amount / 100f;
+        float speedIncrease = moveSpeed * increasePercentage;
+        moveSpeed += speedIncrease;
+    }
+
+    public void IncreaseDef(int amount)
+    {
+        def += amount;
+    }
+    #endregion
 }

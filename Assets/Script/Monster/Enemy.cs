@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using Microlight.MicroBar;
+using TMPro;
 
 public class Enemy : MonoBehaviour,ITakeDamage
 {
@@ -16,6 +17,9 @@ public class Enemy : MonoBehaviour,ITakeDamage
     
     [Header("Enemy Health Bar")]
     [SerializeField] private MicroBar _microBar;
+
+    [Header("Float Text")] 
+    [SerializeField] private GameObject floatingTextPrefab;
 
     void Awake()
     {
@@ -43,6 +47,11 @@ public class Enemy : MonoBehaviour,ITakeDamage
         hp -= dmg;
         
         _microBar.UpdateHealthBar(hp);
+
+        if (floatingTextPrefab)
+        {
+            ShowFloatingText();
+        }
         
         if (hp <= 0)
         {
@@ -50,6 +59,12 @@ public class Enemy : MonoBehaviour,ITakeDamage
         }
     }
 
+    void ShowFloatingText()
+    {
+        var text = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
+        text.GetComponent<TextMeshPro>().text = mondata.atkDamage.ToString();
+    }
+    
     #region -Monster Attack Behavior-
 
     // Melee monster attack
