@@ -9,6 +9,9 @@ public class MonsterData : ScriptableObject
         Range
     }
     
+    [Header("Monster Prefab")]
+    public GameObject monsterPrefab;
+    
     [Header("Monster Stat")]
     public MonsterType monsterType;
 

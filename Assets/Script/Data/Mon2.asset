@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0f5e8ceaa035a46af76fe052240955, type: 3}
   m_Name: Mon2
   m_EditorClassIdentifier: 
+  monsterPrefab: {fileID: 8591618272323389173, guid: a9f113951c3b64b418ae6c1576627f63, type: 3}
   monsterType: 0
-  name: Mushroom
+  monName: 
   hp: 0
   moveSpeed: 5
   atkDamage: 0
