@@ -44,30 +44,33 @@ public class Enemy : MonoBehaviour,ITakeDamage
 
     #region -Monster Attack Behavior-
 
+    // Melee monster attack
+    public void MeleeAttack()
+    {
+        if (target == null) return;
+        Ray ray = new Ray(transform.position, transform.forward * mondata.attackRange);
+        
+    }
+    
+    // Range monster attack
     public IEnumerator RemoteAttack()
     {
         while (true)
         {
             if (target != null)
             {
-                if (mondata.monsterType == MonsterData.MonsterType.Range)
-                {
-                    GameObject bullet = Instantiate(mondata.bullet, shootPoint.position, shootPoint.transform.rotation);
-                    bullet.transform.LookAt(target.gameObject.transform);
-                    Rigidbody rb = bullet.GetComponent<Rigidbody>();
-                    rb.velocity = bullet.transform.forward * mondata.atkSpeed;
-                    Debug.Log("Enemy Shot");
+                GameObject bullet = Instantiate(mondata.bullet, shootPoint.position, shootPoint.transform.rotation);
+                bullet.transform.LookAt(target.gameObject.transform);
+                Rigidbody rb = bullet.GetComponent<Rigidbody>();
+                rb.velocity = bullet.transform.forward * mondata.atkSpeed;
 
-                    yield return new WaitForSeconds(mondata.atkCoolDown);
-                }
+                yield return new WaitForSeconds(mondata.atkCoolDown);
             }
             else
             {
-                Debug.Log("Break coroutine");
                 yield break;
             }
         }
-        
     }
 
     #endregion

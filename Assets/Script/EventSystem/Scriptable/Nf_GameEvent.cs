@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = System.Object;
 
 
 [CreateAssetMenu(menuName = "Nefer_GameEvent")]
@@ -14,16 +14,16 @@ public class Nf_GameEvent : ScriptableObject
     {
         foreach (var item in Listeners)
         {
-            item.OnEventRaise(null);
+            item.OnEventRaise(null, null);
         }
     }
     
     //use this method if you want to raise event and use some sender variable.
-    public void Raise(Component sender)
+    public void Raise(Component sender, Object data)
     {
         foreach (var item in Listeners)
         {
-            item.OnEventRaise(sender);
+            item.OnEventRaise(sender, data);
         }
     }
     

@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = System.Object;
 
 public class Player : MonoBehaviour, ITakeDamage
 {
@@ -9,7 +10,17 @@ public class Player : MonoBehaviour, ITakeDamage
 
     [Header("Player Status")]
     [SerializeField] private float hp;
+    public float Hp
+    {
+        get => hp;
+        set => hp = value;
+    }
     [SerializeField] private float maxHp;
+    public float MaxHp
+    {
+        get => maxHp;
+        set => maxHp = value;
+    }
     [SerializeField] private float moveSpeed;
     [SerializeField] private int def;
     [SerializeField] private float critRate;
@@ -18,14 +29,9 @@ public class Player : MonoBehaviour, ITakeDamage
 
     [SerializeField] private WeaponData weaponData;
 
-    [Header("Player UI Text")] 
-    [SerializeField] private Image currentHp;
-    [SerializeField] private TMP_Text hpText;
-    [SerializeField] private TMP_Text currentHpIndex;
-
-    private float hpLerpSpeed;
-
-    private Nf_GameEvent takeDamageEvent;
+    [Header("Event System")]
+    [SerializeField] private Nf_GameEvent takeDamageEvent;
+    private Nf_GameEvent playerHealthEvent;
     
     #endregion
 
@@ -40,7 +46,7 @@ public class Player : MonoBehaviour, ITakeDamage
     // Update is called once per frame
     void Update()
     {
-        HealthUpdate();
+        
     }
 
     #endregion
@@ -49,7 +55,16 @@ public class Player : MonoBehaviour, ITakeDamage
 
     public void TakeDamage(int dmg)
     {
-        hp = Mathf.Clamp(hp - ((dmg - def) + 1), 0, maxHp);
+        takeDamageEvent.Raise(this, dmg);
+    }
+
+    public void DealDamage(Component sender,Object data)
+    {
+        if (data is int)
+        {
+            int damage = (int) data;
+            hp = Mathf.Clamp(hp - ((damage - def) + 1), 0, maxHp);
+        }
 
         if (hp < 1) Debug.Log("Player ded");
     }
@@ -57,27 +72,6 @@ public class Player : MonoBehaviour, ITakeDamage
     public void Healing(float heal)
     {
         hp = Mathf.Clamp(hp + heal, 0, maxHp);
-    }
-
-    void ColorChanger()
-    {
-        /* Create new color
-         * color8CFF41 is green
-         * colorFF4040 is red */
-        Color green = new (140f / 255f, 1f, 65f / 255f);
-        Color red = new (1f, 64f / 255f, 64f / 255f);
-
-        Color healthColor = Color.Lerp(red, green, (hp / maxHp));
-        currentHp.color = healthColor;
-        hpText.color = healthColor;
-    }
-
-    void HealthUpdate()
-    {
-        hpLerpSpeed = 3f * Time.deltaTime;
-        currentHp.fillAmount = Mathf.Lerp(currentHp.fillAmount, hp / maxHp, hpLerpSpeed);
-        currentHpIndex.text = $"{hp} / {maxHp}";
-        ColorChanger();
     }
 
     #endregion

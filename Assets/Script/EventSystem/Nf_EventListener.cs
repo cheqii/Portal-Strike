@@ -1,11 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Object = System.Object;
 
 [System.Serializable]
-public class Nf_CustomGameEvent : UnityEvent<Component>{}
+public class Nf_CustomGameEvent : UnityEvent<Component, object>{} 
 
 public class Nf_EventListener : MonoBehaviour
 {
@@ -20,8 +18,8 @@ public class Nf_EventListener : MonoBehaviour
     {
         GameEvent.UnRegisterListener(this);
     }
-    public void OnEventRaise(Component sender)
+    public void OnEventRaise(Component sender, Object data)
     {
-        Response.Invoke(sender);
+        Response.Invoke(sender, data);
     }
 }
