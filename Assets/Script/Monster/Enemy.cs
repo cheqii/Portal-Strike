@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
         
         if (hp <= 0)
         {
-            Destroy(this.gameObject);
+            Dead();
         }
     }
 
@@ -50,14 +50,12 @@ public class Enemy : MonoBehaviour,ITakeDamage
                     bullet.transform.LookAt(target.gameObject.transform);
                     Rigidbody rb = bullet.GetComponent<Rigidbody>();
                     rb.velocity = bullet.transform.forward * mondata.atkSpeed;
-                    Debug.Log("Enemy Shot");
 
                     yield return new WaitForSeconds(mondata.atkCoolDown);
                 }
             }
             else
             {
-                Debug.Log("Break coroutine");
                 yield break;
             }
         }
@@ -65,4 +63,10 @@ public class Enemy : MonoBehaviour,ITakeDamage
     }
 
     #endregion
+
+    public void Dead()
+    {
+        GameObject xp = Instantiate(ParticleManager.Instance.data.Xp_particle,transform.position,Quaternion.identity);
+        Destroy(this.gameObject);
+    }
 }

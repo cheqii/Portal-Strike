@@ -5,11 +5,18 @@ public class SmoothCameraFollow : MonoBehaviour
     public Transform target; // The target to follow (usually the player)
     public float smoothSpeed = 5.0f; // Adjust the smoothness of the camera follow
 
-    private Vector3 offset;
+    public Vector3 offset;
 
     private void Start()
     {
+        
         // Calculate the initial offset between the camera and the target
+        offset = transform.position - target.position;
+
+    }
+
+    public void CalculateOffset()
+    {
         offset = transform.position - target.position;
     }
 
