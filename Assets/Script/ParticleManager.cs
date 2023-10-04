@@ -20,4 +20,9 @@ public class ParticleManager : MonoBehaviour
             Instance = this;
         }
     }
+
+    public void SpawnBloodBomb(Transform pos)
+    {
+        Instantiate(data.BloodBomb_particle, pos.position, Quaternion.identity);
+    }
 }
