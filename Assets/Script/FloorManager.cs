@@ -15,7 +15,6 @@ public class FloorManager : MonoBehaviour
     void Start()
     {
         //get level into lists
-        
         for (int i = 0; i < level_holder.transform.childCount; i++)
         {
             level.Add(level_holder.transform.GetChild(i).gameObject);
@@ -28,14 +27,25 @@ public class FloorManager : MonoBehaviour
             _floor.Add(i.transform.GetChild(0).gameObject);
         }
 
+
+        GameObject enemies = new GameObject("Enemies");
+        
         //doing something with floor
         foreach (var f in _floor)
         {
+            //build navmesh surface
             f.gameObject.AddComponent<NavMeshSurface>();
             f.GetComponent<NavMeshSurface>().BuildNavMesh();
-            
-            enemy = Instantiate(enemy, f.transform.position, Quaternion.identity);
-            enemy.GetComponent<MonsterDetectPlayer>().SetSpawnPoint(f.transform.position);
+
+            //monster spawn
+            if (f.transform.name != "Floor0")
+            {
+                enemy = Instantiate(enemy, f.transform.position, Quaternion.identity);
+                enemy.GetComponent<MonsterDetectPlayer>().SetSpawnPoint(f.transform.position);
+                enemy.transform.name = "enemy | " + f.transform.name;
+                
+                enemy.transform.SetParent(enemies.transform);
+            }
         }
     }
 
