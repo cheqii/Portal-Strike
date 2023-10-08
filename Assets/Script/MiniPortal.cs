@@ -70,8 +70,15 @@ public class MiniPortal : MonoBehaviour
 
     private void PlayerDash()
     {
+        FindObjectOfType<PlayerAnimation>().SetAnim("Hurt");
         Debug.Log("Dash");
         playerMovement.moveSpeed *= 6;
+        GameObject Dash_Effect = Instantiate(ParticleManager.Instance.data.Dash_particle, playerMovement.transform.position,
+            playerMovement.transform.rotation);
+        Dash_Effect.transform.SetParent(playerMovement.gameObject.transform);
+        
+        Destroy(Dash_Effect,0.5f);
+        
         Invoke("ResetSpeed", 0.15f);
     }
 
@@ -81,6 +88,8 @@ public class MiniPortal : MonoBehaviour
     }
     void PlayerWarp(GameObject go)
     {
+        FindObjectOfType<PlayerAnimation>().SetAnim("Hurt");
+
         Debug.Log("Warp");
         go.GetComponent<CharacterController>().enabled = false;
         go.transform.position = portalOut.gameObject.transform.position + new Vector3(0,0, 1.5f);

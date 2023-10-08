@@ -16,3 +16,4 @@ MonoBehaviour:
   LevelUP_particle: {fileID: 5129923531094610769, guid: 46c302909f7eadc4fad9fe36bf71d198, type: 3}
   BloodSplash_particle: {fileID: 2242508329567846118, guid: 3256326171bbfaa4f9af0b3a85535283, type: 3}
   BloodBomb_particle: {fileID: 4591284626913894486, guid: 7059281c2d7d7f54db5f8851a898ae17, type: 3}
+  Dash_particle: {fileID: 3116650044971117437, guid: f82095e82ce1e5e4f8a50d8541ccb19e, type: 3}

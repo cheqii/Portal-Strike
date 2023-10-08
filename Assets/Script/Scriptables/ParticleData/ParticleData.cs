@@ -11,5 +11,8 @@ public class ParticleData : ScriptableObject
     public GameObject LevelUP_particle;
     public GameObject BloodSplash_particle;
     public GameObject BloodBomb_particle;
+    
+    public GameObject Dash_particle;
+
 
 }
