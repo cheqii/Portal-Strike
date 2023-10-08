@@ -79,6 +79,11 @@ public class PlayerAnimation : MonoBehaviour
 
     }
 
+    public void SetAnim(string triggerName)
+    {
+        _animator.SetTrigger(triggerName);
+    }
+
     private void ConvertMoveInput()
     {
         Vector3 localMove = transform.InverseTransformDirection(moveInput);
