@@ -7,8 +7,25 @@ public class MiniPortal : MonoBehaviour
 {
     public MiniPortal portalOut;
 
+    private float moveSpeed;
+    private Movement playerMovement;
+
+    private void Start()
+    {
+        playerMovement = FindObjectOfType<Movement>();
+        
+        moveSpeed = playerMovement.moveSpeed;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        switch (other.transform.tag)
+        {
+            case "Player":
+                PlayerDash();
+                break;
+        }
+        
         if (portalOut == null)
         {
             return;
@@ -17,9 +34,7 @@ public class MiniPortal : MonoBehaviour
         switch (other.transform.tag)
         {
             case "Bullet":
-
                 WarpObject(other.gameObject);
-
                 break;
         }
         
@@ -34,5 +49,16 @@ public class MiniPortal : MonoBehaviour
         {
             go.GetComponent<Rigidbody>().velocity = -go.GetComponent<Rigidbody>().velocity;
         }
+    }
+
+    private void PlayerDash()
+    {
+        playerMovement.moveSpeed *= 6;
+        Invoke("ResetSpeed", 0.15f);
+    }
+
+    void ResetSpeed()
+    {
+        playerMovement.moveSpeed = moveSpeed;
     }
 }

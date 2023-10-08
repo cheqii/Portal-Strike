@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.33333337, b: 0.37202522, a: 1}
+      maxColor: {r: 0.33490568, g: 0.4935276, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4823,11 +4823,11 @@ GameObject:
   - component: {fileID: 6664724296855614411}
   - component: {fileID: 7333614687339003999}
   - component: {fileID: 4513940874743034435}
-  - component: {fileID: 8542291333960705708}
-  - component: {fileID: 3395770719828835075}
-  - component: {fileID: 2730432881991072950}
+  - component: {fileID: 455512652423698717}
+  - component: {fileID: 4150577129830641923}
+  - component: {fileID: 8981488468795420033}
   m_Layer: 0
-  m_Name: Portal Out
+  m_Name: Blue Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5043,7 +5043,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.33953872, b: 0.33333337, a: 1}
+      maxColor: {r: 0.33490568, g: 0.4935276, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9690,7 +9690,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &8542291333960705708
+--- !u!114 &455512652423698717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9703,7 +9703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portalOut: {fileID: 0}
---- !u!65 &3395770719828835075
+--- !u!65 &4150577129830641923
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9716,7 +9716,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.52, y: 0.57, z: 3.52}
   m_Center: {x: 0, y: 0.005049946, z: -7.176402e-17}
---- !u!114 &2730432881991072950
+--- !u!114 &8981488468795420033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9953,7 +9953,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0, b: 0.085204124, a: 1}
+      maxColor: {r: 0, g: 0.05725074, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14948,7 +14948,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.36470592, b: 0.39743075, a: 1}
+      maxColor: {r: 0.36320752, g: 0.45152184, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -19827,7 +19827,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.5372549, g: 0, b: 0.025994131, a: 1}
+      maxColor: {r: 0, g: 0.073806904, b: 0.5377358, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -24648,7 +24648,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.36470592, b: 0.44755474, a: 1}
+      maxColor: {r: 0.36320752, g: 0.45152184, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
