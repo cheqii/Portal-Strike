@@ -5,24 +5,38 @@ using UnityEngine.UI;
 
 public class AbilitySelection : MonoBehaviour
 {
+    [SerializeField] private GameObject abilitySelectionPanel;
+    [SerializeField] private TMP_Text Button1Description;
+    [SerializeField] private TMP_Text Button2Description;
+    [SerializeField] private TMP_Text Button3Description;
+    [SerializeField] private Image Button1Image;
+    [SerializeField] private Image Button2Image;
+    [SerializeField] private Image Button3Image;
+
     private Player player;
-    public GameObject abilitySelectionPanel;
-
-    public TMP_Text Button1Description;
-    public TMP_Text Button2Description;
-    public TMP_Text Button3Description;
-
-    public Image Button1Image;
-    public Image Button2Image;
-    public Image Button3Image;
+    private PlayerUIManager playerUIManager;
 
     private List<System.Action> availableAbilities = new List<System.Action>();
     private System.Action[] selectedAbilities = new System.Action[3];
 
+    // Define constants for abilies values
+    private const int MaxHpIncrease = 20;
+    private const float MoveSpeedIncrease = 0.2f; // 0.2f = 20%
+    private const int DefIncrease = 2;
+    private const float CritRateIncrease = 0.1f; // 0.1f = 10%
+    private const float CritDamageIncrease = 0.1f; // 0.1f = 10%
+    private const float DodgeRateIncrease = 0.1f; // 0.1f = 10%
+
     private void Start()
     {
         player = FindObjectOfType<Player>();
+        playerUIManager = FindObjectOfType<PlayerUIManager>();
 
+        AvailableAbilities();
+    }
+    #region -Abilities Data-
+    private void AvailableAbilities()
+    {
         // All 9 abilities in the list that have not yet been selected.
         availableAbilities.Add(IncreaseMaxHp);
         availableAbilities.Add(IncreaseMoveSpeed);
@@ -32,144 +46,99 @@ public class AbilitySelection : MonoBehaviour
         availableAbilities.Add(IncreaseDodgeRate);
     }
 
-    private void RandomAbility()
-    {
-        // Check if there are still unselected abilities.
-        if (availableAbilities.Count > 0)
-        {
-            // Random ability from list that has not been selected yet.
-            int randomIndex = Random.Range(0, availableAbilities.Count);
-            System.Action selectedAbility = availableAbilities[randomIndex];
-
-            // Triggers a random ability
-            selectedAbility();
-
-            // Removes the selected ability from the List.
-            availableAbilities.RemoveAt(randomIndex);
-        }
-    }
-
+    //
     private void SetAbilityColorAndDescription(Image buttonImage, System.Action ability, TMP_Text descriptionText)
     {
         Color myBlue = new Color(0x5E / 255.0f, 0x6E / 255.0f, 0xE2 / 255.0f); // 5E6EE2 in HEX
-        Color myPurple = new Color(0x64 / 255.0f, 0x1E / 255.0f, 0xF5 / 255.0f); // 641EF5 in HEX
+        Color myPurple = new Color(0x7D / 255.0f, 0x1E / 255.0f, 0xF5 / 255.0f); // 7D1EF5 in HEX
         Color myRed = new Color(0xFF / 255.0f, 0x11 / 255.0f, 0x50 / 255.0f); // FF1150 in HEX
 
+        // Here's the description and things that will be displayed on the UI before you select an ability.
         if (ability == IncreaseMaxHp)
         {
-            descriptionText.text = "Max HP\n+20";
+            descriptionText.text = $"Max HP\n+{MaxHpIncrease}";
             buttonImage.color = myBlue;
         }
         else if (ability == IncreaseMoveSpeed)
         {
-            descriptionText.text = "Move Speed\n+20%";
+            descriptionText.text = $"Move Speed\n+{(MoveSpeedIncrease * 100).ToString("0")}%";
             buttonImage.color = myPurple;
         }
         else if (ability == IncreaseDef)
         {
-            descriptionText.text = "Def\n+2";
+            descriptionText.text = $"Defense\n+{DefIncrease}";
             buttonImage.color = myBlue;
         }
         else if (ability == IncreaseCritRate)
         {
-            descriptionText.text = "Increase Critical Rate\n+10%";
+            descriptionText.text = $"Increase Critical Rate\n+{(CritRateIncrease * 100).ToString("0")}%";
             buttonImage.color = myRed;
         }
         else if (ability == IncreaseCritDamage)
         {
-            descriptionText.text = "Increase Critical Damage\n+10%";
+            descriptionText.text = $"Increase Critical Damage\n+{(CritDamageIncrease * 100).ToString("0")}%";
             buttonImage.color = myRed;
         }
         else if (ability == IncreaseDodgeRate)
         {
-            descriptionText.text = "Increase Dodge Rate\n+10%";
+            descriptionText.text = $"Increase Dodge Rate\n+{(DodgeRateIncrease * 100).ToString("0")}%";
             buttonImage.color = myRed;
         }
         else
         {
-            // Default description if the ability doesn't match any condition
             descriptionText.text = "Unknown Ability";
             buttonImage.color = Color.gray;
         }
     }
 
-
-    public void Button1()
-    {
-        // Use random ability for Button1
-        if (selectedAbilities[0] != null)
-        {
-            selectedAbilities[0]();
-            
-            UnFreeze();
-        }
-    }
-
-    public void Button2()
-    {
-        // Use random ability for Button2
-        if (selectedAbilities[1] != null)
-        {
-            selectedAbilities[1]();
-            UnFreeze();
-
-        }
-    }
-
-    public void Button3()
-    {
-        // Use random ability for Button3
-        if (selectedAbilities[2] != null)
-        {
-            selectedAbilities[2]();
-            UnFreeze();
-        }
-    }
-
-
-
-    /* Ability List */
+    // This is what happens after pressing the select ability button.
+    // Increase Max HP .. unit
     private void IncreaseMaxHp()
     {
-        Debug.Log("Max HP +20");
-        player.IncreaseMaxHp(20);
+        Debug.Log("Max HP +" + MaxHpIncrease);
+        player.IncreaseMaxHp(MaxHpIncrease);
+        playerUIManager.HealthUpdate();
     }
-
+    // Increase Move Speed ..%
     private void IncreaseMoveSpeed()
     {
-        Debug.Log("Move Speed +20%");
-        player.IncreaseMoveSpeed(20.0f);
+        Debug.Log("Move Speed +" + (MoveSpeedIncrease * 100).ToString("0") + "%");
+        player.IncreaseMoveSpeed(MoveSpeedIncrease);
     }
 
+    // Increase Defense .. unit
     private void IncreaseDef()
     {
-        Debug.Log("Def +2");
-        player.IncreaseDef(2);
+        Debug.Log("Defense +" + DefIncrease);
+        player.IncreaseDef(DefIncrease);
     }
-
+    // Increase Critical Rate ..%
     private void IncreaseCritRate()
     {
-        Debug.Log("Increase Critical Rate +10%");
-        player.IncreaseCritRate(10.0f);
+        Debug.Log("Increase Critical Rate +" + (CritRateIncrease * 100).ToString("0") + "%");
+        player.IncreaseCritRate(CritRateIncrease);
     }
-
+    // Increase Critical Damage ..%
     private void IncreaseCritDamage()
     {
-        Debug.Log("Increase Critical Damage +10%");
-        player.IncreaseCritDamage(10.0f);
+        Debug.Log("Increase Critical Damage +" + (CritDamageIncrease * 100).ToString("0") + "%");
+        player.IncreaseCritDamage(CritDamageIncrease);
     }
-
+    // Increase Dodge Rate ..%
     private void IncreaseDodgeRate()
     {
-        Debug.Log("Increase Dodge Rate +10%");
-        player.IncreaseDodgeRate(10.0f);
+        Debug.Log("Increase Dodge Rate +" + (DodgeRateIncrease * 100).ToString("0") + "%");
+        player.IncreaseDodgeRate(DodgeRateIncrease);
     }
+    #endregion
 
+    #region -Ability Selection Work Progress-
+    // Stop/Resume time of game
     public void TimeFreeze()
     {
         Time.timeScale = 0;
     }
-    
+
     public void UnFreeze()
     {
         Time.timeScale = 1;
@@ -182,20 +151,56 @@ public class AbilitySelection : MonoBehaviour
         transform.GetChild(1).gameObject.SetActive(true);
         transform.GetChild(2).gameObject.SetActive(true);
 
-        // Randomly 3 abilities and store them in selectedAbilities
-        for (int i = 0; i < 3; i++)
+        // Create a list of indices from 0 to the number of available abilities - 1
+        List<int> indices = new List<int>();
+        for (int i = 0; i < availableAbilities.Count; i++)
         {
-            int randomIndex = Random.Range(0, availableAbilities.Count);
-            selectedAbilities[i] = availableAbilities[randomIndex];
-            availableAbilities.RemoveAt(randomIndex);
+            indices.Add(i);
         }
 
-        // Set ability colors and descriptions based on the selected abilities
+        // Randomly select 3 unique indices
+        for (int i = 0; i < 3; i++)
+        {
+            int randomIndex = Random.Range(0, indices.Count);
+            int selectedIndex = indices[randomIndex];
+            selectedAbilities[i] = availableAbilities[selectedIndex];
+            indices.RemoveAt(randomIndex);
+        }
+
+        // Reset indices for the next round
+        indices.Clear();
+
         SetAbilityColorAndDescription(Button1Image, selectedAbilities[0], Button1Description);
         SetAbilityColorAndDescription(Button2Image, selectedAbilities[1], Button2Description);
         SetAbilityColorAndDescription(Button3Image, selectedAbilities[2], Button3Description);
     }
 
+    public void Button1()
+    {
+        if (selectedAbilities[0] != null)
+        {
+            selectedAbilities[0]();
+            UnFreeze();
+        }
+    }
+
+    public void Button2()
+    {
+        if (selectedAbilities[1] != null)
+        {
+            selectedAbilities[1]();
+            UnFreeze();
+        }
+    }
+
+    public void Button3()
+    {
+        if (selectedAbilities[2] != null)
+        {
+            selectedAbilities[2]();
+            UnFreeze();
+        }
+    }
 
     public void HideUI()
     {
@@ -204,4 +209,5 @@ public class AbilitySelection : MonoBehaviour
         transform.GetChild(1).gameObject.SetActive(false);
         transform.GetChild(2).gameObject.SetActive(false);
     }
+    #endregion
 }
