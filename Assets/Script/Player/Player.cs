@@ -117,14 +117,31 @@ public class Player : MonoBehaviour, ITakeDamage
     }
     public void IncreaseMoveSpeed(float amount)
     {
-        float increasePercentage = amount / 100f;
+        float increasePercentage = amount / 100.0f;
         float speedIncrease = moveSpeed * increasePercentage;
         moveSpeed += speedIncrease;
     }
-
     public void IncreaseDef(int amount)
     {
         def += amount;
+    }
+    public void IncreaseCritRate(float amount)
+    {
+        float increasePercentage = amount / 100.0f;
+        float critRateIncrease = critRate * increasePercentage;
+        critRate += critRateIncrease;
+    }
+    public void IncreaseCritDamage(float amount)
+    {
+        float increasePercentage = amount / 100.0f;
+        float critDamageIncrease = critDamage * increasePercentage;
+        critDamage += critDamageIncrease;
+    }
+    public void IncreaseDodgeRate(float amount)
+    {
+        float increasePercentage = amount / 100.0f;
+        float dodgeRateIncrease = dodgeRate * increasePercentage;
+        dodgeRate += dodgeRateIncrease;
     }
     #endregion
 }

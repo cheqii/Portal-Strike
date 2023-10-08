@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
     private void OnCollisionEnter(Collision col)
     {
         var enemy = col.transform.GetComponent<Enemy>();
@@ -15,6 +14,5 @@ public class Bullet : MonoBehaviour
             blood.transform.SetParent(col.transform);
             col.gameObject.GetComponent<ITakeDamage>().TakeDamage(10);
         }
-        
     }
 }

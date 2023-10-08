@@ -7,9 +7,14 @@ public class AbilitySelection : MonoBehaviour
 {
     private Player player;
     public GameObject abilitySelectionPanel;
+
     public TMP_Text Button1Description;
     public TMP_Text Button2Description;
     public TMP_Text Button3Description;
+
+    public Image Button1Image;
+    public Image Button2Image;
+    public Image Button3Image;
 
     private List<System.Action> availableAbilities = new List<System.Action>();
     private System.Action[] selectedAbilities = new System.Action[3];
@@ -17,19 +22,14 @@ public class AbilitySelection : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<Player>();
-        
-        
-        
+
         // All 9 abilities in the list that have not yet been selected.
         availableAbilities.Add(IncreaseMaxHp);
         availableAbilities.Add(IncreaseMoveSpeed);
         availableAbilities.Add(IncreaseDef);
-        availableAbilities.Add(IncreaseTest1);
-        availableAbilities.Add(IncreaseTest2);
-        availableAbilities.Add(IncreaseTest3);
-        availableAbilities.Add(IncreaseTest4);
-        availableAbilities.Add(IncreaseTest5);
-        availableAbilities.Add(IncreaseTest6);
+        availableAbilities.Add(IncreaseCritRate);
+        availableAbilities.Add(IncreaseCritDamage);
+        availableAbilities.Add(IncreaseDodgeRate);
     }
 
     private void RandomAbility()
@@ -49,46 +49,50 @@ public class AbilitySelection : MonoBehaviour
         }
     }
 
-    private string GetAbilityDescription(System.Action ability)
+    private void SetAbilityColorAndDescription(Image buttonImage, System.Action ability, TMP_Text descriptionText)
     {
+        Color myBlue = new Color(0x5E / 255.0f, 0x6E / 255.0f, 0xE2 / 255.0f); // 5E6EE2 in HEX
+        Color myPurple = new Color(0x64 / 255.0f, 0x1E / 255.0f, 0xF5 / 255.0f); // 641EF5 in HEX
+        Color myRed = new Color(0xFF / 255.0f, 0x11 / 255.0f, 0x50 / 255.0f); // FF1150 in HEX
+
         if (ability == IncreaseMaxHp)
         {
-            return "Max HP +20";
+            descriptionText.text = "Max HP\n+20";
+            buttonImage.color = myBlue;
         }
         else if (ability == IncreaseMoveSpeed)
         {
-            return "Move Speed +20%";
+            descriptionText.text = "Move Speed\n+20%";
+            buttonImage.color = myPurple;
         }
         else if (ability == IncreaseDef)
         {
-            return "Def +2";
+            descriptionText.text = "Def\n+2";
+            buttonImage.color = myBlue;
         }
-        else if (ability == IncreaseTest1)
+        else if (ability == IncreaseCritRate)
         {
-            return "IncreaseTest1";
+            descriptionText.text = "Increase Critical Rate\n+10%";
+            buttonImage.color = myRed;
         }
-        else if (ability == IncreaseTest2)
+        else if (ability == IncreaseCritDamage)
         {
-            return "IncreaseTest2";
+            descriptionText.text = "Increase Critical Damage\n+10%";
+            buttonImage.color = myRed;
         }
-        else if (ability == IncreaseTest3)
+        else if (ability == IncreaseDodgeRate)
         {
-            return "IncreaseTest3";
+            descriptionText.text = "Increase Dodge Rate\n+10%";
+            buttonImage.color = myRed;
         }
-        else if (ability == IncreaseTest4)
+        else
         {
-            return "IncreaseTest4";
+            // Default description if the ability doesn't match any condition
+            descriptionText.text = "Unknown Ability";
+            buttonImage.color = Color.gray;
         }
-        else if (ability == IncreaseTest5)
-        {
-            return "IncreaseTest5";
-        }
-        else if (ability == IncreaseTest6)
-        {
-            return "IncreaseTest6";
-        }
-        return "Unknown Ability";
     }
+
 
     public void Button1()
     {
@@ -143,42 +147,32 @@ public class AbilitySelection : MonoBehaviour
         player.IncreaseDef(2);
     }
 
-    private void IncreaseTest1()
+    private void IncreaseCritRate()
     {
-        Debug.Log("Test1");
+        Debug.Log("Increase Critical Rate +10%");
+        player.IncreaseCritRate(10.0f);
     }
 
-    private void IncreaseTest2()
+    private void IncreaseCritDamage()
     {
-        Debug.Log("Test2"); }
+        Debug.Log("Increase Critical Damage +10%");
+        player.IncreaseCritDamage(10.0f);
+    }
 
-    private void IncreaseTest3()
+    private void IncreaseDodgeRate()
     {
-        Debug.Log("Test3");
-    }
-    private void IncreaseTest4()
-    {
-        Debug.Log("Test4");
-    }
-    private void IncreaseTest5()
-    {
-        Debug.Log("Test5");
-    }
-    private void IncreaseTest6()
-    {
-        Debug.Log("Test6");
+        Debug.Log("Increase Dodge Rate +10%");
+        player.IncreaseDodgeRate(10.0f);
     }
 
     public void TimeFreeze()
     {
         Time.timeScale = 0;
-
     }
     
     public void UnFreeze()
     {
         Time.timeScale = 1;
-
     }
 
     public void ShowUI()
@@ -196,10 +190,10 @@ public class AbilitySelection : MonoBehaviour
             availableAbilities.RemoveAt(randomIndex);
         }
 
-        // Show random ability name in abilityDescription
-        Button1Description.text = GetAbilityDescription(selectedAbilities[0]);
-        Button2Description.text = GetAbilityDescription(selectedAbilities[1]);
-        Button3Description.text = GetAbilityDescription(selectedAbilities[2]);
+        // Set ability colors and descriptions based on the selected abilities
+        SetAbilityColorAndDescription(Button1Image, selectedAbilities[0], Button1Description);
+        SetAbilityColorAndDescription(Button2Image, selectedAbilities[1], Button2Description);
+        SetAbilityColorAndDescription(Button3Image, selectedAbilities[2], Button3Description);
     }
 
 
