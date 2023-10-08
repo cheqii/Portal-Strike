@@ -35,7 +35,7 @@ public class Player : MonoBehaviour, ITakeDamage
         get => xp;
         set => xp = value;
     }
-    
+
     [SerializeField] private float moveSpeed;
     [SerializeField] private int def;
     [SerializeField] private float critRate;
@@ -48,21 +48,13 @@ public class Player : MonoBehaviour, ITakeDamage
     [SerializeField] private Nf_GameEvent takeDamageEvent;
     [SerializeField] private Nf_GameEvent playerLevelUpEvent;
 
-    
     #endregion
 
     #region -Unity Medthod Function-
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         hp = maxHp;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     #endregion

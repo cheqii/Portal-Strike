@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using Microlight.MicroBar;
 
@@ -13,7 +11,6 @@ public class PlayerUIManager : MonoBehaviour
     [SerializeField] private MicroBar healthBar;
     [SerializeField] private MicroBar xp_Bar;
     
-    private float hpLerpSpeed;
     private Player player;
     
     void Start()
@@ -28,12 +25,6 @@ public class PlayerUIManager : MonoBehaviour
         healthBar.UpdateHealthBar(player.Hp);
         
         hpText.text = $"{player.Hp} / {player.MaxHp}";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void HealthUpdate()
