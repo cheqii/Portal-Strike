@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         //initial level
-        FindObjectOfType<LevelGenerator>().Generate( 8, 0.5f, 2.0f );
+        //FindObjectOfType<LevelGenerator>().Generate( 8, 0.5f, 2.0f );
     }
 
     // Update is called once per frame
