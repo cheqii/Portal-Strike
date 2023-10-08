@@ -19,4 +19,9 @@ public class Bullet : MonoBehaviour
         }
         
     }
+
+    public void ChangeDamage(int dmg)
+    {
+        damage = dmg;
+    }
 }

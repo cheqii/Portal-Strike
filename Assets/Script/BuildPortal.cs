@@ -47,6 +47,12 @@ public class BuildPortal : MonoBehaviour
             Debug.Log("portal in");
             myPortalIn.portalOut = portal_out.GetComponent<MiniPortal>();
         }
+        MyPortalIn = portal.GetComponent<MiniPortal>();
+        
+        if (MyPortalOut != null)
+        {
+            MyPortalIn.portalOut = MyPortalOut.GetComponent<MiniPortal>();
+        }
     }
 
     public void CreatePortal_Out()
