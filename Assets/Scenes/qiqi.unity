@@ -2502,7 +2502,7 @@ MonoBehaviour:
   m_weld_vertices: 1
   m_world_unit_to_uv: 0.25
   m_wall_material: {fileID: 2100000, guid: f9a5ce4748e5abd4288cab387226ef27, type: 2}
-  m_floor_material: {fileID: 2100000, guid: 8d530ffe6c4968843806085897955b9d, type: 2}
+  m_floor_material: {fileID: 2100000, guid: 094c835627124fe4bbbaa762d2240cb1, type: 2}
   m_rooms:
   - bnd:
       m_Center: {x: 0, y: 2, z: 0}
