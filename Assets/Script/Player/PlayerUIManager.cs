@@ -15,6 +15,10 @@ public class PlayerUIManager : MonoBehaviour
     
     private float hpLerpSpeed;
     private Player player;
+
+    [SerializeField] private Nf_GameEvent PortalIn;
+    [SerializeField] private Nf_GameEvent PortalOut;
+
     
     void Start()
     {
@@ -51,5 +55,14 @@ public class PlayerUIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         xp_Bar.UpdateHealthBar(player.Xp);
+    }
+
+    public void CreatePortalIn()
+    {
+        PortalIn.Raise();
+    }
+    public void CreatePortalOut()
+    {
+        PortalOut.Raise();
     }
 }
