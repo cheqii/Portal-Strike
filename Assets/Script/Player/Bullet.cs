@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
+    [SerializeField] private int damage = 10;
+    
     private void OnCollisionEnter(Collision col)
     {
         var enemy = col.transform.GetComponent<Enemy>();
@@ -13,8 +14,13 @@ public class Bullet : MonoBehaviour
             // int damage = enemy.
             GameObject blood = Instantiate(ParticleManager.Instance.data.BloodSplash_particle, transform.position, Quaternion.identity);
             blood.transform.SetParent(col.transform);
-            col.gameObject.GetComponent<ITakeDamage>().TakeDamage(10);
+            col.gameObject.GetComponent<ITakeDamage>().TakeDamage(damage);
         }
         
+    }
+
+    public void ChangeDamage(int dmg)
+    {
+        damage = dmg;
     }
 }

@@ -12,6 +12,9 @@ public class FloorManager : MonoBehaviour
     [SerializeField] private GameObject[] enemy;
     
     [SerializeField] private GameObject Portal;
+    
+    [SerializeField] private GameObject Totem;
+
 
 
     // Start is called before the first frame update
@@ -55,6 +58,9 @@ public class FloorManager : MonoBehaviour
                 
                     newEnemy.transform.SetParent(enemies.transform);
                 }
+                
+                Instantiate(Totem, f.transform.position, Totem.transform.rotation);
+
             }
         }
 
