@@ -90,7 +90,11 @@ public class Player : MonoBehaviour, ITakeDamage
             hp = Mathf.Clamp(hp - ((damage - def) + 1), 0, maxHp);
         }
 
-        if (hp < 1) Debug.Log("Player ded");
+        if (hp < 1)
+        {
+            Destroy(this.gameObject);
+            Debug.Log("Player ded");
+        }
     }
 
     public void IncreaseXp(Component sender,Object data)
