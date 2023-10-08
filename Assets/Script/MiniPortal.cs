@@ -31,6 +31,7 @@ public class MiniPortal : MonoBehaviour
                 case "Player":
                     if (portalBuild.MyPortalIn != null && portalBuild.MyPortalOut != null)
                     {
+                        Debug.Log("Destroy Portal");
                         GameObject blood = Instantiate(ParticleManager.Instance.data.BloodBomb_particle
                             , portalBuild.MyPortalIn.transform.position, Quaternion.identity);
                         Destroy(portalBuild.MyPortalIn.gameObject);
@@ -48,7 +49,7 @@ public class MiniPortal : MonoBehaviour
                 break;
             case "Player":
                 if (portalBuild.MyPortalOut == null) PlayerDash();
-                if (portalBuild.MyPortalIn != null && portalOut != null) PlayerWarp(other.gameObject);
+                if (portalBuild.MyPortalIn != null && portalBuild.MyPortalOut != null) PlayerWarp(other.gameObject);
                 break;
         }
     }
@@ -69,6 +70,7 @@ public class MiniPortal : MonoBehaviour
 
     private void PlayerDash()
     {
+        Debug.Log("Dash");
         playerMovement.moveSpeed *= 6;
         Invoke("ResetSpeed", 0.15f);
     }
@@ -79,10 +81,9 @@ public class MiniPortal : MonoBehaviour
     }
     void PlayerWarp(GameObject go)
     {
+        Debug.Log("Warp");
         go.GetComponent<CharacterController>().enabled = false;
         go.transform.position = portalOut.gameObject.transform.position + new Vector3(0,0, 1.5f);
         go.GetComponent<CharacterController>().enabled = true;
-
-
     }
 }
