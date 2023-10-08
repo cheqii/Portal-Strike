@@ -8,8 +8,20 @@ public class BuildPortal : MonoBehaviour
     [SerializeField] private GameObject portal_out;
     private Player player;
 
-    private MiniPortal MyPortalIn;
-    private MiniPortal MyPortalOut;
+    private MiniPortal myPortalIn;
+    public MiniPortal MyPortalIn
+    {
+        get => myPortalIn;
+        set => myPortalIn = value;
+    }
+    
+    private MiniPortal myPortalOut;
+
+    public MiniPortal MyPortalOut
+    {
+        get => myPortalOut;
+        set => myPortalOut = value;
+    }
 
     
     // Start is called before the first frame update
@@ -20,7 +32,7 @@ public class BuildPortal : MonoBehaviour
 
     public void CreatePortal_In()
     {
-        if (MyPortalIn != null)
+        if (myPortalIn != null)
         {
             return;
         }
@@ -28,6 +40,13 @@ public class BuildPortal : MonoBehaviour
         var portal =Instantiate(portal_in, player.transform.position + player.transform.forward * 2, Quaternion.identity);
         portal.transform.eulerAngles = new Vector3(0,player.transform.rotation.eulerAngles.y + 90,90);
 
+        myPortalIn = portal.GetComponent<MiniPortal>();
+        if (myPortalOut == null)
+        {
+            if(myPortalOut != null) return;
+            Debug.Log("portal in");
+            myPortalIn.portalOut = portal_out.GetComponent<MiniPortal>();
+        }
         MyPortalIn = portal.GetComponent<MiniPortal>();
         
         if (MyPortalOut != null)
@@ -38,18 +57,18 @@ public class BuildPortal : MonoBehaviour
 
     public void CreatePortal_Out()
     {
-        if (MyPortalOut != null)
+        if (myPortalOut != null)
         {
             return;
         }
         
         var portalout =Instantiate(portal_out, player.transform.position + player.transform.forward * 2, Quaternion.identity);
         portalout.transform.eulerAngles = new Vector3(0,player.transform.rotation.eulerAngles.y + 90,90);
-        MyPortalOut = portalout.GetComponent<MiniPortal>();
-
-        if (MyPortalIn != null)
+        myPortalOut = portalout.GetComponent<MiniPortal>();
+        
+        if (myPortalIn != null)
         {
-            MyPortalIn.portalOut = portalout.GetComponent<MiniPortal>();
+            myPortalIn.portalOut = portalout.GetComponent<MiniPortal>();
         }
     }
 }
