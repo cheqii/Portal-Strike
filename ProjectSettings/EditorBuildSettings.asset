@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/qiqitaro.unity
+    guid: 6e02c0dc8b7453741beb52349bd5736c
   m_configObjects: {}
