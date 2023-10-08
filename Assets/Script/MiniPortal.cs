@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class MiniPortal : MonoBehaviour
@@ -34,8 +35,9 @@ public class MiniPortal : MonoBehaviour
                 WarpObject(other.gameObject);
                 break;
             case "Player":
-                if (portalBuild.MyPortalOut != null) return;
-                    PlayerDash();
+                if (portalBuild.MyPortalOut == null) PlayerDash();
+                // if (portalBuild.MyPortalOut == null) return;
+                PlayerWarp(other.gameObject);
                 break;
         }
         
@@ -45,16 +47,18 @@ public class MiniPortal : MonoBehaviour
     {
         go.transform.position = portalOut.transform.position;
         go.transform.eulerAngles = -portalOut.transform.eulerAngles;
-
-        if (go.CompareTag("Bullet"))
+        Debug.Log("Warp Object");
+        
+        switch (go.gameObject.tag)
         {
-            go.GetComponent<Rigidbody>().velocity = -go.GetComponent<Rigidbody>().velocity;
+            case "Bullet":
+                go.GetComponent<Rigidbody>().velocity = -go.GetComponent<Rigidbody>().velocity;
+                break;
         }
     }
 
     private void PlayerDash()
     {
-        Debug.Log("Dashhhh");
         playerMovement.moveSpeed *= 6;
         Invoke("ResetSpeed", 0.15f);
     }
@@ -62,5 +66,15 @@ public class MiniPortal : MonoBehaviour
     void ResetSpeed()
     {
         playerMovement.moveSpeed = moveSpeed;
+    }
+    void PlayerWarp(GameObject go)
+    {
+        // Debug.Log("Player Warp");
+        // var Player = FindObjectOfType<Player>().transform;
+        go.GetComponent<CharacterController>().enabled = false;
+        go.transform.position = portalOut.gameObject.transform.position;
+        go.GetComponent<CharacterController>().enabled = true;
+
+
     }
 }
