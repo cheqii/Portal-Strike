@@ -86,7 +86,6 @@ public class Enemy : MonoBehaviour,ITakeDamage
         if (Physics.Raycast(ray, out hit))
         {
             if (hit.collider.gameObject.tag != "Player") return;
-            Debug.Log("Attackkkkk");
             target.GetComponent<ITakeDamage>().TakeDamage(mondata.atkDamage);
         }
     }

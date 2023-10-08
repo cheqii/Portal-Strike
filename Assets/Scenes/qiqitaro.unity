@@ -8308,6 +8308,7 @@ MonoBehaviour:
   enemy:
   - {fileID: 1008582693325092745, guid: 68c3bc12f7c6884428282d733a8a1526, type: 3}
   Portal: {fileID: 8291948535975824968, guid: 59e672c179bb0b648a36992e661ef6a2, type: 3}
+  Totem: {fileID: 195430925395549222, guid: b1c50a5ced5306041b67119e34f43f9f, type: 3}
 --- !u!1 &800825449
 GameObject:
   m_ObjectHideFlags: 0
@@ -16971,6 +16972,10 @@ PrefabInstance:
     - target: {fileID: 1628738707455202918, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
       propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1628738707455202929, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1628738707455202931, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
       propertyPath: m_Name
