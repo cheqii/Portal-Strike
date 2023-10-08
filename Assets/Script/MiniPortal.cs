@@ -6,12 +6,16 @@ using UnityEngine;
 public class MiniPortal : MonoBehaviour
 {
     public MiniPortal portalOut;
-
+    
     private float moveSpeed;
     private Movement playerMovement;
 
+    private BuildPortal portalBuild;
+
     private void Start()
     {
+        portalBuild = FindObjectOfType<BuildPortal>();
+        
         playerMovement = FindObjectOfType<Movement>();
         
         moveSpeed = playerMovement.moveSpeed;
@@ -19,13 +23,6 @@ public class MiniPortal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        switch (other.transform.tag)
-        {
-            case "Player":
-                PlayerDash();
-                break;
-        }
-        
         if (portalOut == null)
         {
             return;
@@ -35,6 +32,10 @@ public class MiniPortal : MonoBehaviour
         {
             case "Bullet":
                 WarpObject(other.gameObject);
+                break;
+            case "Player":
+                if (portalBuild.MyPortalOut != null) return;
+                    PlayerDash();
                 break;
         }
         
@@ -53,6 +54,7 @@ public class MiniPortal : MonoBehaviour
 
     private void PlayerDash()
     {
+        Debug.Log("Dashhhh");
         playerMovement.moveSpeed *= 6;
         Invoke("ResetSpeed", 0.15f);
     }
