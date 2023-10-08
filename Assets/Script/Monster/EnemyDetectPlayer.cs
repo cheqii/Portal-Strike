@@ -72,16 +72,16 @@ public class EnemyDetectPlayer : MonoBehaviour
             }
             
             // if distance between player and monster is lower than stop following var then monster will follow the player
-            if (awayFromPlayer <= monData.stopFollow && awayFromPlayer > monData.attackRange)
+            if (awayFromPlayer <= monData.stopFollow)
             {
                 animation.BlendTree();
-                monsterNavmesh.speed *= 2;
+                if (monData.monsterType == MonsterData.MonsterType.Range) monsterNavmesh.speed *= 2;
                 monsterNavmesh.SetDestination(target.transform.position);
             }
 
             // if distance between player and monster is lower or equal stop distance then enemy will trigger idle animation
-            if (awayFromPlayer <= monsterNavmesh.stoppingDistance && awayFromPlayer > monData.attackRange)
-                animation.TriggerIdleAnim();
+            // if (awayFromPlayer <= monsterNavmesh.stoppingDistance)
+            //     animation.TriggerIdleAnim();
 
             Ray ray = new Ray(transform.position, transform.forward * monData.range);
             RaycastHit hit;
@@ -90,15 +90,23 @@ public class EnemyDetectPlayer : MonoBehaviour
             switch (monData.monsterType)
             {
                 case MonsterData.MonsterType.Melee:
-                    if (Physics.Raycast(ray, out hit))
+                    if (awayFromPlayer <= monData.attackRange)
                     {
-                        if(hit.collider.gameObject.tag != "Player") return; // if raycast hit something that's not player then return
+                        // Debug.Log("melee attack");
                         enemy.MeleeAttack();
                     }
+                    // if (Physics.Raycast(ray, out hit))
+                    // {
+                    //     if(hit.collider.gameObject.tag != "Player") return; // if raycast hit something that's not player then return
+                    //     enemy.MeleeAttack();
+                    // }
                     break;
                 case MonsterData.MonsterType.Range:
                     if (awayFromPlayer <= monData.attackRange)
+                    {
+                        Debug.Log("range attack");
                         animation.TriggerAttackAnim();
+                    }
                     break;
             }
         }

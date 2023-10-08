@@ -81,6 +81,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
         
         Ray ray = new Ray(weapon.transform.position, weapon.transform.up * mondata.attackRange);
         RaycastHit hit;
+        transform.LookAt(target.gameObject.transform);
         animation.TriggerAttackAnim();
         
         if (Physics.Raycast(ray, out hit))

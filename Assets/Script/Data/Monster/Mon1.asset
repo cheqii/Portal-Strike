@@ -24,6 +24,7 @@ MonoBehaviour:
   atkCoolDown: 2
   expPoints: 10
   attackRange: 12
+  range: 0
   stopFollow: 20
   stopDistance: 15
-  viewRange: 40
+  viewRange: 30

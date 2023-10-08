@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/qiqitaro.unity
     guid: 9eb99e2a34d0d51499d43f2455d44003
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Again.unity
-    guid: 800eb9150d4b60d43b09a513f002f1e0
+    guid: b229fb8bc051b1f4d8f23c1441156ce7
   m_configObjects: {}
