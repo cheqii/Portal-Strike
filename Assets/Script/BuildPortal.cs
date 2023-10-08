@@ -29,6 +29,11 @@ public class BuildPortal : MonoBehaviour
         portal.transform.eulerAngles = new Vector3(0,player.transform.rotation.eulerAngles.y + 90,90);
 
         MyPortalIn = portal.GetComponent<MiniPortal>();
+        
+        if (MyPortalOut != null)
+        {
+            MyPortalIn.portalOut = MyPortalOut.GetComponent<MiniPortal>();
+        }
     }
 
     public void CreatePortal_Out()
