@@ -50,7 +50,7 @@ public class FloorManager : MonoBehaviour
                     GameObject newEnemy = Instantiate(randomEnemy, f.transform.position + new Vector3(Random.Range(-5,5),0,Random.Range(-5,5))
                         
                         , Quaternion.identity);
-                    newEnemy.GetComponent<MonsterDetectPlayer>().SetSpawnPoint(f.transform.position);
+                    newEnemy.GetComponent<EnemyDetectPlayer>().SetSpawnPoint(f.transform.position);
                     newEnemy.transform.name = "enemy | " + f.transform.name;
                 
                     newEnemy.transform.SetParent(enemies.transform);

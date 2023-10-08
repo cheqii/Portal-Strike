@@ -17,13 +17,13 @@ MonoBehaviour:
   monsterType: 1
   monName: 
   hp: 100
-  moveSpeed: 10
+  moveSpeed: 5
   atkDamage: 100
   atkSpeed: 20
   def: 10
   atkCoolDown: 2
   expPoints: 10
-  attackRange: 3
+  attackRange: 12
   stopFollow: 20
-  stopDistance: 10
+  stopDistance: 15
   viewRange: 40

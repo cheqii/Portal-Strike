@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
     [SerializeField] private int hp;
     [SerializeField] private Transform weapon;
     [SerializeField] private Transform shootPoint;
-    private bool isAttack;
+    
     private Player target;
     
     [Header("Enemy Health Bar")]
@@ -21,6 +21,9 @@ public class Enemy : MonoBehaviour,ITakeDamage
     [Header("Float Text")] 
     [SerializeField] private GameObject floatingTextPrefab;
 
+    [Header("Animator")] 
+    [SerializeField] private EnemyAnimations animation;
+    
     void Awake()
     {
         target = FindObjectOfType<Player>();
@@ -28,6 +31,8 @@ public class Enemy : MonoBehaviour,ITakeDamage
 
     private void Start()
     {
+        animation = GetComponent<EnemyAnimations>();
+        
         hp = mondata.hp;
         _microBar.Initialize(hp);
     }
@@ -40,6 +45,8 @@ public class Enemy : MonoBehaviour,ITakeDamage
 
     public void TakeDamage(int dmg)
     {
+        animation.TriggerGetHitAnim();
+        
         GetComponent<TraumaInducer>().Shake();
 
         StartCoroutine(WhiteFlash());
@@ -83,23 +90,14 @@ public class Enemy : MonoBehaviour,ITakeDamage
     }
     
     // Range monster attack
-    public IEnumerator RemoteAttack()
+    public void RemoteAttack()
     {
-        while (true)
+        if (target != null)
         {
-            if (target != null)
-            {
-                GameObject bullet = Instantiate(mondata.bullet, shootPoint.position, shootPoint.transform.rotation);
-                bullet.transform.LookAt(target.gameObject.transform);
-                Rigidbody rb = bullet.GetComponent<Rigidbody>();
-                rb.velocity = bullet.transform.forward * mondata.atkSpeed;
-
-                yield return new WaitForSeconds(mondata.atkCoolDown);
-            }
-            else
-            {
-                yield break;
-            }
+            GameObject bullet = Instantiate(mondata.bullet, shootPoint.position, shootPoint.transform.rotation);
+            bullet.transform.LookAt(target.gameObject.transform);
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+            rb.velocity = bullet.transform.forward * mondata.atkSpeed;
         }
     }
 
@@ -107,6 +105,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
 
     public void Dead()
     {
+        animation.TriggerDieAnim();
         GetComponent<TraumaInducer>().HardShake();
         GameObject blood = Instantiate(ParticleManager.Instance.data.BloodBomb_particle, transform.position, Quaternion.identity);
         GameObject xp = Instantiate(ParticleManager.Instance.data.Xp_particle,transform.position,Quaternion.identity);

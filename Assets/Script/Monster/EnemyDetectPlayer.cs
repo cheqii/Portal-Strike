@@ -3,12 +3,15 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class MonsterDetectPlayer : MonoBehaviour
+public class EnemyDetectPlayer : MonoBehaviour
 {
     #region -Declared Variables-
 
     [Header("Monster Data")] 
     [SerializeField] private MonsterData monData;
+
+    [Header("Animator")] 
+    private EnemyAnimations animation;
     
     private NavMeshAgent monsterNavmesh;
     private Enemy enemy;
@@ -37,14 +40,10 @@ public class MonsterDetectPlayer : MonoBehaviour
         monsterNavmesh.speed = monData.moveSpeed;
         // assign monster stop distance in NavMeshAgent from monster data
         monsterNavmesh.stoppingDistance = monData.stopDistance;
+        // get component enemy animations
+        animation = GetComponent<EnemyAnimations>();
         
-        switch (monData.monsterType)
-        {
-            case MonsterData.MonsterType.Range:
-                // Debug.Log("Range Attack Player!");
-                StartCoroutine(enemy.RemoteAttack());
-                break;
-        }
+        
         
     }
 
@@ -53,8 +52,6 @@ public class MonsterDetectPlayer : MonoBehaviour
     {
         Debug.DrawRay(transform.position, transform.forward * monData.attackRange, Color.cyan);
         MoveToPlayer();
-        
-        
     }
 
     void MoveToPlayer()
@@ -65,29 +62,43 @@ public class MonsterDetectPlayer : MonoBehaviour
         if (monsterNavmesh.remainingDistance <= monsterNavmesh.stoppingDistance)
         {
             Vector3 point;
-            if (RandomPoint(SpawnePoint, monData.viewRange, out point)) // pass in our centre point and radius of area
+            if (RandomPoint(SpawnePoint, monData.viewRange, out point) 
+                && awayFromPlayer >= monData.stopFollow) // pass in our centre point and radius of area
             {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
+                monsterNavmesh.speed = monData.moveSpeed;
+                animation.TriggerWalkAnim();
                 monsterNavmesh.SetDestination(point);
             }
             
             // if distance between player and monster is lower than stop following var then monster will follow the player
-            if (awayFromPlayer <= monData.stopFollow) monsterNavmesh.SetDestination(target.transform.position);
-            
+            if (awayFromPlayer <= monData.stopFollow && awayFromPlayer > monData.attackRange)
+            {
+                animation.TriggerRunAnim();
+                monsterNavmesh.speed *= 2;
+                monsterNavmesh.SetDestination(target.transform.position);
+            }
+
+            // if distance between player and monster is lower or equal stop distance then enemy will trigger idle animation
+            if (awayFromPlayer <= monsterNavmesh.stoppingDistance && awayFromPlayer > monData.attackRange)
+                animation.TriggerIdleAnim();
+
             Ray ray = new Ray(transform.position, transform.forward * monData.attackRange);
             RaycastHit hit;
         
             // if (monData.attackRange >= awayFromPlayer) return; // if monster attack range >= distance that monster away from player then monster can attack player
-            
             switch (monData.monsterType)
             {
                 case MonsterData.MonsterType.Melee:
                     if (Physics.Raycast(ray, out hit))
                     {
                         if(hit.collider.gameObject.name != "Player") return; // if raycast hit something that's not player then return
-                        Debug.Log("Mango");
                         enemy.MeleeAttack();
                     }
+                    break;
+                case MonsterData.MonsterType.Range:
+                    if (awayFromPlayer <= monData.attackRange)
+                        animation.TriggerAttackAnim();
                     break;
             }
         }
@@ -122,4 +133,5 @@ public class MonsterDetectPlayer : MonoBehaviour
     {
         SpawnePoint = target;
     }
+    
 }
