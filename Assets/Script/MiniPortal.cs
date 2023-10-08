@@ -26,6 +26,18 @@ public class MiniPortal : MonoBehaviour
     {
         if (portalOut == null)
         {
+            switch (other.transform.tag)
+            {
+                case "Player":
+                    if (portalBuild.MyPortalIn != null && portalBuild.MyPortalOut != null)
+                    {
+                        GameObject blood = Instantiate(ParticleManager.Instance.data.BloodBomb_particle
+                            , portalBuild.MyPortalIn.transform.position, Quaternion.identity);
+                        Destroy(portalBuild.MyPortalIn.gameObject);
+                        other.gameObject.GetComponent<TraumaInducer>().HardShake();
+                    }
+                    break;
+            }
             return;
         }
         
@@ -36,11 +48,9 @@ public class MiniPortal : MonoBehaviour
                 break;
             case "Player":
                 if (portalBuild.MyPortalOut == null) PlayerDash();
-                // if (portalBuild.MyPortalOut == null) return;
-                PlayerWarp(other.gameObject);
+                if (portalBuild.MyPortalIn != null && portalOut != null) PlayerWarp(other.gameObject);
                 break;
         }
-        
     }
 
     private void WarpObject(GameObject go)
@@ -69,10 +79,8 @@ public class MiniPortal : MonoBehaviour
     }
     void PlayerWarp(GameObject go)
     {
-        // Debug.Log("Player Warp");
-        // var Player = FindObjectOfType<Player>().transform;
         go.GetComponent<CharacterController>().enabled = false;
-        go.transform.position = portalOut.gameObject.transform.position;
+        go.transform.position = portalOut.gameObject.transform.position + new Vector3(0,0, 1.5f);
         go.GetComponent<CharacterController>().enabled = true;
 
 
