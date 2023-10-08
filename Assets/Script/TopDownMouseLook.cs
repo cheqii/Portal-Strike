@@ -62,7 +62,8 @@ public class TopDownMouseLook : MonoBehaviour
         // Cast a ray to right stick direction {input}
         Vector2 input = playerInput.actions["Look"].ReadValue<Vector2>();
         Vector3 inputDirection = new Vector3(input.x, 0.0f, input.y);
-
+        
+        
         // If the {inputDirection} is non-zero, rotate the character to look at the stick direction {input}
         if (inputDirection != Vector3.zero)
         {
