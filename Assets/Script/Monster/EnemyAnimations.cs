@@ -23,7 +23,6 @@ public class EnemyAnimations : MonoBehaviour
     public void TriggerAttackAnim()
     {
         lerpTarget = attackBlend;
-
     }
 
     public void TriggerWalkAnim()
@@ -44,6 +43,11 @@ public class EnemyAnimations : MonoBehaviour
     public void TriggerDieAnim()
     {
         animator.SetTrigger("isDie");
+    }
+
+    public void BlendTree()
+    {
+        animator.SetTrigger("isBlendTree");
     }
 
     #endregion

@@ -35,6 +35,14 @@ public class Player : MonoBehaviour, ITakeDamage
         get => xp;
         set => xp = value;
     }
+
+    [SerializeField] private int atkDamage;
+
+    public int AtkDamage
+    {
+        get => atkDamage;
+        set => atkDamage = value;
+    }
     
     [SerializeField] private float moveSpeed;
     [SerializeField] private int def;

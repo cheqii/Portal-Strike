@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
     [SerializeField] private GameObject floatingTextPrefab;
 
     [Header("Animator")] 
-    [SerializeField] private EnemyAnimations animation;
+    private EnemyAnimations animation;
     
     void Awake()
     {
@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(weapon.transform.position, weapon.transform.forward * mondata.attackRange, Color.red);
+        Debug.DrawRay(weapon.transform.position, weapon.transform.up * mondata.attackRange, Color.red);
     }
 
     public void TakeDamage(int dmg)
@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
     void ShowFloatingText()
     {
         var text = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
-        text.GetComponent<TextMeshPro>().text = mondata.atkDamage.ToString();
+        text.GetComponent<TextMeshPro>().text = target.AtkDamage.ToString();
     }
     
     #region -Monster Attack Behavior-
@@ -78,14 +78,16 @@ public class Enemy : MonoBehaviour,ITakeDamage
     public void MeleeAttack()
     {
         if (target == null) return;
-        Ray ray = new Ray(weapon.transform.position, weapon.transform.forward * mondata.attackRange);
+        
+        Ray ray = new Ray(weapon.transform.position, weapon.transform.up * mondata.attackRange);
         RaycastHit hit;
-        Rigidbody rb = weapon.GetComponent<Rigidbody>();
-        Debug.Log("Hello world");
-        rb.AddTorque(new Vector3(0f, 30f, 0f));
+        animation.TriggerAttackAnim();
+        
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.collider.gameObject.name != "Player") return;
+            if (hit.collider.gameObject.tag != "Player") return;
+            Debug.Log("Attackkkkk");
+            target.GetComponent<ITakeDamage>().TakeDamage(mondata.atkDamage);
         }
     }
     

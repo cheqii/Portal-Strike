@@ -50,7 +50,7 @@ public class EnemyDetectPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(transform.position, transform.forward * monData.attackRange, Color.cyan);
+        Debug.DrawRay(transform.position, transform.forward * monData.range, Color.cyan);
         MoveToPlayer();
     }
 
@@ -74,7 +74,7 @@ public class EnemyDetectPlayer : MonoBehaviour
             // if distance between player and monster is lower than stop following var then monster will follow the player
             if (awayFromPlayer <= monData.stopFollow && awayFromPlayer > monData.attackRange)
             {
-                animation.TriggerRunAnim();
+                animation.BlendTree();
                 monsterNavmesh.speed *= 2;
                 monsterNavmesh.SetDestination(target.transform.position);
             }
@@ -83,7 +83,7 @@ public class EnemyDetectPlayer : MonoBehaviour
             if (awayFromPlayer <= monsterNavmesh.stoppingDistance && awayFromPlayer > monData.attackRange)
                 animation.TriggerIdleAnim();
 
-            Ray ray = new Ray(transform.position, transform.forward * monData.attackRange);
+            Ray ray = new Ray(transform.position, transform.forward * monData.range);
             RaycastHit hit;
         
             // if (monData.attackRange >= awayFromPlayer) return; // if monster attack range >= distance that monster away from player then monster can attack player
@@ -92,7 +92,7 @@ public class EnemyDetectPlayer : MonoBehaviour
                 case MonsterData.MonsterType.Melee:
                     if (Physics.Raycast(ray, out hit))
                     {
-                        if(hit.collider.gameObject.name != "Player") return; // if raycast hit something that's not player then return
+                        if(hit.collider.gameObject.tag != "Player") return; // if raycast hit something that's not player then return
                         enemy.MeleeAttack();
                     }
                     break;
