@@ -46,7 +46,6 @@ public class AbilitySelection : MonoBehaviour
         availableAbilities.Add(IncreaseDodgeRate);
     }
 
-    //
     private void SetAbilityColorAndDescription(Image buttonImage, System.Action ability, TMP_Text descriptionText)
     {
         Color myBlue = new Color(0x5E / 255.0f, 0x6E / 255.0f, 0xE2 / 255.0f); // 5E6EE2 in HEX
