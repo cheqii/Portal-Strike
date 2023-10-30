@@ -6,12 +6,16 @@ using UnityEngine.UI;
 public class AbilitySelection : MonoBehaviour
 {
     [SerializeField] private GameObject abilitySelectionPanel;
-    [SerializeField] private TMP_Text Button1Description;
-    [SerializeField] private TMP_Text Button2Description;
-    [SerializeField] private TMP_Text Button3Description;
-    [SerializeField] private Image Button1Image;
-    [SerializeField] private Image Button2Image;
-    [SerializeField] private Image Button3Image;
+    [SerializeField] private Button abilityButton1;
+    [SerializeField] private Button abilityButton2;
+    [SerializeField] private Button abilityButton3;
+    [SerializeField] private Image abilityImage1;
+    [SerializeField] private Image abilityImage2;
+    [SerializeField] private Image abilityImage3;
+    [SerializeField] private TMP_Text abilityDescription1;
+    [SerializeField] private TMP_Text abilityDescription2;
+    [SerializeField] private TMP_Text abilityDescription3;
+    [SerializeField] private GameObject getRewardPanel;
 
     private Player player;
     private PlayerUIManager playerUIManager;
@@ -145,6 +149,8 @@ public class AbilitySelection : MonoBehaviour
 
     public void ShowUI()
     {
+        SetButtonActive();
+
         GetComponent<Image>().enabled = true;
         transform.GetChild(0).gameObject.SetActive(true);
         transform.GetChild(1).gameObject.SetActive(true);
@@ -169,9 +175,9 @@ public class AbilitySelection : MonoBehaviour
         // Reset indices for the next round
         indices.Clear();
 
-        SetAbilityColorAndDescription(Button1Image, selectedAbilities[0], Button1Description);
-        SetAbilityColorAndDescription(Button2Image, selectedAbilities[1], Button2Description);
-        SetAbilityColorAndDescription(Button3Image, selectedAbilities[2], Button3Description);
+        SetAbilityColorAndDescription(abilityImage1, selectedAbilities[0], abilityDescription1);
+        SetAbilityColorAndDescription(abilityImage2, selectedAbilities[1], abilityDescription2);
+        SetAbilityColorAndDescription(abilityImage3, selectedAbilities[2], abilityDescription3);
     }
 
     public void Button1()
@@ -179,6 +185,7 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[0] != null)
         {
             selectedAbilities[0]();
+            SetButtonInactive();
             UnFreeze();
         }
     }
@@ -188,6 +195,7 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[1] != null)
         {
             selectedAbilities[1]();
+            SetButtonInactive();
             UnFreeze();
         }
     }
@@ -197,8 +205,29 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[2] != null)
         {
             selectedAbilities[2]();
+            SetButtonInactive();
             UnFreeze();
         }
+    }
+
+    public void SetButtonActive()
+    {
+        abilityButton1.interactable = true;
+        abilityButton2.interactable = true;
+        abilityButton3.interactable = true;
+    }
+
+    public void SetButtonInactive()
+    {
+        abilityButton1.interactable = false;
+        abilityButton2.interactable = false;
+        abilityButton3.interactable = false;
+    }
+
+    public void ResetAbility()
+    {
+        getRewardPanel.SetActive(true); // Notification panel
+        ShowUI(); // Random ability again
     }
 
     public void HideUI()

@@ -47,6 +47,7 @@ public class Player : MonoBehaviour, ITakeDamage
     [Header("Event System")]
     [SerializeField] private Nf_GameEvent takeDamageEvent;
     [SerializeField] private Nf_GameEvent playerLevelUpEvent;
+    [SerializeField] private Nf_GameEvent skipableAdsEvent;
 
     #endregion
 
@@ -66,15 +67,19 @@ public class Player : MonoBehaviour, ITakeDamage
         takeDamageEvent.Raise(this, dmg);
     }
 
-    public void DealDamage(Component sender,Object data)
+    public void DealDamage(Component sender, Object data)
     {
         if (data is int)
         {
-            int damage = (int) data;
+            int damage = (int)data;
             hp = Mathf.Clamp(hp - ((damage - def) + 1), 0, maxHp);
         }
 
-        if (hp < 1) Debug.Log("Player ded");
+        if (hp < 1)
+        {
+            Debug.Log("Player ded");
+            skipableAdsEvent.Raise();
+        }
     }
 
     public void IncreaseXp(Component sender,Object data)

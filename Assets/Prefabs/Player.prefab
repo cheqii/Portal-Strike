@@ -507,8 +507,8 @@ MonoBehaviour:
   dodgeRate: 0
   weaponData: {fileID: 0}
   takeDamageEvent: {fileID: 11400000, guid: c7bb98ffceb82b04d95f302509211679, type: 2}
-  playerHealthEvent: {fileID: 11400000, guid: a20d2e655e5d14441b57b677568ac9f6, type: 2}
   playerLevelUpEvent: {fileID: 11400000, guid: 0f55e8a479fed5348b2c5e1a3b11a5c5, type: 2}
+  skipableAdsEvent: {fileID: 11400000, guid: 09f16250591bcf04b86c7c894ac6e862, type: 2}
 --- !u!208 &1628738707455202919
 NavMeshObstacle:
   m_ObjectHideFlags: 0
