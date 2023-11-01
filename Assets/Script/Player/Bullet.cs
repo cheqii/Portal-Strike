@@ -3,16 +3,36 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private float damage;
+    
+    private Player player;
+    private void Awake()
+    {
+        player = FindObjectOfType<Player>();
+    }
+
     private void OnCollisionEnter(Collision col)
     {
-        var enemy = col.transform.GetComponent<Enemy>();
-        if (col.gameObject.CompareTag("Enemy"))
+        switch (col.gameObject.tag)
         {
-            // DynamicTextData data = enemy.TextData
-            // int damage = enemy.
-            GameObject blood = Instantiate(ParticleManager.Instance.data.BloodSplash_particle, transform.position, Quaternion.identity);
-            blood.transform.SetParent(col.transform);
-            col.gameObject.GetComponent<ITakeDamage>().TakeDamage(10);
+            case "Enemy":
+                GameObject blood = Instantiate(ParticleManager.Instance.data.BloodSplash_particle, transform.position, Quaternion.identity);
+                blood.transform.SetParent(col.transform);
+                col.gameObject.GetComponent<ITakeDamage>().TakeDamage(player.AtkDamage);
+                break;
+            case "Totem":
+                Debug.Log("Totem");
+                GameObject totemBomb = Instantiate(ParticleManager.Instance.data.BloodSplash_particle,
+                    transform.position, Quaternion.identity);
+                col.gameObject.GetComponent<ITakeDamage>().TakeDamage(player.AtkDamage);
+                break;
         }
+
+
+    }
+
+    public void ChangeDamage(int dmg)
+    {
+        damage = dmg;
     }
 }

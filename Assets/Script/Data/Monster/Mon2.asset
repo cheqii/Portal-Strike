@@ -23,7 +23,8 @@ MonoBehaviour:
   def: 0
   atkCoolDown: 0
   expPoints: 0
-  attackRange: 2.5
-  stopFollow: 20
-  stopDistance: 4
-  viewRange: 20
+  attackRange: 4
+  range: 8
+  stopFollow: 15
+  stopDistance: 2
+  viewRange: 30

@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
     [SerializeField] private int hp;
     [SerializeField] private Transform weapon;
     [SerializeField] private Transform shootPoint;
-    private bool isAttack;
+    
     private Player target;
     
     [Header("Enemy Health Bar")]
@@ -21,6 +21,9 @@ public class Enemy : MonoBehaviour,ITakeDamage
     [Header("Float Text")] 
     [SerializeField] private GameObject floatingTextPrefab;
 
+    [Header("Animator")] 
+    private EnemyAnimations animation;
+    
     void Awake()
     {
         target = FindObjectOfType<Player>();
@@ -28,6 +31,8 @@ public class Enemy : MonoBehaviour,ITakeDamage
 
     private void Start()
     {
+        animation = GetComponent<EnemyAnimations>();
+        
         hp = mondata.hp;
         _microBar.Initialize(hp);
     }
@@ -35,11 +40,13 @@ public class Enemy : MonoBehaviour,ITakeDamage
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(weapon.transform.position, weapon.transform.forward * mondata.attackRange, Color.red);
+        Debug.DrawRay(weapon.transform.position, weapon.transform.up * mondata.attackRange, Color.red);
     }
 
     public void TakeDamage(int dmg)
     {
+        animation.TriggerGetHitAnim();
+        
         GetComponent<TraumaInducer>().Shake();
 
         StartCoroutine(WhiteFlash());
@@ -62,7 +69,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
     void ShowFloatingText()
     {
         var text = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
-        text.GetComponent<TextMeshPro>().text = mondata.atkDamage.ToString();
+        text.GetComponent<TextMeshPro>().text = target.AtkDamage.ToString();
     }
     
     #region -Monster Attack Behavior-
@@ -71,35 +78,28 @@ public class Enemy : MonoBehaviour,ITakeDamage
     public void MeleeAttack()
     {
         if (target == null) return;
-        Ray ray = new Ray(weapon.transform.position, weapon.transform.forward * mondata.attackRange);
+        
+        Ray ray = new Ray(weapon.transform.position, weapon.transform.up * mondata.attackRange);
         RaycastHit hit;
-        Rigidbody rb = weapon.GetComponent<Rigidbody>();
-        Debug.Log("Hello world");
-        rb.AddTorque(new Vector3(0f, 30f, 0f));
+        transform.LookAt(target.gameObject.transform);
+        animation.TriggerAttackAnim();
+        
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.collider.gameObject.name != "Player") return;
+            if (hit.collider.gameObject.tag != "Player") return;
+            target.GetComponent<ITakeDamage>().TakeDamage(mondata.atkDamage);
         }
     }
     
     // Range monster attack
-    public IEnumerator RemoteAttack()
+    public void RemoteAttack()
     {
-        while (true)
+        if (target != null)
         {
-            if (target != null)
-            {
-                GameObject bullet = Instantiate(mondata.bullet, shootPoint.position, shootPoint.transform.rotation);
-                bullet.transform.LookAt(target.gameObject.transform);
-                Rigidbody rb = bullet.GetComponent<Rigidbody>();
-                rb.velocity = bullet.transform.forward * mondata.atkSpeed;
-
-                yield return new WaitForSeconds(mondata.atkCoolDown);
-            }
-            else
-            {
-                yield break;
-            }
+            GameObject bullet = Instantiate(mondata.bullet, shootPoint.position, shootPoint.transform.rotation);
+            bullet.transform.LookAt(target.gameObject.transform);
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+            rb.velocity = bullet.transform.forward * mondata.atkSpeed;
         }
     }
 
@@ -107,6 +107,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
 
     public void Dead()
     {
+        animation.TriggerDieAnim();
         GetComponent<TraumaInducer>().HardShake();
         GameObject blood = Instantiate(ParticleManager.Instance.data.BloodBomb_particle, transform.position, Quaternion.identity);
         GameObject xp = Instantiate(ParticleManager.Instance.data.Xp_particle,transform.position,Quaternion.identity);

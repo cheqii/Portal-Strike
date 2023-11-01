@@ -9,6 +9,8 @@ public class Movement : MonoBehaviour
     private PlayerInput playerInput;
     private InputActionMap actionMap;
 
+    public Vector3 movement;
+
     private void Awake()
     {
         // Get the CharacterController component attached to the player GameObject
@@ -48,7 +50,7 @@ public class Movement : MonoBehaviour
         }
 
         // Calculate the final movement vector
-        Vector3 movement = movementDirection * moveSpeed * Time.deltaTime;
+        movement = movementDirection * moveSpeed * Time.deltaTime;
 
         // Apply the movement to the player using CharacterController
         characterController.Move(movement);

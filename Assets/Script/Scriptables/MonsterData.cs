@@ -34,6 +34,8 @@ public class MonsterData : ScriptableObject
     
     public float attackRange;
 
+    public float range;
+
     [Header("NavMeshAgent Data")]
     public float stopFollow; // to stop following player if player away than stopFollow var
     
