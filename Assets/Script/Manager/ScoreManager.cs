@@ -25,6 +25,5 @@ public class ScoreManager : MonoBehaviour
     public void IncreaseScore()
     {
         score_target += Random.Range(10, 50);
-        
     }
 }

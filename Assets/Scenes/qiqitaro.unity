@@ -208,6 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 11495920}
+  - component: {fileID: 11495921}
   m_Layer: 5
   m_Name: Player Bar
   m_TagString: Untagged
@@ -9768,56 +9769,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43123bbf73a6e1a4b9660dac49003e78, type: 3}
---- !u!1 &871203683 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5638565054609034490, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
-  m_PrefabInstance: {fileID: 1868742193}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &871203686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 871203683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa639e42484ffe64eab3bae13af39f1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &871203687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 871203683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c512b33d1839647a05066ac2d39cf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameEvent: {fileID: 11400000, guid: c7bb98ffceb82b04d95f302509211679, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 871203689}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Hurt
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!95 &871203689 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5638565054601658232, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
-  m_PrefabInstance: {fileID: 1868742193}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &875753585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19086,6 +19037,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 536737124945729757, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1868742210}
     - target: {fileID: 1628738707455202917, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
       propertyPath: Response.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -19246,6 +19201,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2191448093257737761, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1868742210}
     - target: {fileID: 2201252819790908134, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -19260,107 +19219,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
---- !u!1 &1868742194 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1628738707455202931, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
+--- !u!114 &1868742195 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9013607670152666685, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
   m_PrefabInstance: {fileID: 1868742193}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1868742195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1868742194}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47b6b88d425f7234aae309cb9a973743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Delay: 1
-  MaximumStress: 0.75
-  Range: 45
 --- !u!114 &1868742199 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1628738707455202936, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
   m_PrefabInstance: {fileID: 1868742193}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1868742194}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad59558e401137f4da5224ce72086dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1868742210
+--- !u!114 &1868742210 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3464909676231328260, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
+  m_PrefabInstance: {fileID: 1868742193}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1868742194}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d89018ab21d35c48b969d1e3911a7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portal_in: {fileID: 6710823678289240702, guid: dd1112f4a3c76934c889076bbb1c545f, type: 3}
-  portal_out: {fileID: 6710823678289240702, guid: f557263b93397214f8f363228e3d5e86, type: 3}
---- !u!114 &1868742211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1868742194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c512b33d1839647a05066ac2d39cf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameEvent: {fileID: 11400000, guid: f979b79439e5ce44996c5ded3aa24ee8, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1868742210}
-        m_TargetAssemblyTypeName: BuildPortal, Assembly-CSharp
-        m_MethodName: CreatePortal_Out
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1868742212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1868742194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c512b33d1839647a05066ac2d39cf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameEvent: {fileID: 11400000, guid: 550aa3c38cb24d646a33a70356bcbe4d, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1868742210}
-        m_TargetAssemblyTypeName: BuildPortal, Assembly-CSharp
-        m_MethodName: CreatePortal_In
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!43 &1887693751
 Mesh:
   m_ObjectHideFlags: 0
@@ -21042,9 +20933,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilitySelectionPanel: {fileID: 2132541101}
-  Button1Description: {fileID: 397588307}
-  Button2Description: {fileID: 1549447487}
-  Button3Description: {fileID: 1223665030}
+  abilityButton1: {fileID: 0}
+  abilityButton2: {fileID: 0}
+  abilityButton3: {fileID: 0}
+  abilityImage1: {fileID: 0}
+  abilityImage2: {fileID: 0}
+  abilityImage3: {fileID: 0}
+  abilityDescription1: {fileID: 0}
+  abilityDescription2: {fileID: 0}
+  abilityDescription3: {fileID: 0}
+  getRewardPanel: {fileID: 0}
 --- !u!114 &2132541104
 MonoBehaviour:
   m_ObjectHideFlags: 0

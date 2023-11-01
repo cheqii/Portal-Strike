@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 1008582693325092745}
   m_LocalRotation: {x: 0, y: 0.9659259, z: -0, w: -0.25881898}
   m_LocalPosition: {x: 6.6, y: 1.97, z: 12.3}
-  m_LocalScale: {x: 1.5922, y: 1.5922, z: 1.5922}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3293796835207926039}
@@ -146,7 +146,6 @@ MonoBehaviour:
   shootPoint: {fileID: 5621701091204889652}
   _microBar: {fileID: 2808511790267200496}
   floatingTextPrefab: {fileID: 1899620572623291273, guid: 0848b2d6f8e4111448a1cdd48fe9f5d3, type: 3}
-  animation: {fileID: 0}
 --- !u!114 &1008582693325092748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +172,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1508503897761376541}
+  idleBlend: 0
+  runBlend: 0.5
+  attackBlend: 1
 --- !u!114 &7201976125764524767
 MonoBehaviour:
   m_ObjectHideFlags: 0
