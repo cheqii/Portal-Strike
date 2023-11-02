@@ -1,7 +1,4 @@
-using System;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Object = System.Object;
 
 public class Player : MonoBehaviour, ITakeDamage

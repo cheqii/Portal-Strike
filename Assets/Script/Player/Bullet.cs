@@ -1,11 +1,11 @@
-using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float damage;
-    
+
     private Player player;
+
     private void Awake()
     {
         player = FindObjectOfType<Player>();
@@ -22,13 +22,11 @@ public class Bullet : MonoBehaviour
                 break;
             case "Totem":
                 Debug.Log("Totem");
-                GameObject totemBomb = Instantiate(ParticleManager.Instance.data.BloodSplash_particle,
+                GameObject totemBomb = Instantiate(ParticleManager.Instance.data.BloodBomb_particle,
                     transform.position, Quaternion.identity);
                 col.gameObject.GetComponent<ITakeDamage>().TakeDamage(player.AtkDamage);
                 break;
         }
-
-
     }
 
     public void ChangeDamage(int dmg)

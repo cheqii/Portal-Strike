@@ -5,7 +5,6 @@ using Microlight.MicroBar;
 
 public class PlayerUIManager : MonoBehaviour
 {
-
     [Header("Player UI Text")] 
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private MicroBar healthBar;
@@ -22,7 +21,6 @@ public class PlayerUIManager : MonoBehaviour
     [Header("Portal Event")]
     [SerializeField] private Nf_GameEvent PortalIn;
     [SerializeField] private Nf_GameEvent PortalOut;
-
     
     void Start()
     {

@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 
 public class PlayerAnimation : MonoBehaviour
 {
@@ -48,10 +45,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             move.Normalize();
         }
-
         Move(move);
-        
-
     }
 
     public void ShootAnim()
@@ -91,5 +85,4 @@ public class PlayerAnimation : MonoBehaviour
 
         forwardAmount = localMove.z;
     }
-    
 }

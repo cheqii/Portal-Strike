@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,12 +9,8 @@ public class FloorManager : MonoBehaviour
     [SerializeField] private List<GameObject> _floor;
 
     [SerializeField] private GameObject[] enemy;
-    
     [SerializeField] private GameObject Portal;
-    
     [SerializeField] private GameObject Totem;
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -25,14 +20,12 @@ public class FloorManager : MonoBehaviour
         {
             level.Add(level_holder.transform.GetChild(i).gameObject);
         }
-
         
         //get floor into lists
         foreach (var i in level)
         {
             _floor.Add(i.transform.GetChild(0).gameObject);
         }
-
 
         GameObject enemies = new GameObject("Enemies");
         
@@ -66,7 +59,5 @@ public class FloorManager : MonoBehaviour
 
         //generate portal
         Instantiate(Portal, _floor[_floor.Count - 1].transform.position, Quaternion.identity);
-        
     }
-
 }

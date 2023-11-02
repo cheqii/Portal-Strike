@@ -147,14 +147,15 @@ public class AbilitySelection : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void ShowUI()
+    // =======================================================================
+    // Use this method when you want to select abilities
+    public void StartSelectingAbilities()
     {
+        // Set card button to active
         SetButtonActive();
 
-        GetComponent<Image>().enabled = true;
-        transform.GetChild(0).gameObject.SetActive(true);
-        transform.GetChild(1).gameObject.SetActive(true);
-        transform.GetChild(2).gameObject.SetActive(true);
+        // Show ui image of "AbilitySelectionPanel" and 3 abilities card
+        ShowUI();
 
         // Create a list of indices from 0 to the number of available abilities - 1
         List<int> indices = new List<int>();
@@ -175,41 +176,67 @@ public class AbilitySelection : MonoBehaviour
         // Reset indices for the next round
         indices.Clear();
 
+        // Set ability card as desired [Ability color and description]
         SetAbilityColorAndDescription(abilityImage1, selectedAbilities[0], abilityDescription1);
         SetAbilityColorAndDescription(abilityImage2, selectedAbilities[1], abilityDescription2);
         SetAbilityColorAndDescription(abilityImage3, selectedAbilities[2], abilityDescription3);
     }
 
+    // =======================================================================
+    // button card (1)
     public void Button1()
     {
         if (selectedAbilities[0] != null)
         {
-            selectedAbilities[0]();
-            SetButtonInactive();
-            UnFreeze();
+            selectedAbilities[0](); // Select ability in array 2 of SelectedAbilities
+            SetButtonInactive(); // Set card button interactable inactive to prevents cheating by pressing multiple times !!
+            UnFreeze(); // UnFreeze game time
         }
     }
 
+    // button card (2)
     public void Button2()
     {
         if (selectedAbilities[1] != null)
         {
-            selectedAbilities[1]();
-            SetButtonInactive();
-            UnFreeze();
+            selectedAbilities[1](); // Select ability in array 2 of SelectedAbilities
+            SetButtonInactive(); // Set card button interactable inactive to prevents cheating by pressing multiple times !!
+            UnFreeze(); // UnFreeze game time
         }
     }
 
+    // button card (3)
     public void Button3()
     {
         if (selectedAbilities[2] != null)
         {
-            selectedAbilities[2]();
-            SetButtonInactive();
-            UnFreeze();
+            selectedAbilities[2](); // Select ability in array 2 of SelectedAbilities
+            SetButtonInactive(); // Set card button to inactive to prevents cheating by pressing multiple times !!
+            UnFreeze(); // UnFreeze game time
         }
     }
 
+    // =======================================================================
+    // Show ui image of "AbilitySelectionPanel" and 3 abilities card
+    public void ShowUI()
+    {
+        GetComponent<Image>().enabled = true;
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(1).gameObject.SetActive(true);
+        transform.GetChild(2).gameObject.SetActive(true);
+    }
+
+    // Hide ui image of "AbilitySelectionPanel" and 3 abilities card
+    public void HideUI() 
+    {
+        GetComponent<Image>().enabled = false;
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(false);
+    }
+
+    // =======================================================================
+    // Set button interactable active in ShowUI() When level up!
     public void SetButtonActive()
     {
         abilityButton1.interactable = true;
@@ -217,6 +244,8 @@ public class AbilitySelection : MonoBehaviour
         abilityButton3.interactable = true;
     }
 
+    // Set button interactable inactive in all 3 buttons card When not in use
+    // Prevents cheating by pressing multiple times !!
     public void SetButtonInactive()
     {
         abilityButton1.interactable = false;
@@ -224,18 +253,12 @@ public class AbilitySelection : MonoBehaviour
         abilityButton3.interactable = false;
     }
 
+    // =======================================================================
+    // Reset Abilities card when player watching ads
     public void ResetAbility()
     {
         getRewardPanel.SetActive(true); // Notification panel
         ShowUI(); // Random ability again
-    }
-
-    public void HideUI()
-    {
-        GetComponent<Image>().enabled = false;
-        transform.GetChild(0).gameObject.SetActive(false);
-        transform.GetChild(1).gameObject.SetActive(false);
-        transform.GetChild(2).gameObject.SetActive(false);
     }
     #endregion
 }

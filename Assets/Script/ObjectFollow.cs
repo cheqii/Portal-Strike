@@ -7,8 +7,6 @@ public class ObjectFollow : MonoBehaviour
     public Vector3 offset;
     private bool startFollow = false;
     
-    
-    
     public void DoFollow()
     {
         offset = transform.position - target.position;

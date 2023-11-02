@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4591284626913894484}
   - component: {fileID: 4591284626913894485}
   m_Layer: 0
-  m_Name: Blood Bomb 1
+  m_Name: Blood Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
