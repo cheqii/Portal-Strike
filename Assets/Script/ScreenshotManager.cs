@@ -17,6 +17,8 @@ public class ScreenshotManager : MonoBehaviour
     public GameObject playerStatus;
     public GameObject minimap;
     public GameObject ranking;
+    public GameObject portalControl;
+    public GameObject scoreUI;
 
     private byte[] currentTexture;
     private string currentFilePath;
@@ -98,6 +100,8 @@ public class ScreenshotManager : MonoBehaviour
         playerStatus.SetActive(false);
         minimap.SetActive(false);
         ranking.SetActive(false);
+        portalControl.SetActive(false);
+        scoreUI.SetActive(false);
     }
 
     public void CaptureHideUI()
@@ -108,6 +112,8 @@ public class ScreenshotManager : MonoBehaviour
         playerStatus.SetActive(false);
         minimap.SetActive(false);
         ranking.SetActive(false);
+        portalControl.SetActive(false);
+        scoreUI.SetActive(false);
     }
 
     public void ShowUI()
@@ -129,6 +135,8 @@ public class ScreenshotManager : MonoBehaviour
         playerStatus.SetActive(true);
         minimap.SetActive(true);
         ranking.SetActive(true);
+        portalControl.SetActive(true);
+        scoreUI.SetActive(true);
     }
     #endregion
 }

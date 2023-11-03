@@ -21,7 +21,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TakeDamage_UI_Anim
+  m_Name: TakeDamage_UI_Animation
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -97,7 +97,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TakeDamage
+  m_Name: TakeDamage_UI_Animator
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Play
@@ -105,7 +105,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -130,10 +130,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -4866086168140346065}
-    m_Position: {x: 110, y: 100, z: 0}
+    m_Position: {x: 120, y: 100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1198459645146715685}
-    m_Position: {x: 260, y: 180, z: 0}
+    m_Position: {x: 120, y: 220, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -976376900636776408}
@@ -141,8 +141,8 @@ AnimatorStateMachine:
   - {fileID: -5984587714515491919}
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 130, y: 0, z: 0}
+  m_AnyStatePosition: {x: 140, y: 0, z: 0}
   m_EntryPosition: {x: 140, y: 280, z: 0}
-  m_ExitPosition: {x: 380, y: 110, z: 0}
+  m_ExitPosition: {x: 140, y: 160, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -1198459645146715685}
