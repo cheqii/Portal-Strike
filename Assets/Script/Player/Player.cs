@@ -32,6 +32,11 @@ public class Player : MonoBehaviour, ITakeDamage
         get => xp;
         set => xp = value;
     }
+    [SerializeField] private int maxXp = 100;
+    public int MaxXp {
+        get => maxXp;
+        set => maxXp = value;
+    }
 
     [SerializeField] private int atkDamage;
 
@@ -95,7 +100,7 @@ public class Player : MonoBehaviour, ITakeDamage
         }
 
 
-        if (xp > 100)
+        if (xp > maxXp)
         {
             xp = 0;
             level++;

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 719907199960450716}
   - component: {fileID: 7038343967697115676}
-  - component: {fileID: 5573903864990378822}
   - component: {fileID: 4804681486960285699}
   m_Layer: 0
   m_Name: Totem
@@ -62,18 +61,6 @@ MonoBehaviour:
   microBar: {fileID: 1806904318129984656}
   hp: 400
   floatingText: {fileID: 1899620572623291273, guid: 0848b2d6f8e4111448a1cdd48fe9f5d3, type: 3}
---- !u!114 &5573903864990378822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195430925395549222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b6f98026acd957439849b733968325d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &4804681486960285699
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -255,10 +242,27 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2558675667213612300, guid: 4c6e67c472921b442a89b9253a82aced, type: 3}
   m_PrefabInstance: {fileID: 4220246758199009692}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1806904318129984662}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d779446027b6f034f9d448761b76a0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1806904318129984662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2558675667213612298, guid: 4c6e67c472921b442a89b9253a82aced, type: 3}
+  m_PrefabInstance: {fileID: 4220246758199009692}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1058538317536432768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806904318129984662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6f98026acd957439849b733968325d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1806904318129984663 stripped

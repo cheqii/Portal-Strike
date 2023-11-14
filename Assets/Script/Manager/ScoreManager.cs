@@ -19,7 +19,7 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         score = Mathf.Lerp(score, score_target, 0.1f);
-        scoreText.text = "Score : " + (int) score;
+        scoreText.text = "SCORE : " + (int) score;
     }
 
     public void IncreaseScore()

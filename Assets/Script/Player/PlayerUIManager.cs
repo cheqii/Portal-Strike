@@ -8,6 +8,7 @@ public class PlayerUIManager : MonoBehaviour
     [Header("Player UI Text")] 
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private MicroBar healthBar;
+    [SerializeField] private TextMeshProUGUI xp_Text;
     [SerializeField] private MicroBar xp_Bar;
 
     [Header("Player Controller UI")]
@@ -34,6 +35,7 @@ public class PlayerUIManager : MonoBehaviour
         healthBar.UpdateHealthBar(player.Hp);
         
         hpText.text = $"{player.Hp} / {player.MaxHp}";
+        xp_Text.text = $"{player.Xp} / { player.MaxXp }";
     }
 
     // Update is called once per frame
@@ -50,6 +52,7 @@ public class PlayerUIManager : MonoBehaviour
 
     public void XpBarUpdate()
     {
+        xp_Text.text = $"{player.Xp} / {player.MaxXp}";
         StartCoroutine(DelayXpBarUpdate());
     }
     
