@@ -61,8 +61,12 @@ public class Totem : MonoBehaviour, ITakeDamage
         microBar.UpdateHealthBar(hp);
 
         if (floatingText) ShowFloatingText();
-        
-        if (hp <= 0) Destroy(this.gameObject);
+
+        if (hp <= 0)
+        {
+            GameObject bigExplosion = Instantiate(ParticleManager.Instance.data.BigExplosion, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
     }
 
     void ShowFloatingText()

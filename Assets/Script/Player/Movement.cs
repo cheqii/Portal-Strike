@@ -3,7 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
-    public float moveSpeed = 5.0f; // Adjust the player's movement speed as needed
+    [SerializeField] private Player player;
+    public float moveSpeed = 0.0f; // Adjust the player's movement speed as needed
 
     private CharacterController characterController;
     private PlayerInput playerInput;
@@ -50,7 +51,7 @@ public class Movement : MonoBehaviour
         }
 
         // Calculate the final movement vector
-        movement = movementDirection * moveSpeed * Time.deltaTime;
+        movement = movementDirection * player.MoveSpeed * Time.deltaTime;
 
         // Apply the movement to the player using CharacterController
         characterController.Move(movement);

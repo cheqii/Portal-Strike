@@ -6,29 +6,23 @@ public class Player : MonoBehaviour, ITakeDamage
     #region -Declared Variables-
 
     [Header("Player Status")]
-    [SerializeField] private int hp;
-    public int Hp
-    {
+    [SerializeField] private int hp = 1000;
+    public int Hp {
         get => hp;
         set => hp = value;
     }
-    [SerializeField] private int maxHp;
-    public int MaxHp
-    {
+    [SerializeField] private int maxHp = 1000;
+    public int MaxHp {
         get => maxHp;
         set => maxHp = value;
     }
-
     private int level;
-    public int Level
-    {
+    public int Level {
         get => level;
         set => level = value;
     }
-    
-    [SerializeField] private int xp;
-    public int Xp
-    {
+    [SerializeField] private int xp = 0;
+    public int Xp {
         get => xp;
         set => xp = value;
     }
@@ -37,20 +31,37 @@ public class Player : MonoBehaviour, ITakeDamage
         get => maxXp;
         set => maxXp = value;
     }
-
-    [SerializeField] private int atkDamage;
-
+    [SerializeField] private int atkDamage = 10;
     public int AtkDamage
     {
         get => atkDamage;
         set => atkDamage = value;
     }
-    
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private int def;
-    [SerializeField] private float critRate;
-    [SerializeField] private float critDamage;
-    [SerializeField] private float dodgeRate;
+    [SerializeField] private float moveSpeed = 10.0f;
+    public float MoveSpeed {
+        get => moveSpeed;
+        set => moveSpeed = value;
+    }
+    [SerializeField] private int def = 0;
+    public int Def {
+        get => def;
+        set => def = value;
+    }
+    [SerializeField] private float critRate = 10.0f;
+    public float CritRate {
+        get => critRate;
+        set => critRate = value;
+    }
+    [SerializeField] private float critDamage = 10.0f;
+    public float CritDamage {
+        get => critDamage;
+        set => critDamage = value;
+    }
+    [SerializeField] private float dodgeRate = 10.0f;
+    public float DodgeRate {
+        get => dodgeRate;
+        set => dodgeRate = value;
+    }
 
     [SerializeField] private WeaponData weaponData;
 

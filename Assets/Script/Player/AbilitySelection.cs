@@ -17,6 +17,8 @@ public class AbilitySelection : MonoBehaviour
     [SerializeField] private TMP_Text abilityDescription3;
     [SerializeField] private GameObject getRewardPanel;
 
+    [SerializeField] private Nf_GameEvent StatsUpdate;
+
     private Player player;
     private PlayerUIManager playerUIManager;
 
@@ -25,11 +27,11 @@ public class AbilitySelection : MonoBehaviour
 
     // Define constants for abilies values
     private const int MaxHpIncrease = 20;
-    private const float MoveSpeedIncrease = 0.2f; // 0.2f = 20%
+    private const float MoveSpeedIncrease = 20.0f; // 20.0f = 20%
     private const int DefIncrease = 2;
-    private const float CritRateIncrease = 0.1f; // 0.1f = 10%
-    private const float CritDamageIncrease = 0.1f; // 0.1f = 10%
-    private const float DodgeRateIncrease = 0.1f; // 0.1f = 10%
+    private const float CritRateIncrease = 10.0f; // 10.0f = 10%
+    private const float CritDamageIncrease = 10.0f; // 10.0f = 10%
+    private const float DodgeRateIncrease = 10.0f; // 10.0f = 10%
 
     private void Start()
     {
@@ -64,7 +66,7 @@ public class AbilitySelection : MonoBehaviour
         }
         else if (ability == IncreaseMoveSpeed)
         {
-            descriptionText.text = $"Move Speed\n+{(MoveSpeedIncrease * 100).ToString("0")}%";
+            descriptionText.text = $"Move Speed\n+{MoveSpeedIncrease.ToString("0")}%";
             buttonImage.color = myPurple;
         }
         else if (ability == IncreaseDef)
@@ -74,17 +76,17 @@ public class AbilitySelection : MonoBehaviour
         }
         else if (ability == IncreaseCritRate)
         {
-            descriptionText.text = $"Increase Critical Rate\n+{(CritRateIncrease * 100).ToString("0")}%";
+            descriptionText.text = $"Increase Critical Rate\n+{CritRateIncrease.ToString("0")}%";
             buttonImage.color = myRed;
         }
         else if (ability == IncreaseCritDamage)
         {
-            descriptionText.text = $"Increase Critical Damage\n+{(CritDamageIncrease * 100).ToString("0")}%";
+            descriptionText.text = $"Increase Critical Damage\n+{CritDamageIncrease.ToString("0")}%";
             buttonImage.color = myRed;
         }
         else if (ability == IncreaseDodgeRate)
         {
-            descriptionText.text = $"Increase Dodge Rate\n+{(DodgeRateIncrease * 100).ToString("0")}%";
+            descriptionText.text = $"Increase Dodge Rate\n+{DodgeRateIncrease.ToString("0")}%";
             buttonImage.color = myRed;
         }
         else
@@ -189,6 +191,7 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[0] != null)
         {
             selectedAbilities[0](); // Select ability in array 2 of SelectedAbilities
+            StatsUpdate.Raise();
             SetButtonInactive(); // Set card button interactable inactive to prevents cheating by pressing multiple times !!
             UnFreeze(); // UnFreeze game time
         }
@@ -200,6 +203,7 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[1] != null)
         {
             selectedAbilities[1](); // Select ability in array 2 of SelectedAbilities
+            StatsUpdate.Raise();
             SetButtonInactive(); // Set card button interactable inactive to prevents cheating by pressing multiple times !!
             UnFreeze(); // UnFreeze game time
         }
@@ -211,6 +215,7 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[2] != null)
         {
             selectedAbilities[2](); // Select ability in array 2 of SelectedAbilities
+            StatsUpdate.Raise();
             SetButtonInactive(); // Set card button to inactive to prevents cheating by pressing multiple times !!
             UnFreeze(); // UnFreeze game time
         }
