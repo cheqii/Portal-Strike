@@ -107,7 +107,7 @@ public class AbilitySelection : MonoBehaviour
     // Increase Move Speed ..%
     private void IncreaseMoveSpeed()
     {
-        Debug.Log("Move Speed +" + (MoveSpeedIncrease * 100).ToString("0") + "%");
+        Debug.Log("Move Speed +" + MoveSpeedIncrease.ToString("0") + "%");
         player.IncreaseMoveSpeed(MoveSpeedIncrease);
     }
 
@@ -120,19 +120,19 @@ public class AbilitySelection : MonoBehaviour
     // Increase Critical Rate ..%
     private void IncreaseCritRate()
     {
-        Debug.Log("Increase Critical Rate +" + (CritRateIncrease * 100).ToString("0") + "%");
+        Debug.Log("Increase Critical Rate +" + CritRateIncrease.ToString("0") + "%");
         player.IncreaseCritRate(CritRateIncrease);
     }
     // Increase Critical Damage ..%
     private void IncreaseCritDamage()
     {
-        Debug.Log("Increase Critical Damage +" + (CritDamageIncrease * 100).ToString("0") + "%");
+        Debug.Log("Increase Critical Damage +" + CritDamageIncrease.ToString("0") + "%");
         player.IncreaseCritDamage(CritDamageIncrease);
     }
     // Increase Dodge Rate ..%
     private void IncreaseDodgeRate()
     {
-        Debug.Log("Increase Dodge Rate +" + (DodgeRateIncrease * 100).ToString("0") + "%");
+        Debug.Log("Increase Dodge Rate +" + DodgeRateIncrease.ToString("0") + "%");
         player.IncreaseDodgeRate(DodgeRateIncrease);
     }
     #endregion
