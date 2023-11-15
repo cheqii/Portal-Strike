@@ -1424,7 +1424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &60800110
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2834,7 +2834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &167650676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4952,7 +4952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &402224180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7850,7 +7850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &666530356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9255,7 +9255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &775238415
 Transform:
   m_ObjectHideFlags: 0
@@ -9825,6 +9825,10 @@ PrefabInstance:
     - target: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
       propertyPath: m_Name
       value: HP_Golem
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438169871030806, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4168634819871070, guid: c9bc790a133e19c40b64d6db4cfb7a22, type: 3}
       propertyPath: m_RootOrder
@@ -10461,6 +10465,10 @@ PrefabInstance:
     - target: {fileID: 100006, guid: 5124dc2491c482e45ac7dd914d77ddc6, type: 3}
       propertyPath: m_Name
       value: Snow
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 5124dc2491c482e45ac7dd914d77ddc6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 5124dc2491c482e45ac7dd914d77ddc6, type: 3}
       propertyPath: m_RootOrder
@@ -14314,7 +14322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1371806080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14367,9 +14375,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f504404edfda0ed42a0cda37849999a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpText: {fileID: 616875119}
-  healthBar: {fileID: 1764636962}
+  hp_Text: {fileID: 0}
+  hp_Bar: {fileID: 0}
+  xp_Text: {fileID: 0}
   xp_Bar: {fileID: 30983508}
+  level_Text: {fileID: 0}
+  atk_Text: {fileID: 0}
+  moveSpeed_Text: {fileID: 0}
+  def_Text: {fileID: 0}
+  critRate_Text: {fileID: 0}
+  criteDamate_Text: {fileID: 0}
+  dodgeRate_Text: {fileID: 0}
   playerUI: {fileID: 1233173122}
   gameOverPanel: {fileID: 219880878}
   PortalIn: {fileID: 11400000, guid: 550aa3c38cb24d646a33a70356bcbe4d, type: 2}
@@ -15023,7 +15039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1443167942
 Light:
   m_ObjectHideFlags: 0
@@ -18047,17 +18063,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 374339739982042448, guid: 43123bbf73a6e1a4b9660dac49003e78, type: 3}
   m_PrefabInstance: {fileID: 854011139}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1764636962 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 374339739982042463, guid: 43123bbf73a6e1a4b9660dac49003e78, type: 3}
-  m_PrefabInstance: {fileID: 854011139}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d779446027b6f034f9d448761b76a0bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1776216323
 GameObject:
   m_ObjectHideFlags: 0
@@ -19146,6 +19151,10 @@ PrefabInstance:
     - target: {fileID: 1628738707455202931, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
       propertyPath: m_Name
       value: Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1628738707455202931, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1628738707455202936, guid: 6de8cfaecd1e16e478da2b37530a980a, type: 3}
       propertyPath: atkDamage
@@ -21039,9 +21048,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilitySelectionPanel: {fileID: 2132541101}
-  abilityDescription: {fileID: 397588307}
-  Button2Description: {fileID: 1549447487}
-  Button3Description: {fileID: 1223665030}
+  abilityButton1: {fileID: 0}
+  abilityButton2: {fileID: 0}
+  abilityButton3: {fileID: 0}
+  abilityImage1: {fileID: 0}
+  abilityImage2: {fileID: 0}
+  abilityImage3: {fileID: 0}
+  abilityDescription1: {fileID: 0}
+  abilityDescription2: {fileID: 0}
+  abilityDescription3: {fileID: 0}
+  getRewardPanel: {fileID: 0}
+  StatsUpdate: {fileID: 0}
 --- !u!114 &2132541104
 MonoBehaviour:
   m_ObjectHideFlags: 0

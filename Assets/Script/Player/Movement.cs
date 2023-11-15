@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private Player player;
-    public float moveSpeed = 0.0f; // Adjust the player's movement speed as needed
+    //public float moveSpeed = 0.0f; // Adjust the player's movement speed as needed
 
     private CharacterController characterController;
     private PlayerInput playerInput;

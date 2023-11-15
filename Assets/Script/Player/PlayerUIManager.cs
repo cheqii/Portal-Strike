@@ -6,10 +6,11 @@ using Microlight.MicroBar;
 public class PlayerUIManager : MonoBehaviour
 {
     [Header("Player Stats UI")] 
-    [SerializeField] private TextMeshProUGUI hpText;
-    [SerializeField] private MicroBar healthBar;
+    [SerializeField] private TextMeshProUGUI hp_Text;
+    [SerializeField] private MicroBar hp_Bar;
     [SerializeField] private TextMeshProUGUI xp_Text;
     [SerializeField] private MicroBar xp_Bar;
+    [SerializeField] private TextMeshProUGUI level_Text;
     [SerializeField] private TextMeshProUGUI atk_Text;
     [SerializeField] private TextMeshProUGUI moveSpeed_Text;
     [SerializeField] private TextMeshProUGUI def_Text;
@@ -37,10 +38,10 @@ public class PlayerUIManager : MonoBehaviour
         xp_Bar.UpdateHealthBar(0);
 
         
-        healthBar.Initialize(player.MaxHp);
-        healthBar.UpdateHealthBar(player.Hp);
+        hp_Bar.Initialize(player.MaxHp);
+        hp_Bar.UpdateHealthBar(player.Hp);
 
-        hpText.text = $"{player.Hp} / {player.MaxHp}";
+        hp_Text.text = $"{player.Hp} / {player.MaxHp}";
         xp_Text.text = $"{player.Xp} / { player.MaxXp }";
 
         StatsUpdate();
@@ -54,8 +55,8 @@ public class PlayerUIManager : MonoBehaviour
 
     public void HealthUpdate()
     {
-        healthBar.UpdateHealthBar(player.Hp);
-        hpText.text = $"{player.Hp} / {player.MaxHp}";
+        hp_Bar.UpdateHealthBar(player.Hp);
+        hp_Text.text = $"{player.Hp} / {player.MaxHp}";
     }
 
     public void XpBarUpdate()
@@ -66,12 +67,13 @@ public class PlayerUIManager : MonoBehaviour
 
     public void StatsUpdate()
     {
+        level_Text.text = $"lv.{player.Level}";
         atk_Text.text = $"ATK : {player.AtkDamage}";
-        moveSpeed_Text.text = $"Move Speed : {player.MoveSpeed}";
+        moveSpeed_Text.text = $"Move Speed : {player.MoveSpeed:F2}%";
         def_Text.text = $"DEF : {player.Def}";
-        critRate_Text.text = $"CRIT RATE : {player.CritRate}";
-        criteDamate_Text.text = $"CRIT DAMAGE : {player.CritDamage}";
-        dodgeRate_Text.text = $"DODGE RATE : {player.DodgeRate}";
+        critRate_Text.text = $"CRIT RATE : {player.CritRate:F2}%";
+        criteDamate_Text.text = $"CRIT DAMAGE : {player.CritDamage:F2}%";
+        dodgeRate_Text.text = $"DODGE RATE : {player.DodgeRate:F2}%";
     }
     
     IEnumerator DelayXpBarUpdate()

@@ -148,6 +148,7 @@ MonoBehaviour:
   shootPoint: {fileID: 6317068721252576471}
   _microBar: {fileID: 2808511790267200496}
   floatingTextPrefab: {fileID: 1899620572623291273, guid: 0848b2d6f8e4111448a1cdd48fe9f5d3, type: 3}
+  increaseScore: {fileID: 11400000, guid: 4f4fd99e94ee56e41a62b4f9625a789d, type: 2}
 --- !u!114 &1008582693325092748
 MonoBehaviour:
   m_ObjectHideFlags: 0

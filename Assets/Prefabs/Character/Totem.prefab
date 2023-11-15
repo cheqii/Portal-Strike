@@ -61,6 +61,7 @@ MonoBehaviour:
   microBar: {fileID: 1806904318129984656}
   hp: 400
   floatingText: {fileID: 1899620572623291273, guid: 0848b2d6f8e4111448a1cdd48fe9f5d3, type: 3}
+  increaseScore: {fileID: 11400000, guid: 4f4fd99e94ee56e41a62b4f9625a789d, type: 2}
 --- !u!136 &4804681486960285699
 CapsuleCollider:
   m_ObjectHideFlags: 0

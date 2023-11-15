@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using Object = System.Object;
 
@@ -5,7 +6,7 @@ public class Player : MonoBehaviour, ITakeDamage
 {
     #region -Declared Variables-
 
-    [Header("Player Status")]
+    [Header("Player HP & EXP")]
     [SerializeField] private int hp = 1000;
     public int Hp {
         get => hp;
@@ -16,7 +17,7 @@ public class Player : MonoBehaviour, ITakeDamage
         get => maxHp;
         set => maxHp = value;
     }
-    private int level;
+    private int level = 1;
     public int Level {
         get => level;
         set => level = value;
@@ -31,31 +32,32 @@ public class Player : MonoBehaviour, ITakeDamage
         get => maxXp;
         set => maxXp = value;
     }
+    [Header("Player Stats")]
+    [SerializeField] private int def = 0;
+    public int Def {
+        get => def;
+        set => def = value;
+    }
     [SerializeField] private int atkDamage = 10;
     public int AtkDamage
     {
         get => atkDamage;
         set => atkDamage = value;
     }
-    [SerializeField] private float moveSpeed = 10.0f;
-    public float MoveSpeed {
-        get => moveSpeed;
-        set => moveSpeed = value;
-    }
-    [SerializeField] private int def = 0;
-    public int Def {
-        get => def;
-        set => def = value;
+    [SerializeField] private float critDamage = 10.0f;
+    public float CritDamage {
+        get => critDamage;
+        set => critDamage = value;
     }
     [SerializeField] private float critRate = 10.0f;
     public float CritRate {
         get => critRate;
         set => critRate = value;
     }
-    [SerializeField] private float critDamage = 10.0f;
-    public float CritDamage {
-        get => critDamage;
-        set => critDamage = value;
+    [SerializeField] private float moveSpeed = 10.0f;
+    public float MoveSpeed {
+        get => moveSpeed;
+        set => moveSpeed = value;
     }
     [SerializeField] private float dodgeRate = 10.0f;
     public float DodgeRate {
@@ -63,6 +65,7 @@ public class Player : MonoBehaviour, ITakeDamage
         set => dodgeRate = value;
     }
 
+    [Header("Another")]
     [SerializeField] private WeaponData weaponData;
 
     [Header("Event System")]
@@ -85,7 +88,7 @@ public class Player : MonoBehaviour, ITakeDamage
 
     public void TakeDamage(int dmg)
     {
-        takeDamageEvent.Raise(this, dmg);
+        takeDamageEvent.Raise(this, dmg -def);
     }
 
     public void DealDamage(Component sender, Object data)
