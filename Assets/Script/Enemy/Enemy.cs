@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
     [SerializeField] private GameObject floatingTextPrefab;
 
     [Header("Animator")] 
-    private EnemyAnimations animation;
+    private new EnemyAnimations animation;
 
     [SerializeField] private Nf_GameEvent increaseScore;
     

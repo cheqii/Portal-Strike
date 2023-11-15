@@ -1008,36 +1008,35 @@ public class LevelGenerator : MonoBehaviour
     //
     //********************************************************************************
 
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
 
-    private void OnDrawGizmos()
-    {
-        return;
+//    private void OnDrawGizmos()
+//    {
+//        return;
         
-        Color restore = Gizmos.color;
+//        Color restore = Gizmos.color;
 
-        for( int r = 0, count = m_rooms.Count; r < count; ++r )
-        {
-            RoomBluePrint room   = m_rooms[ r ];
+//        for( int r = 0, count = m_rooms.Count; r < count; ++r )
+//        {
+//            RoomBluePrint room   = m_rooms[ r ];
 
-            ref Bounds    bounds = ref room.bnd;
+//            ref Bounds    bounds = ref room.bnd;
 
-            Gizmos.color = Color.cyan; Gizmos.DrawWireCube( bounds.center, bounds.size );
+//            Gizmos.color = Color.cyan; Gizmos.DrawWireCube( bounds.center, bounds.size );
 
-            Gizmos.color = Color.red;  Gizmos.DrawCube    ( bounds.center, Vector3.one );
-        }
+//            Gizmos.color = Color.red;  Gizmos.DrawCube    ( bounds.center, Vector3.one );
+//        }
 
-        Gizmos.color  = Color.green;
+//        Gizmos.color  = Color.green;
 
-        for( int d = 0; d < m_doors.Count; ++d )
-        {
-            DoorBluePrint door = m_doors[ d ];
+//        for( int d = 0; d < m_doors.Count; ++d )
+//        {
+//            DoorBluePrint door = m_doors[ d ];
 
-            Gizmos.DrawCube( door.pos, new Vector3( Mathf.Abs( door.dir.z ) * m_doors_width, ROOMS_HEIGHT, Mathf.Abs( door.dir.x ) * m_doors_width ) );
-        }
+//            Gizmos.DrawCube( door.pos, new Vector3( Mathf.Abs( door.dir.z ) * m_doors_width, ROOMS_HEIGHT, Mathf.Abs( door.dir.x ) * m_doors_width ) );
+//        }
 
-        Gizmos.color = restore;
-    }
-
-#endif
+//        Gizmos.color = restore;
+//    }
+//#endif
 }

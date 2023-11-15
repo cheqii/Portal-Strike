@@ -10,7 +10,7 @@ public class EnemyDetectPlayer : MonoBehaviour
     [SerializeField] private MonsterData monData;
 
     [Header("Animator")] 
-    private EnemyAnimations animation;
+    private new EnemyAnimations animation;
     
     private NavMeshAgent monsterNavmesh;
     private Enemy enemy;
@@ -83,8 +83,7 @@ public class EnemyDetectPlayer : MonoBehaviour
             //     animation.TriggerIdleAnim();
 
             Ray ray = new Ray(transform.position, transform.forward * monData.range);
-            RaycastHit hit;
-        
+
             // if (monData.attackRange >= awayFromPlayer) return; // if monster attack range >= distance that monster away from player then monster can attack player
             switch (monData.monsterType)
             {
