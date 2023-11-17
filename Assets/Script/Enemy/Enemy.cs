@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
     private new EnemyAnimations animation;
 
     [SerializeField] private Nf_GameEvent increaseScore;
+    [SerializeField] private Nf_GameEvent enemiesCount;
     
     void Awake()
     {
@@ -111,6 +112,7 @@ public class Enemy : MonoBehaviour,ITakeDamage
         GameObject blood = Instantiate(ParticleManager.Instance.data.BloodBomb_particle, transform.position, Quaternion.identity);
         GameObject xp = Instantiate(ParticleManager.Instance.data.Xp_particle,transform.position,Quaternion.identity);
         increaseScore.Raise();
+        enemiesCount.Raise();
         Destroy(this.gameObject);
     }
 

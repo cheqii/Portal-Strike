@@ -17,6 +17,7 @@ public class PlayerUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI critRate_Text;
     [SerializeField] private TextMeshProUGUI criteDamate_Text;
     [SerializeField] private TextMeshProUGUI dodgeRate_Text;
+    [SerializeField] private TextMeshProUGUI enemiesCount_Text;
 
     [Header("Player Controller UI")]
     [SerializeField] private GameObject playerUI;
@@ -99,5 +100,10 @@ public class PlayerUIManager : MonoBehaviour
         {
             playerUI.SetActive(false);
         }
+    }
+
+    public void EnemiesCountUpdate()
+    {
+        enemiesCount_Text.text = $"{player.EnemyCounnt}/95\nEnemies Left";
     }
 }

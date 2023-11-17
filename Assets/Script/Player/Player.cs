@@ -63,6 +63,11 @@ public class Player : MonoBehaviour, ITakeDamage
         get => dodgeRate;
         set => dodgeRate = value;
     }
+    [SerializeField] private int enemiesCount = 0;
+    public int EnemyCounnt {
+        get => enemiesCount;
+        set => enemiesCount = value;
+    }
 
     [Header("Another")]
     [SerializeField] private WeaponData weaponData;
@@ -71,6 +76,7 @@ public class Player : MonoBehaviour, ITakeDamage
     [SerializeField] private Nf_GameEvent takeDamageEvent;
     [SerializeField] private Nf_GameEvent playerLevelUpEvent;
     [SerializeField] private Nf_GameEvent skipableAdsEvent;
+    [SerializeField] private Nf_GameEvent enemiesCountUpdate;
 
     #endregion
 
@@ -79,6 +85,13 @@ public class Player : MonoBehaviour, ITakeDamage
     private void Awake()
     {
         hp = maxHp;
+    }
+
+    public void EnemiesCount()
+    {
+        enemiesCount += 1;
+        enemiesCountUpdate.Raise();
+        
     }
 
     #endregion
@@ -95,7 +108,7 @@ public class Player : MonoBehaviour, ITakeDamage
         if (data is int)
         {
             int damage = (int)data;
-            hp = Mathf.Clamp(hp - ((damage - def) + 1), 0, maxHp);
+            hp = Mathf.Clamp(hp - (damage - def), 0, maxHp);
         }
 
         if (hp < 1)
@@ -124,7 +137,12 @@ public class Player : MonoBehaviour, ITakeDamage
 
     public void Healing(int heal)
     {
-        hp = Mathf.Clamp(hp + heal, 0, maxHp);
+        hp += heal;
+
+        if(hp > maxHp)
+        {
+            hp = maxHp;
+        }
     }
 
     #endregion

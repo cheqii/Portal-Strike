@@ -57,7 +57,7 @@ MonoBehaviour:
   shootingPoint: {fileID: 2575329028214062697}
   distance: 100
   delay: 4
-  shootDistance: 20
+  shootDistance: 40
   microBar: {fileID: 1806904318129984656}
   hp: 400
   floatingText: {fileID: 1899620572623291273, guid: 0848b2d6f8e4111448a1cdd48fe9f5d3, type: 3}
