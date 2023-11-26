@@ -263,7 +263,7 @@ public class AbilitySelection : MonoBehaviour
     public void ResetAbility()
     {
         getRewardPanel.SetActive(true); // Notification panel
-        ShowUI(); // Random ability again
+        StartSelectingAbilities(); // Random ability again
     }
     #endregion
 }

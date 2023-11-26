@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638363200667897202
+      ticks: 638366197882307587
     m_Hash: 403228320
   m_LockFileStatus:
     m_FilePath: D:/Guitar/College work/Portal-Strike/Portal-Strike/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638363200667947272
+      ticks: 638366197882339004
     m_Hash: 1098421847
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}

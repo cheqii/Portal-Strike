@@ -44,6 +44,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             _showAdButton.onClick.AddListener(ShowAd);
             // Enable the button for users to click:
             _showAdButton.interactable = true;
+
+            abilitySelection.ResetAbility();
         }
     }
 
@@ -63,7 +65,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         {
             Debug.Log("Unity Ads Rewarded Ad Completed");
             // Grant a reward.
-            abilitySelection.ResetAbility();
+            //abilitySelection.ResetAbility();
         }
     }
 

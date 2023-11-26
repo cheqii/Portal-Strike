@@ -102,7 +102,6 @@ public class EnemyDetectPlayer : MonoBehaviour
                 case MonsterData.MonsterType.Range:
                     if (awayFromPlayer <= monData.attackRange)
                     {
-                        Debug.Log("range attack");
                         animation.TriggerAttackAnim();
                     }
                     break;
