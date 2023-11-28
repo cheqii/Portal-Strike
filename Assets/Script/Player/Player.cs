@@ -3,6 +3,10 @@ using Object = System.Object;
 
 public class Player : MonoBehaviour, ITakeDamage
 {
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject clearPortal;
+    private bool oneDie = false;
+
     #region -Declared Variables-
 
     [Header("Player HP & EXP")]
@@ -77,6 +81,7 @@ public class Player : MonoBehaviour, ITakeDamage
     [SerializeField] private Nf_GameEvent playerLevelUpEvent;
     [SerializeField] private Nf_GameEvent skipableAdsEvent;
     [SerializeField] private Nf_GameEvent enemiesCountUpdate;
+    [SerializeField] private Nf_GameEvent healthBarUpdate;
 
     #endregion
 
@@ -91,7 +96,11 @@ public class Player : MonoBehaviour, ITakeDamage
     {
         enemiesCount += 1;
         enemiesCountUpdate.Raise();
-        
+        if(enemiesCount >= 95)
+        {
+            Vector3 newPosition = gameObject.transform.position + new Vector3(0, -2, 5);
+            Instantiate(clearPortal, newPosition, Quaternion.identity);
+        }
     }
 
     #endregion
@@ -113,8 +122,17 @@ public class Player : MonoBehaviour, ITakeDamage
 
         if (hp < 1)
         {
-            Debug.Log("Player ded");
-            skipableAdsEvent.Raise();
+            oneDie = true;
+            if(oneDie == true)
+            {
+                hp = 5;
+                oneDie = false;
+
+                skipableAdsEvent.Raise();
+                gameOverPanel.SetActive(true);
+
+                Time.timeScale = 0;
+            }
         }
     }
 
@@ -143,6 +161,7 @@ public class Player : MonoBehaviour, ITakeDamage
         {
             hp = maxHp;
         }
+        healthBarUpdate.Raise();
     }
 
     #endregion

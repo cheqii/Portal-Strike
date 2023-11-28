@@ -40,10 +40,10 @@ public class EnemyAnimations : MonoBehaviour
         animator.SetTrigger("isGetHit");
     }
 
-    public void TriggerDieAnim()
-    {
-        animator.SetTrigger("isDie");
-    }
+    //public void TriggerDieAnim()
+    //{
+    //    animator.SetTrigger("isDie");
+    //}
 
     public void BlendTree()
     {

@@ -16,6 +16,7 @@ public class AbilitySelection : MonoBehaviour
     [SerializeField] private TMP_Text abilityDescription2;
     [SerializeField] private TMP_Text abilityDescription3;
     [SerializeField] private GameObject getRewardPanel;
+    [SerializeField] private GameObject selectedMask;
 
     [SerializeField] private Nf_GameEvent StatsUpdate;
 
@@ -191,9 +192,7 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[0] != null)
         {
             selectedAbilities[0](); // Select ability in array 2 of SelectedAbilities
-            StatsUpdate.Raise();
-            SetButtonInactive(); // Set card button interactable inactive to prevents cheating by pressing multiple times !!
-            UnFreeze(); // UnFreeze game time
+            AfterSelect();
         }
     }
 
@@ -203,9 +202,7 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[1] != null)
         {
             selectedAbilities[1](); // Select ability in array 2 of SelectedAbilities
-            StatsUpdate.Raise();
-            SetButtonInactive(); // Set card button interactable inactive to prevents cheating by pressing multiple times !!
-            UnFreeze(); // UnFreeze game time
+            AfterSelect();
         }
     }
 
@@ -215,10 +212,15 @@ public class AbilitySelection : MonoBehaviour
         if (selectedAbilities[2] != null)
         {
             selectedAbilities[2](); // Select ability in array 2 of SelectedAbilities
-            StatsUpdate.Raise();
-            SetButtonInactive(); // Set card button to inactive to prevents cheating by pressing multiple times !!
-            UnFreeze(); // UnFreeze game time
+            AfterSelect();
         }
+    }
+
+    public void AfterSelect()
+    {
+        StatsUpdate.Raise();
+        selectedMask.SetActive(true);
+        UnFreeze(); // UnFreeze game time
     }
 
     // =======================================================================
@@ -253,9 +255,7 @@ public class AbilitySelection : MonoBehaviour
     // Prevents cheating by pressing multiple times !!
     public void SetButtonInactive()
     {
-        abilityButton1.interactable = false;
-        abilityButton2.interactable = false;
-        abilityButton3.interactable = false;
+        selectedMask.SetActive(false);
     }
 
     // =======================================================================

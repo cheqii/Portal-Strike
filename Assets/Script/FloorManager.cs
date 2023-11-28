@@ -9,7 +9,7 @@ public class FloorManager : MonoBehaviour
     [SerializeField] private List<GameObject> _floor;
 
     [SerializeField] private GameObject[] enemy;
-    [SerializeField] private GameObject Portal;
+    //[SerializeField] private GameObject Portal;
     [SerializeField] private GameObject Totem;
 
     // Start is called before the first frame update
@@ -58,6 +58,6 @@ public class FloorManager : MonoBehaviour
         }
 
         //generate portal
-        Instantiate(Portal, _floor[_floor.Count - 1].transform.position, Quaternion.identity);
+        //Instantiate(Portal, _floor[_floor.Count - 1].transform.position, Quaternion.identity);
     }
 }

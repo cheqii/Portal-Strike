@@ -22,10 +22,14 @@ public class Bullet : MonoBehaviour
                 break;
             case "Totem":
                 Debug.Log("Totem");
-                GameObject explosion = Instantiate(ParticleManager.Instance.data.Explosion, transform.position, Quaternion.identity);
+                Instantiate(ParticleManager.Instance.data.Explosion, transform.position, Quaternion.identity);
 
                 int calculatedDamageTotem = CalculateDamage(player.AtkDamage, player.CritRate, player.CritDamage);
                 col.gameObject.GetComponent<ITakeDamage>().TakeDamage(calculatedDamageTotem);
+                break;
+            default:
+                Instantiate(ParticleManager.Instance.data.Explosion, transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
                 break;
         }
     }

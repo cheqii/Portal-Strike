@@ -5,11 +5,11 @@ using Microlight.MicroBar;
 
 public class PlayerUIManager : MonoBehaviour
 {
-    [Header("Player Stats UI")] 
     [SerializeField] private TextMeshProUGUI hp_Text;
     [SerializeField] private MicroBar hp_Bar;
     [SerializeField] private TextMeshProUGUI xp_Text;
     [SerializeField] private MicroBar xp_Bar;
+    [Header("Player Stats UI")]
     [SerializeField] private TextMeshProUGUI level_Text;
     [SerializeField] private TextMeshProUGUI atk_Text;
     [SerializeField] private TextMeshProUGUI moveSpeed_Text;
