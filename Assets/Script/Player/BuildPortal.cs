@@ -21,7 +21,6 @@ public class BuildPortal : MonoBehaviour
         set => myPortalOut = value;
     }
 
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -52,12 +51,13 @@ public class BuildPortal : MonoBehaviour
 
     public void CreatePortal_Out()
     {
-        if (myPortalOut != null)
+        GameObject playerClone = GameObject.FindWithTag("PlayerClone");
+        if (myPortalOut != null || playerClone != null)
         {
             return;
         }
         
-        var portalout =Instantiate(portal_out, player.transform.position + player.transform.forward * 2, Quaternion.identity);
+        var portalout = Instantiate(portal_out, player.transform.position + player.transform.forward * 2, Quaternion.identity);
         portalout.transform.eulerAngles = new Vector3(0,player.transform.rotation.eulerAngles.y + 90,90);
         myPortalOut = portalout.GetComponent<MiniPortal>();
         

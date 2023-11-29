@@ -21,7 +21,6 @@ public class Bullet : MonoBehaviour
                 col.gameObject.GetComponent<ITakeDamage>().TakeDamage(calculatedDamage);
                 break;
             case "Totem":
-                Debug.Log("Totem");
                 Instantiate(ParticleManager.Instance.data.Explosion, transform.position, Quaternion.identity);
 
                 int calculatedDamageTotem = CalculateDamage(player.AtkDamage, player.CritRate, player.CritDamage);

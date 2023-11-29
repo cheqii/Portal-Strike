@@ -8,6 +8,8 @@ TagManager:
   - Totem
   - Bullet
   - Clear
+  - MonsterBullet
+  - PlayerClone
   layers:
   - Default
   - TransparentFX

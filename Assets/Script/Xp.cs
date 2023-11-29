@@ -24,6 +24,10 @@ public class Xp : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (target == null)
+        {
+            target = FindObjectOfType<Player>().transform;
+        }
         // Calculate the desired camera position
         Vector3 targetPosition = target.position + offset;
 

@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class MiniPortal : MonoBehaviour
 {
+    public Animator portalAnimator;
+    public GameObject clonePrefab;
     public MiniPortal portalOut;
-    
+
     private float moveSpeed;
     private Player player;
 
@@ -12,9 +14,9 @@ public class MiniPortal : MonoBehaviour
     private void Start()
     {
         portalBuild = FindObjectOfType<BuildPortal>();
-        
+
         player = FindObjectOfType<Player>();
-        
+
         moveSpeed = player.MoveSpeed;
     }
 
@@ -25,70 +27,63 @@ public class MiniPortal : MonoBehaviour
             switch (other.transform.tag)
             {
                 case "Player":
-                    if (portalBuild.MyPortalIn != null && portalBuild.MyPortalOut != null)
+                    if (portalBuild.MyPortalOut != null)
                     {
-                        Debug.Log("Destroy Portal");
-                        GameObject blood = Instantiate(ParticleManager.Instance.data.BigExplosion
-                            , portalBuild.MyPortalIn.transform.position, Quaternion.identity);
-                        Destroy(portalBuild.MyPortalIn.gameObject);
-                        other.gameObject.GetComponent<TraumaInducer>().HardShake();
+                        Instantiate(clonePrefab, player.transform.position + new Vector3(5f, 0f, 3.5f), Quaternion.identity);
+                        Instantiate(clonePrefab, player.transform.position + new Vector3(-5f, 0f, 3.5f), Quaternion.identity);
+                        // เล่น Animation
+                        if (portalAnimator != null)
+                        {
+                            portalAnimator.SetTrigger("DestroyPortal");
+                        }
+                        Destroy(portalBuild.MyPortalOut.gameObject, 0.3f);
                     }
                     break;
             }
             return;
         }
-        
+
         switch (other.transform.tag)
         {
-            case "Bullet":
-                WarpObject(other.gameObject);
+            case "MonsterBullet":
+                Destroy(other.gameObject);
+                if (portalAnimator != null)
+                {
+                    portalAnimator.SetTrigger("DestroyPortal");
+                }
+                Destroy(portalBuild.MyPortalIn.gameObject, 0.3f);
                 break;
             case "Player":
-                if (portalBuild.MyPortalOut == null) PlayerDash();
-                if (portalBuild.MyPortalIn != null && portalBuild.MyPortalOut != null) PlayerWarp(other.gameObject);
-                break;
-        }
-    }
-
-    private void WarpObject(GameObject go)
-    {
-        go.transform.position = portalOut.transform.position;
-        go.transform.eulerAngles = -portalOut.transform.eulerAngles;
-        Debug.Log("Warp Object");
-        
-        switch (go.gameObject.tag)
-        {
-            case "Bullet":
-                go.GetComponent<Rigidbody>().velocity = -go.GetComponent<Rigidbody>().velocity;
+                PlayerDash();
+                if (portalAnimator != null)
+                {
+                    portalAnimator.SetTrigger("DestroyPortal");
+                }
+                Destroy(portalBuild.MyPortalIn.gameObject, 0.3f);
                 break;
         }
     }
 
     private void PlayerDash()
     {
+        if (player == null)
+        {
+            player = FindObjectOfType<Player>();
+        }
         FindObjectOfType<PlayerAnimation>().SetAnim("Hurt");
         Debug.Log("Dash");
         player.MoveSpeed *= 4;
         GameObject Dash_Effect = Instantiate(ParticleManager.Instance.data.Dash_particle, player.transform.position,
             player.transform.rotation);
         Dash_Effect.transform.SetParent(player.gameObject.transform);
-        
-        Destroy(Dash_Effect,0.5f);
-        
+
+        Destroy(Dash_Effect, 0.5f);
+
         Invoke("ResetSpeed", 0.15f);
     }
 
     void ResetSpeed()
     {
         player.MoveSpeed = moveSpeed;
-    }
-    void PlayerWarp(GameObject go)
-    {
-        FindObjectOfType<PlayerAnimation>().SetAnim("Hurt");
-
-        Debug.Log("Warp");
-        go.GetComponent<CharacterController>().enabled = false;
-        go.transform.position = portalOut.gameObject.transform.position + new Vector3(0,0, 1.5f);
-        go.GetComponent<CharacterController>().enabled = true;
     }
 }
