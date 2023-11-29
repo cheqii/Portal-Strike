@@ -16,7 +16,6 @@ public class ScreenshotManager : MonoBehaviour
     public GameObject controller;
     public GameObject playerStatus;
     public GameObject minimap;
-    public GameObject ranking;
     public GameObject portalControl;
     public GameObject scoreUI;
 
@@ -99,7 +98,6 @@ public class ScreenshotManager : MonoBehaviour
         // 2.2 Hide all UI except "Controller" and "capturePanel" when you enter CameraMode.
         playerStatus.SetActive(false);
         minimap.SetActive(false);
-        ranking.SetActive(false);
         portalControl.SetActive(false);
         scoreUI.SetActive(false);
     }
@@ -111,7 +109,6 @@ public class ScreenshotManager : MonoBehaviour
         controller.SetActive(false);
         playerStatus.SetActive(false);
         minimap.SetActive(false);
-        ranking.SetActive(false);
         portalControl.SetActive(false);
         scoreUI.SetActive(false);
     }
@@ -134,7 +131,6 @@ public class ScreenshotManager : MonoBehaviour
         controller.SetActive(true);
         playerStatus.SetActive(true);
         minimap.SetActive(true);
-        ranking.SetActive(true);
         portalControl.SetActive(true);
         scoreUI.SetActive(true);
     }
