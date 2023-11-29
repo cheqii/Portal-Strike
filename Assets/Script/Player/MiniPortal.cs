@@ -29,8 +29,8 @@ public class MiniPortal : MonoBehaviour
                 case "Player":
                     if (portalBuild.MyPortalOut != null)
                     {
-                        Instantiate(clonePrefab, player.transform.position + new Vector3(5f, 0f, 3.5f), Quaternion.identity);
-                        Instantiate(clonePrefab, player.transform.position + new Vector3(-5f, 0f, 3.5f), Quaternion.identity);
+                        Instantiate(clonePrefab, player.transform.position + new Vector3(5f, 0f, 5f), Quaternion.identity);
+                        Instantiate(clonePrefab, player.transform.position + new Vector3(-5f, 0f, 5f), Quaternion.identity);
                         // เล่น Animation
                         if (portalAnimator != null)
                         {
