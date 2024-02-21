@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0f5e8ceaa035a46af76fe052240955, type: 3}
+  m_Name: Mon1
+  m_EditorClassIdentifier: 
+  monsterPrefab: {fileID: 8591618272323389173, guid: a9f113951c3b64b418ae6c1576627f63, type: 3}
+  bullet: {fileID: 5419491360957919028, guid: 40717cdc8807162478756e1ce67a2ab7, type: 3}
+  monsterType: 1
+  monName: 
+  hp: 100
+  moveSpeed: 5
+  atkDamage: 100
+  atkSpeed: 20
+  def: 10
+  atkCoolDown: 2
+  expPoints: 10
+  attackRange: 12
+  range: 0
+  stopFollow: 20
+  stopDistance: 15
+  viewRange: 30

@@ -19,10 +19,11 @@ public class DestroyGameObject : MonoBehaviour
 
         /* A camera frustum is the 3D shape that defines what a camera can see.
          * This helps optimize rendering by excluding objects outside the frustum. */
-        if (mainCamera && !GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(mainCamera), GetComponent<Renderer>().bounds))
-        {
-            Destroy(gameObject);
-        }
+
+        //if (mainCamera && !GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(mainCamera), GetComponent<Renderer>().bounds))
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     /* When an object with the "Enemy" tag enters the trigger zone of the object containing this script

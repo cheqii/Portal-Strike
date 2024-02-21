@@ -1,24 +1,49 @@
-using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 5.0f; // Adjust the forward speed as needed
+    private Player player;
 
-    void Update()
+    private void Awake()
     {
-        // Calculate the forward movement vector
-        Vector3 moveDirection = transform.forward * speed * Time.deltaTime;
-
-        // Move the object forward
-        transform.Translate(moveDirection, Space.World);
+        player = FindObjectOfType<Player>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision col)
     {
-        if (other.CompareTag("Enemy"))
+        switch (col.gameObject.tag)
         {
-            Destroy(this.gameObject);
+            case "Enemy":
+                GameObject blood = Instantiate(ParticleManager.Instance.data.BloodSplash_particle, transform.position, Quaternion.identity);
+                blood.transform.SetParent(col.transform);
+
+                int calculatedDamage = CalculateDamage(player.AtkDamage, player.CritRate, player.CritDamage);
+                col.gameObject.GetComponent<ITakeDamage>().TakeDamage(calculatedDamage);
+                break;
+            case "Totem":
+                Instantiate(ParticleManager.Instance.data.Explosion, transform.position, Quaternion.identity);
+
+                int calculatedDamageTotem = CalculateDamage(player.AtkDamage, player.CritRate, player.CritDamage);
+                col.gameObject.GetComponent<ITakeDamage>().TakeDamage(calculatedDamageTotem);
+                break;
+            default:
+                Instantiate(ParticleManager.Instance.data.Explosion, transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
+                break;
+        }
+    }
+
+    private int CalculateDamage(int baseDamage, float critRate, float critDamage)
+    {
+        float randomValue = Random.value * 100.0f;
+
+        if (randomValue <= critRate)
+        {
+            return Mathf.RoundToInt(baseDamage + critDamage);
+        }
+        else
+        {
+            return baseDamage;
         }
     }
 }
